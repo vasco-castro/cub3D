@@ -28,27 +28,32 @@ static void	render_walls(void)
 	debug("Rendering walls...\n");
 }
 
-static void	render_minimap(void)
+static void	render_minimap(int col, int row)
 {
-	int	row;
-	int	col;
+	int	x;
+	int	y;
+	int	pos_col;
+	int	pos_row;
 
 	debug("Rendering minimap...\n");
-	row = 0;
-	while (row < map()->size.x && map()->map[row])
+	x = 0;
+	while (x < map()->size.x && map()->map[x])
 	{
-		col = 0;
-		while (col < map()->size.y && map()->map[row][col])
+		y = 0;
+		while (y < map()->size.y && map()->map[x][y])
 		{
-			if (map()->map[row][col] == '1')
-				put_square(col * MINIMAP_SCALE, row * MINIMAP_SCALE, MINIMAP_SCALE, 0x00bf5600);
+			pos_col = (y * map()->minimap_scale) + col;
+			pos_row = (x * map()->minimap_scale) + row;
+			debug("%d - %d\n", pos_col, pos_row);
+			if (map()->map[x][y] == '0')
+				put_square(pos_col, pos_row, map()->minimap_scale, 0x00fcba03);
 			else
-				put_square(col * MINIMAP_SCALE, row * MINIMAP_SCALE, MINIMAP_SCALE, 0x00fcba03);
-			if (player()->coord.x == col && player()->coord.y == row)
-				put_star(col * MINIMAP_SCALE, row * MINIMAP_SCALE, MINIMAP_SCALE, 0x006300bf);
-			col++;
+				put_square(pos_col, pos_row, map()->minimap_scale, 0x00bf5600);
+			if (player()->coord.x == y && player()->coord.y == x)
+				put_star(pos_col, pos_row, map()->minimap_scale, 0x006300bf);
+			y++;
 		}
-		row++;
+		x++;
 	}
 }
 
@@ -57,5 +62,18 @@ void	render(void)
 	render_bg();
 	render_walls();
 	if (MINIMAP)
-		render_minimap();
+	{
+		int minimap_low_pos = W_HEIGHT - (map()->size.y * map()->minimap_scale);
+		int minimap_right_pos = W_WIDTH - (map()->size.x * map()->minimap_scale);
+		if (MINIMAP_POS == MINIMAP_UL)
+			render_minimap(0, 0);
+		else if (MINIMAP_POS == MINIMAP_LL)
+			render_minimap(0, minimap_low_pos);
+		else if (MINIMAP_POS == MINIMAP_UR)
+			render_minimap(minimap_right_pos, 0);
+		else if (MINIMAP_POS == MINIMAP_LR)
+			render_minimap(minimap_right_pos, minimap_low_pos);
+		else
+			render_minimap(0, 0);
+	}
 }

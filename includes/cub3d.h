@@ -8,12 +8,27 @@
 # include "handlers.h"
 # include "rendering.h"
 
-# define FOV 1.047
-# define W_WIDTH 720
-# define W_HEIGHT 480
-# define MINIMAP true
-# define MINIMAP_SCALE 24
 # define W_MSG "Let's get cub3D!"
+// # define W_WIDTH 720
+// # define W_HEIGHT 480
+# define W_WIDTH 1280
+# define W_HEIGHT 720
+// # define W_WIDTH 1920
+// # define W_HEIGHT 1080
+# define FOV 1.047
+
+# define MINIMAP true
+// # define MINIMAP_SCALE 8
+# define MINIMAP_SCALE_PERCENTAGE 15
+# define MINIMAP_POS MINIMAP_UL
+
+typedef enum e_minimap
+{
+	MINIMAP_UL = 1,
+	MINIMAP_LL = 2,
+	MINIMAP_UR = 3,
+	MINIMAP_LR = 4,
+}	t_minimap;
 
 typedef struct s_game
 {
@@ -32,6 +47,7 @@ typedef struct s_map
 	uint32_t	floor;
 
 	char		**map;
+	int			minimap_scale;
 
 	t_point		size;
 }	t_map;
