@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:49:15 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/05/21 17:32:14 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/06/22 18:56:03 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ static char	*get_vars_from_raw_map(char **raw_map, const char *key)
 t_map_vars	store_map_variables(char **raw_map)
 {
 	return ((t_map_vars){
-		.north_texture_path=get_vars_from_raw_map(raw_map, "NO"),
-		.south_texture_path=get_vars_from_raw_map(raw_map, "SO"),
-		.west_texture_path=get_vars_from_raw_map(raw_map, "WE"),
-		.east_texture_path=get_vars_from_raw_map(raw_map, "EA"),
+		.north=get_vars_from_raw_map(raw_map, "NO"),
+		.south=get_vars_from_raw_map(raw_map, "SO"),
+		.west=get_vars_from_raw_map(raw_map, "WE"),
+		.east=get_vars_from_raw_map(raw_map, "EA"),
 		.floor=get_vars_from_raw_map(raw_map, "F"),
 		.ceiling=get_vars_from_raw_map(raw_map, "C")
 	});

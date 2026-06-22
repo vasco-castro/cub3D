@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/06/22 18:15:37 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/06/22 21:14:38 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 /* 
 void	print_map_vars(t_map_vars map_vars)
 {
-	printf("NO: %s\n", map_vars.north_texture_path
-		? map_vars.north_texture_path : "(null)");
-	printf("SO: %s\n", map_vars.south_texture_path
-		? map_vars.south_texture_path : "(null)");
-	printf("EA: %s\n", map_vars.east_texture_path
-		? map_vars.east_texture_path : "(null)");
-	printf("WE: %s\n", map_vars.west_texture_path
-		? map_vars.west_texture_path : "(null)");
+	printf("NO: %s\n", map_vars.north
+		? map_vars.north : "(null)");
+	printf("SO: %s\n", map_vars.south
+		? map_vars.south : "(null)");
+	printf("EA: %s\n", map_vars.east
+		? map_vars.east : "(null)");
+	printf("WE: %s\n", map_vars.west
+		? map_vars.west : "(null)");
 	printf("F: %s\n", map_vars.floor);
 	printf("C: %s\n", map_vars.ceiling);
 } */
@@ -44,6 +44,7 @@ t_map	*parse_map(const char *filename)
 	raw_map = read_map(filename);
 	if (!raw_map)
 		return (free(result), NULL);
+	validate_duplicates_invalid_vars();
 	map_vars = store_map_variables(raw_map);
 	map_body = store_map_body(raw_map);
 	ft_tabfree(raw_map);

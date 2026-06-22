@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/06/22 18:46:35 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/06/22 18:56:03 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ typedef struct s_map
 
 typedef struct s_map_vars
 {
-	char			*north_texture_path;
-	char			*south_texture_path;
-	char			*east_texture_path;
-	char			*west_texture_path;
+	char			*north;
+	char			*south;
+	char			*east;
+	char			*west;
 	char			*floor;
 	char			*ceiling;
 }					t_map_vars;
@@ -62,6 +62,7 @@ bool		is_map_line(char *line, size_t j);
 bool		valid_permisions(t_map_vars map_vars);
 bool		valid_spacing(t_map_vars map_vars);
 bool		valid_CAPS(t_map_vars map_vars);
+bool		valid_duplicates(t_map_vars map_vars);
 bool		check_texture(t_map_vars map_vars);
 void		parse_error_on_map(t_map *map);
 char		**read_map(const char *filename);
