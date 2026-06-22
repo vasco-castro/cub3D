@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/06/08 22:42:58 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/06/22 18:15:37 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_map	*parse_map(const char *filename)
 	map_vars = store_map_variables(raw_map);
 	map_body = store_map_body(raw_map);
 	ft_tabfree(raw_map);
-	// if (!parse_textures(map_vars, result) || !parse_colors(map_vars, result))
+	if (!parse_textures(map_vars, result) || !parse_colors(map_vars, result))
 	// 	return (clear_parse_allocation(result, map_body, map_vars), NULL);
 	// if (!parse_map_body(map_body))
 	// 	return (clear_parse_allocation(result, map_body, map_vars), NULL);

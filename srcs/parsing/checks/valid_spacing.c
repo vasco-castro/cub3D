@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_textures.c                                   :+:      :+:    :+:   */
+/*   valid_spacing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/19 17:24:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/06/22 18:46:04 by biphuyal         ###   ########.fr       */
+/*   Created: 2026/06/22 18:42:47 by biphuyal          #+#    #+#             */
+/*   Updated: 2026/06/22 18:46:13 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-bool	parse_textures(t_map_vars map_vars, t_map *map)
+bool	valid_spacing(t_map_vars map_vars)
 {
-	if (!check_texture(map_vars))
-		return (false);
-	return (true);
+	
 }
