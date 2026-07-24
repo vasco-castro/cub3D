@@ -1,21 +1,21 @@
 
--include mks/config.mk
+-include mks/config.mk mks/libs.mk
 
 NAME := cub3D
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
-	@echo "$(GREEN)Building $(NAME).$(RESET)"
-	@$(CC) $(OBJS) $(LIBFT) $(MLX) $(LDFLAGS) -o $(NAME)
+	@printf "$(GREEN)Building $(NAME).$(RESET)\n"
+	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 	@printf "$(PURPLE)%s$(RESET)\n" "$$(cat banner.txt)"
 
 clean:
-	@echo "$(YELLOW)Cleaning objects.$(RESET)"
+	@printf "$(YELLOW)Cleaning objects.$(RESET)\n"
 	@rm -f $(OBJS) $(DEPS)
 
 fclean: clean
-	@echo "$(YELLOW)Cleaning binaries.$(RESET)"
+	@printf "$(YELLOW)Cleaning binaries.$(RESET)\n"
 	@rm -f $(NAME)
 	@make fclean -sC $(LIBFT_DIR) > /dev/null 2> /dev/null
 	@make clean -sC $(MLX_DIR) > /dev/null 2> /dev/null
@@ -24,13 +24,3 @@ re: fclean all
 
 .DEFAULT_GOAL := all
 .PHONY: all clean fclean re
-
-BLACK	= \e[1;30m
-RED		= \e[1;31m
-GREEN	= \e[92m
-YELLOW	= \e[1;33m
-BLUE	= \e[1;34m
-PURPLE	= \e[1;35m
-CYAN	= \e[1;36m
-WHITE	= \e[1;37m
-RESET	= \e[0m

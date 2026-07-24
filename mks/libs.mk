@@ -3,7 +3,7 @@
 LIBFT_DIR		:= $(LIBS_DIR)libft/
 LIBFT_REP		:= $(LIBFT_DIR).git
 LIBFT			:= $(LIBFT_DIR)libft.a
-CFLAGS			+= -I$(LIBFT_DIR) -I$(LIBFT_DIR)/$(INCS_DIR)
+CFLAGS			+= -I$(LIBFT_DIR) -I$(LIBFT_DIR)$(INCS_DIR)
 LDFLAGS			+= -L$(LIBFT_DIR) -lft
 
 $(LIBFT_REP):
@@ -34,4 +34,4 @@ $(MLX_REP):
 
 $(MLX): $(MLX_REP)
 	@printf "$(GREEN)Building MLX.$(RESET)\n"
-	@$(MAKE) -sC $(MLX_DIR) > /dev/null
+	@$(MAKE) -sC $(MLX_DIR) > /dev/null 2> /dev/null
