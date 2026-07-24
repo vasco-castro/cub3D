@@ -1,7 +1,7 @@
 
 -include mks/config.mk
 
-NAME = cub3D
+NAME := cub3D
 
 all: $(NAME)
 

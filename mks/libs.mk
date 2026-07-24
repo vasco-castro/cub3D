@@ -1,34 +1,37 @@
 
 # LIBFT linking and compilation flags
 LIBFT_DIR		:= $(LIBS_DIR)libft/
+LIBFT_REP		:= $(LIBFT_DIR).git
 LIBFT			:= $(LIBFT_DIR)libft.a
 CFLAGS			+= -I$(LIBFT_DIR) -I$(LIBFT_DIR)/$(INCS_DIR)
 LDFLAGS			+= -L$(LIBFT_DIR) -lft
 
-$(LIBFT_DIR).git:
+$(LIBFT_REP):
 	@git submodule update --init --quiet $(LIBFT_DIR)
 
-$(LIBFT): $(LIBFT_DIR).git
+$(LIBFT): $(LIBFT_REP)
 	@printf "$(GREEN)Building LIBFT.$(RESET)\n"
-	@$(MAKE) -sC $(LIBFT_DIR) > /dev/null 2> /dev/null
+	@$(MAKE) -sC $(LIBFT_DIR) > /dev/null
 
-UNAME_S			:= $(shell uname -s)
+UNAME			:= $(shell uname)
 
 # MLX Linking and Compilation Flags
-ifeq ($(UNAME_S),Linux)
+ifeq ($(UNAME),Linux)
 	MLX_DIR		:= $(LIBS_DIR)minilibx-linux/
-	MLX			:= $(MLX_DIR)libmlx.a
-	CFLAGS		+= -I$(MLX_DIR) -I/usr/include
-	LDFLAGS		+= -L$(MLX_DIR) -lmlx -lXext -lX11
-else ifeq ($(UNAME_S),Darwin)
+	CFLAGS		+= -I$(MLX_DIR) -I/usr/include -Imlx_linux -O3
+	LDFLAGS		+= -L$(MLX_DIR) -L/usr/lib -lmlx -lXext -lX11 -lm -lz
+else ifeq ($(UNAME),Darwin)
 	MLX_DIR		:= $(LIBS_DIR)minilibx-opengl/
-	MLX			:= $(MLX_DIR)libmlx.a
 	CFLAGS		+= -I$(MLX_DIR) -DGL_SILENCE_DEPRECATION -Dmlx_destroy_display\(mlx_ptr\)=\(\(void\)\(mlx_ptr\),0\)
 	LDFLAGS		+= -L$(MLX_DIR) -lmlx -Wl,-ObjC -framework OpenGL -framework AppKit -framework Cocoa
 endif
-$(MLX_DIR).git:
+
+MLX_REP		:= $(MLX_DIR).git
+MLX			:= $(MLX_DIR)libmlx.a
+
+$(MLX_REP):
 	@git submodule update --init --quiet $(MLX_DIR)
 
-$(MLX): $(MLX_DIR).git
+$(MLX): $(MLX_REP)
 	@printf "$(GREEN)Building MLX.$(RESET)\n"
-	@$(MAKE) -sC $(MLX_DIR) > /dev/null 2> /dev/null
+	@$(MAKE) -sC $(MLX_DIR) > /dev/null
