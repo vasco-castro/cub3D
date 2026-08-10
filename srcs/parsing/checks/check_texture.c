@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 18:22:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/06/22 19:22:09 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/09 17:43:44 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ bool	check_texture(t_map_vars map_vars)
 		return(false);
 	if (!valid_spacing(map_vars))
 		return(false);
-	if (!valid_duplicates(map_vars))
-		return(false);
 	if (!valid_permisions(map_vars))
 		return(false);
 	if (!valid_CAPS(map_vars))
 		return(false);
+	return (true);
 }

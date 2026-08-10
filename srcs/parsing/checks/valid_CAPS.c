@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 18:43:57 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/06/22 18:46:19 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/10 11:57:46 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 bool	valid_CAPS(t_map_vars map_vars)
 {
-	
+	return (true);
 }

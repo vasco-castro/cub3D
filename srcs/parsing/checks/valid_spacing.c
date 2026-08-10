@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 18:42:47 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/06/22 19:16:53 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/10 11:58:05 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,5 @@
 
 bool	valid_spacing(t_map_vars map_vars)
 {
-	int	i;
-
-	i = 0;
-	skip_spaces(map_vars.north, i);
-	if (map_vars.north[i] != ' ' || map_vars.north[i + 1] == ' ')
-		return (false);
-	if (map_vars.south[i] != ' ' || map_vars.south[i + 1] == ' ')
-		return (false);
-	if (map_vars.east[i] != ' ' || map_vars.east[i + 1] == ' ')
-		return (false);
-	if (map_vars.west[i] != ' ' || map_vars.west[i + 1] == ' ')
-		return (false);
+	return (true);
 }

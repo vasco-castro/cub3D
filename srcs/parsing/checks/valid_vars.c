@@ -12,7 +12,11 @@
 
 #include "parsing.h"
 
-bool	valib_vars(t_map_vars map_vars)
+bool	valid_vars(t_map_vars map_vars)
 {
-	
+	if (!map_vars.north || !map_vars.south || !map_vars.west)
+		return (false);
+	if (!map_vars.east || !map_vars.floor || !map_vars.ceiling)
+		return (false);
+	return (true);
 }

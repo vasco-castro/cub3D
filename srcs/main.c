@@ -68,8 +68,8 @@ int	main(int argc, char *argv[])
 	}
 
 	map = parse_map(argv[1]);
-	/* if (!map)
-		destroy_cub3d(EXIT_FAILURE); */
+	// if (!map)
+	// 	destroy_cub3d(EXIT_FAILURE);
 	printf_double_pointer(map->map);
 	game_init();
 
