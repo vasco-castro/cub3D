@@ -14,5 +14,6 @@
 
 bool	valid_CAPS(t_map_vars map_vars)
 {
+	(void)map_vars;
 	return (true);
 }

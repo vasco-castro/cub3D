@@ -39,10 +39,12 @@ void	printf_double_pointer(char **args)
 {
 	int	i;
 
+	if (!args)
+		return ;
 	i = 0;
 	while (args[i])
 	{
-		printf("%s",args[i]);
+		ft_printf("%s", args[i]);
 		i++;
 	}
 }
@@ -68,8 +70,8 @@ int	main(int argc, char *argv[])
 	}
 
 	map = parse_map(argv[1]);
-	// if (!map)
-	// 	destroy_cub3d(EXIT_FAILURE);
+	if (!map)
+		destroy_cub3d(EXIT_FAILURE);
 	printf_double_pointer(map->map);
 	game_init();
 

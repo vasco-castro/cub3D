@@ -30,10 +30,17 @@ static bool	match_key(char *line, size_t *j, const char *key)
 
 static char	*copy_value(char *line, size_t j)
 {
+	size_t	end;
+
 	skip_spaces(line, &j);
 	if (!line[j] || line[j] == '\n')
 		return (NULL);
-	return (ft_strdup(&line[j]));
+	end = j;
+	while (line[end] && line[end] != '\n')
+		end++;
+	while (end > j && is_space(line[end - 1]))
+		end--;
+	return (ft_substr(line, j, end - j));
 }
 
 static char	*get_vars_from_raw_map(char **raw_map, const char *key)

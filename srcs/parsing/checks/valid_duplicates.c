@@ -61,7 +61,7 @@ bool	check_dup_inv_vars(char **raw_map)
 	{
 		j = 0;
 		skip_spaces(raw_map[i], &j);
-		if (!new_line(raw_map, &i, &j))
+		if (new_line(raw_map, &i, &j))
 			continue ;
 		if (is_map_line(raw_map[i], j))
 			break ;
