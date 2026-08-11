@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/11 19:12:36 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/11 19:22:01 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ void		free_map_body(t_map *map, char **map_body);
 void		free_map_vars(t_map *map, t_map_vars *map_vars);
 void		print_map_vars(t_map_vars map_vars);
 bool		check_vars_in_out_map_body(char **raw_map);
+bool		valid_extentions(t_map_vars map_vars);
 
 #endif

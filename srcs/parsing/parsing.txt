@@ -61,13 +61,6 @@ need to check:
 Tabs: currently accepted because is_space() treats '\t' as space. Your parsing.txt 
 says tabs must be invalid, so this still needs work.
 
-Texture after map: not properly checked. Current logic stops once it sees the map, 
-so headers after the map can be ignored instead of rejected.
-
-Texture between map lines: not properly checked yet.
-
-Extension: not checked. parsing.txt says NO ./textures/north should be invalid, 
-so you need an extension check if you want to enforce that.
 
 Spacing inside values: your current valid_spacing() rejects any space inside texture/color values. 
 That catches cases like path.png a, but it also checks floor and ceiling, which may conflict with 
