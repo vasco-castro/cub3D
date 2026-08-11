@@ -44,8 +44,7 @@ bool	new_line(char **raw_map, size_t *i, size_t *j)
 		(*i)++;
 		return (true);
 	}
-	else 
-		return (false);
+	return (false);
 }
 
 bool	check_dup_inv_vars(char **raw_map)
@@ -67,10 +66,18 @@ bool	check_dup_inv_vars(char **raw_map)
 			break ;
 		id = get_var_id(raw_map[i], &j);
 		if (id == -1)
+		{
+			debug("Parsing stopped: invalid variable identifier at line %d\n",
+				(int)i + 1);
 			return (false);
+		}
 		seen[id]++;
 		if (seen[id] > 1)
+		{
+			debug("Parsing stopped: duplicate variable at line %d\n",
+				(int)i + 1);
 			return (false);
+		}
 		i++;
 	}
 	return (true);

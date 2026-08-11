@@ -16,6 +16,9 @@ bool	parse_textures(t_map_vars map_vars, t_map *map)
 {
 	(void)map;
 	if (!check_texture(map_vars))
+	{
+		debug("Parsing stopped: check_texture failed\n");
 		return (false);
+	}
 	return (true);
 }

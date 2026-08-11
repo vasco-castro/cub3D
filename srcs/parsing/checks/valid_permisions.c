@@ -19,7 +19,7 @@ static bool	valid_permission(char *path)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("Not a valid file 🫩\n");
+		debug("Parsing stopped: cannot open texture path '%s'\n", path);
 		return (false);
 	}
 	close(fd);
@@ -29,12 +29,24 @@ static bool	valid_permission(char *path)
 bool	valid_permisions(t_map_vars map_vars)
 {
 	if (!valid_permission(map_vars.north))
+	{
+		debug("Parsing stopped: invalid NO texture path\n");
 		return (false);
+	}
 	if (!valid_permission(map_vars.south))
+	{
+		debug("Parsing stopped: invalid SO texture path\n");
 		return (false);
+	}
 	if (!valid_permission(map_vars.west))
+	{
+		debug("Parsing stopped: invalid WE texture path\n");
 		return (false);
+	}
 	if (!valid_permission(map_vars.east))
+	{
+		debug("Parsing stopped: invalid EA texture path\n");
 		return (false);
+	}
 	return (true);
 }

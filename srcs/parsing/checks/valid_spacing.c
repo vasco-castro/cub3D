@@ -21,7 +21,7 @@ bool	check_invalid_spacing(char *map_vars)
 	{
 		if (map_vars[i] == ' ')
 		{
-			printf("space in middle of the value");
+			debug("Parsing stopped: space inside value '%s'\n", map_vars);
 			return (false);
 		}
 		i++;
@@ -32,16 +32,34 @@ bool	check_invalid_spacing(char *map_vars)
 bool	valid_spacing(t_map_vars map_vars)
 {
 	if (!check_invalid_spacing(map_vars.east))
+	{
+		debug("Parsing stopped: invalid spacing in EA value\n");
 		return (false);
+	}
 	if (!check_invalid_spacing(map_vars.south))
+	{
+		debug("Parsing stopped: invalid spacing in SO value\n");
 		return (false);
+	}
 	if (!check_invalid_spacing(map_vars.west))
+	{
+		debug("Parsing stopped: invalid spacing in WE value\n");
 		return (false);
+	}
 	if (!check_invalid_spacing(map_vars.north))
+	{
+		debug("Parsing stopped: invalid spacing in NO value\n");
 		return (false);
+	}
 	if (!check_invalid_spacing(map_vars.floor))
+	{
+		debug("Parsing stopped: invalid spacing in F value\n");
 		return (false);
+	}
 	if (!check_invalid_spacing(map_vars.ceiling))
+	{
+		debug("Parsing stopped: invalid spacing in C value\n");
 		return (false);
+	}
 	return (true);
 }

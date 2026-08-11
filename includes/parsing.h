@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/11 16:40:14 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/11 19:12:36 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void		skip_spaces(char *line, size_t *j);
 bool		is_map_line(char *line, size_t j);
 bool		valid_permisions(t_map_vars map_vars);
 bool		valid_spacing(t_map_vars map_vars);
-bool		valid_CAPS(t_map_vars map_vars);
 bool		valid_vars(t_map_vars map_vars);
 bool		check_dup_inv_vars(char **raw_map);
 bool		check_texture(t_map_vars map_vars);
@@ -76,6 +75,7 @@ bool		parse_colors(t_map_vars map_vars, t_map *map);
 bool		parse_map_body(char **map_body);
 void		free_map_body(t_map *map, char **map_body);
 void		free_map_vars(t_map *map, t_map_vars *map_vars);
-// void		print_map_vars(t_map_vars map_vars);
+void		print_map_vars(t_map_vars map_vars);
+bool		check_vars_in_out_map_body(char **raw_map);
 
 #endif

@@ -15,10 +15,19 @@
 bool	check_texture(t_map_vars map_vars)
 {
 	if (!valid_vars(map_vars))
-		return(false);
+	{
+		debug("Parsing stopped: missing texture/color variable\n");
+		return (false);
+	}
 	if (!valid_spacing(map_vars))
-		return(false);
+	{
+		debug("Parsing stopped: invalid spacing in texture/color value\n");
+		return (false);
+	}
 	if (!valid_permisions(map_vars))
-		return(false);
+	{
+		debug("Parsing stopped: invalid texture file permissions/path\n");
+		return (false);
+	}
 	return (true);
 }
