@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 18:42:47 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/11 16:34:55 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/11 19:25:31 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,6 @@ bool	valid_spacing(t_map_vars map_vars)
 	if (!check_invalid_spacing(map_vars.north))
 	{
 		debug("Parsing stopped: invalid spacing in NO value\n");
-		return (false);
-	}
-	if (!check_invalid_spacing(map_vars.floor))
-	{
-		debug("Parsing stopped: invalid spacing in F value\n");
-		return (false);
-	}
-	if (!check_invalid_spacing(map_vars.ceiling))
-	{
-		debug("Parsing stopped: invalid spacing in C value\n");
 		return (false);
 	}
 	return (true);
