@@ -16,7 +16,7 @@ CFLAGS		+= -I./ -I$(INCS_DIR)
 SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), main singletons handlers)) \
 			$(addsuffix .c, $(addprefix $(PARSING_DIR), parse_map store_map_variables parse_error read_map \
 			store_map_body parse_textures parse_colors parse_map_body parsing_utils)) \
-			$(addsuffix .c, $(addprefix $(CHECKS_DIR), check_texture valid_CAPS valid_permisions valid_spacing valid_vars valid_duplicates))
+			$(addsuffix .c, $(addprefix $(CHECKS_DIR), check_texture valid_permisions valid_spacing valid_vars valid_duplicates))
 
 # Object files convertion
 OBJS 		:= $(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
