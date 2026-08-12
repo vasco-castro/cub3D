@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/11 19:12:30 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/12 17:45:04 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ bool	checks_for_raw_map(char **raw_map)
 	if (!check_dup_inv_vars(raw_map))
 	{
 		debug("Parsing stopped: duplicate or invalid map variable\n");
+		ft_tabfree(raw_map);
+		return (false);
+	}
+	if (!invalid_space(raw_map))
+	{
+		debug("Parsing stopped: invalid spacing between key and value\n");
 		ft_tabfree(raw_map);
 		return (false);
 	}

@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/11 19:22:01 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/12 18:09:10 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ typedef struct s_img
 
 typedef struct s_map
 {
-	t_img			north_texture;
-	t_img			south_texture;
-	t_img			east_texture;
-	t_img			west_texture;
+	t_img			*north_texture;
+	t_img			*south_texture;
+	t_img			*east_texture;
+	t_img			*west_texture;
 	char			**map;
 	t_point			size;
 	unsigned int	floor;
@@ -78,5 +78,8 @@ void		free_map_vars(t_map *map, t_map_vars *map_vars);
 void		print_map_vars(t_map_vars map_vars);
 bool		check_vars_in_out_map_body(char **raw_map);
 bool		valid_extentions(t_map_vars map_vars);
+bool		invalid_space(char **raw_map);
+bool		new_line(char **raw_map, size_t *i, size_t *j);
+
 
 #endif
