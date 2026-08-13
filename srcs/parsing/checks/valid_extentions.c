@@ -19,7 +19,7 @@ static bool	valid_extention(char *path)
 	len = strlen(path);
 	if (ft_strncmp(&path[len - 4], ".xpm", 4) != 0)
 	{
-		debug("Parsing stopped: cannot use invalid extention '%s'\n", path);
+		debug("Error\ncannot use invalid extention '%s'\n", path);
 		return (false);
 	}
 	return (true);
@@ -29,22 +29,22 @@ bool	valid_extentions(t_map_vars map_vars)
 {
 	if (!valid_extention(map_vars.north))
 	{
-		debug("Parsing stopped: invalid NO invalid extention\n");
+		debug("Error\ninvalid NO invalid extention\n");
 		return (false);
 	}
 	if (!valid_extention(map_vars.south))
 	{
-		debug("Parsing stopped: invalid SO invalid extention\n");
+		debug("Error\ninvalid SO invalid extention\n");
 		return (false);
 	}
 	if (!valid_extention(map_vars.west))
 	{
-		debug("Parsing stopped: invalid WE invalid extention\n");
+		debug("Error\ninvalid WE invalid extention\n");
 		return (false);
 	}
 	if (!valid_extention(map_vars.east))
 	{
-		debug("Parsing stopped: invalid EA invalid extention\n");
+		debug("Error\ninvalid EA invalid extention\n");
 		return (false);
 	}
 	return (true);

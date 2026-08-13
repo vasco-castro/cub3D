@@ -13,8 +13,8 @@ LIBS_DIR	:= libs/
 CFLAGS		+= -I./ -I$(INCS_DIR)
 
 # Source files (with directories applied)
-SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), main singletons handlers)) \
-			$(addsuffix .c, $(addprefix $(PARSING_DIR), parse_map store_map_variables parse_error read_map \
+SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), singletons handlers)) \
+			$(addsuffix .c, $(addprefix $(PARSING_DIR), main parse_map store_map_variables parse_error read_map \
 			store_map_body parse_textures parse_colors parse_map_body parsing_utils)) \
 			$(addsuffix .c, $(addprefix $(CHECKS_DIR), check_texture valid_permisions valid_spacing valid_vars \
 			valid_duplicates valid_vars_in_map valid_extentions))

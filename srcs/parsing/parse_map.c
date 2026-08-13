@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/12 17:45:04 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/12 20:39:23 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ bool	checks_for_raw_map(char **raw_map)
 {
 	if (!check_dup_inv_vars(raw_map))
 	{
-		debug("Parsing stopped: duplicate or invalid map variable\n");
+		debug("Error\nduplicate or invalid map variable\n");
 		ft_tabfree(raw_map);
 		return (false);
 	}
 	if (!invalid_space(raw_map))
 	{
-		debug("Parsing stopped: invalid spacing between key and value\n");
+		debug("Error\ninvalid spacing between key and value\n");
 		ft_tabfree(raw_map);
 		return (false);
 	}
 	if (!check_vars_in_out_map_body(raw_map))
 	{
-		debug("Parsing stopped: non-map line found after map started\n");
+		debug("Error\nnon-map line found after map started\n");
 		ft_tabfree(raw_map);
 		return (false);
 	}
@@ -53,13 +53,13 @@ t_map	*parse_map(const char *filename)
 	result = ft_calloc(1, sizeof(t_map));
 	if (!result)
 	{
-		debug("Parsing stopped: failed to allocate t_map\n");
+		debug("Error\nfailed to allocate t_map\n");
 		return (NULL);
 	}
 	raw_map = read_map(filename);
 	if (!raw_map)
 	{
-		debug("Parsing stopped: failed to read map file '%s'\n", filename);
+		debug("Error\nfailed to read map file '%s'\n", filename);
 		return (free(result), NULL);
 	}
 	if (!checks_for_raw_map(raw_map))
@@ -71,7 +71,7 @@ t_map	*parse_map(const char *filename)
 	ft_tabfree(raw_map);
 	if (!parse_textures(map_vars, result) || !parse_colors(map_vars, result))
 	{
-		debug("Parsing stopped: texture or color parsing failed\n");
+		debug("Error\ntexture or color parsing failed\n");
 		return (clear_parse_allocation(result, map_body, map_vars), NULL);
 	}
 	// if (!parse_map_body(map_body))

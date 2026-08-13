@@ -67,14 +67,14 @@ bool	check_dup_inv_vars(char **raw_map)
 		id = get_var_id(raw_map[i], &j);
 		if (id == -1)
 		{
-			debug("Parsing stopped: invalid variable identifier at line %d\n",
+			debug("Error\ninvalid variable identifier at line %d\n",
 				(int)i + 1);
 			return (false);
 		}
 		seen[id]++;
 		if (seen[id] > 1)
 		{
-			debug("Parsing stopped: duplicate variable at line %d\n",
+			debug("Error\nduplicate variable at line %d\n",
 				(int)i + 1);
 			return (false);
 		}

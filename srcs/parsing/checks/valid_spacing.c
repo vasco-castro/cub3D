@@ -56,7 +56,7 @@ bool	check_invalid_spacing(char *map_vars)
 	{
 		if (map_vars[i] == ' ')
 		{
-			debug("Parsing stopped: space inside value '%s'\n", map_vars);
+			debug("Error\nspace inside value '%s'\n", map_vars);
 			return (false);
 		}
 		i++;
@@ -68,22 +68,22 @@ bool	valid_spacing(t_map_vars map_vars)
 {
 	if (!check_invalid_spacing(map_vars.east))
 	{
-		debug("Parsing stopped: invalid spacing in EA value\n");
+		debug("Error\ninvalid spacing in EA value\n");
 		return (false);
 	}
 	if (!check_invalid_spacing(map_vars.south))
 	{
-		debug("Parsing stopped: invalid spacing in SO value\n");
+		debug("Error\ninvalid spacing in SO value\n");
 		return (false);
 	}
 	if (!check_invalid_spacing(map_vars.west))
 	{
-		debug("Parsing stopped: invalid spacing in WE value\n");
+		debug("Error\ninvalid spacing in WE value\n");
 		return (false);
 	}
 	if (!check_invalid_spacing(map_vars.north))
 	{
-		debug("Parsing stopped: invalid spacing in NO value\n");
+		debug("Error\ninvalid spacing in NO value\n");
 		return (false);
 	}
 	return (true);

@@ -26,14 +26,14 @@ static bool	is_map_body_line(char *line)
 	skip_spaces(line, &i);
 	if (line[i] != '1')
 	{
-		debug("Parsing stopped: map line must start with '1'\n");
+		debug("Error\nmap line must start with '1'\n");
 		return (false);
 	}
 	while (line[i] && line[i] != '\n')
 	{
 		if (!is_map_char(line[i]))
 		{
-			debug("Parsing stopped: invalid map char '%c' in map body\n",
+			debug("Error\ninvalid map char '%c' in map body\n",
 				line[i]);
 			return (false);
 		}
@@ -63,7 +63,7 @@ bool	check_vars_in_out_map_body(char **raw_map)
 			map_started = true;
 		if (map_started && !is_map_body_line(raw_map[i]))
 		{
-			debug("Parsing stopped: invalid line inside/after map at line %d\n",
+			debug("Error\ninvalid line inside/after map at line %d\n",
 				(int)i + 1);
 			return (false);
 		}

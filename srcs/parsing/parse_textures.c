@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 17:24:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/12 15:23:40 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/12 20:32:50 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,25 +91,21 @@ bool	parse_textures(t_map_vars map_vars, t_map *map)
 	(void)map;
 	if (!check_texture(map_vars))
 	{
-		debug("Parsing stopped: check_texture failed\n");
+		debug("Error\ncheck_texture failed\n");
 		return (false);
 	}
-	// map->east_texture = load_image_from_file(game()->mlx, map_vars.east);
-	// if (!map->east_texture)
-	// 	return (false);
-	// map->west_texture = load_image_from_file(game()->mlx, map_vars.west);
-	// if (!map->west_texture)
-	// 	return (free_image_once(game()->mlx,  map->east_texture), false);
-	// map->north_texture = load_image_from_file(game()->mlx, map_vars.north);
-	// if (!map->north_texture)
-	// 	return (free_image_twice(game()->mlx,  map->west_texture, map->east_texture), false);
-	// map->south_texture = load_image_from_file(game()->mlx, map_vars.south);
-	// if (!map->south_texture)
-	// 	return (free_image_thrice(game()->mlx,  map->north_texture, map->west_texture, map->east_texture), false);
-
-
-
-
+	map->east_texture = load_image_from_file(game()->mlx, map_vars.east);
+	if (!map->east_texture)
+		return (false);
+	map->west_texture = load_image_from_file(game()->mlx, map_vars.west);
+	if (!map->west_texture)
+		return (free_image_once(game()->mlx,  map->east_texture), false);
+	map->north_texture = load_image_from_file(game()->mlx, map_vars.north);
+	if (!map->north_texture)
+		return (free_image_twice(game()->mlx,  map->west_texture, map->east_texture), false);
+	map->south_texture = load_image_from_file(game()->mlx, map_vars.south);
+	if (!map->south_texture)
+		return (free_image_thrice(game()->mlx,  map->north_texture, map->west_texture, map->east_texture), false);
 	
 	// if (map->west_texture = load_image_from_file(mlx, map_vars.west) == NULL)
 	// 	return (free_image_once(game()->mlx,  map->east_texture), false);

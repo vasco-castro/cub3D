@@ -16,12 +16,12 @@ bool	valid_vars(t_map_vars map_vars)
 {
 	if (!map_vars.north || !map_vars.south || !map_vars.west)
 	{
-		debug("Parsing stopped: missing NO, SO, or WE variable\n");
+		debug("Error\nmissing NO, SO, or WE variable\n");
 		return (false);
 	}
 	if (!map_vars.east || !map_vars.floor || !map_vars.ceiling)
 	{
-		debug("Parsing stopped: missing EA, F, or C variable\n");
+		debug("Error\nmissing EA, F, or C variable\n");
 		return (false);
 	}
 	return (true);

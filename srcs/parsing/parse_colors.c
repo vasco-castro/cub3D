@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 17:24:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/05/19 17:24:00 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/13 02:18:55 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	parse_colors(t_map_vars map_vars, t_map *map)
 {
-	(void)map_vars;
-	(void)map;
+	if (!valid_vars(map_vars))
+		return (false);
 	return (true);
 }

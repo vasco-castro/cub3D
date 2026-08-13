@@ -62,3 +62,8 @@ cub3D
 #pdf
 en.subject.pdf
 cub3d_eval-sheet.pdf
+
+#my main
+srcs/parsing/main.c
+srcs/parsing/Makefile
+srcs/parsing/b.cub
