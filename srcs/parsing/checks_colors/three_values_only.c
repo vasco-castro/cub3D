@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_chars.c                                      :+:      :+:    :+:   */
+/*   three_values_only.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/13 13:27:55 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/13 16:03:12 by biphuyal         ###   ########.fr       */
+/*   Created: 2026/08/13 16:07:36 by biphuyal          #+#    #+#             */
+/*   Updated: 2026/08/13 16:09:16 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-bool	valid_chars(t_map_vars map_vars)
+bool	three_values_only(t_map_vars map_vars)
 {
 	unsigned int	i;
+	unsigned int	count;
 
 	i = 0;
+	count = 0;
 	while (map_vars.floor[i])
 	{
-		if (!ft_isdigit(map_vars.floor[i]) && map_vars.floor[i] != ',')
-		{
-			debug("Error\n Invalid character in the floor colors");	
-			return (false);
-		}
+		if (map_vars.floor[i] == ',')
+			count += 1;
 		i++;
 	}
-	i = 0;
+	if (count != 3)
+		return (false);
+	i =  0;
+	count =  0;
 	while (map_vars.ceiling[i])
 	{
-		if (!ft_isdigit(map_vars.ceiling[i]) && map_vars.ceiling[i] != ',')
-		{
-			debug("Error\n Invalid character in the ceiling colors");		
-			return (false);
-		}
+		if (!map_vars.ceiling[i] && !ft_isdigit(map_vars.ceiling[i + 1]))
+			count += 1;
 		i++;
 	}
+	if (count != 3)
+		return (false);
 	return (true);
 }

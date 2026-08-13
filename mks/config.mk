@@ -19,7 +19,7 @@ SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), singletons handlers)) \
 			store_map_body parse_textures parse_colors parse_map_body parsing_utils)) \
 			$(addsuffix .c, $(addprefix $(CHECKS_TEXTURE_DIR), check_texture valid_permisions valid_spacing valid_vars \
 			valid_duplicates valid_vars_in_map valid_extentions)) \
-			$(addsuffix .c, $(addprefix $(CHECKS_COLOR_DIR), checks_colors valid_chars))
+			$(addsuffix .c, $(addprefix $(CHECKS_COLOR_DIR), checks_colors valid_chars three_values_exists three_values_only))
 
 # Object files convertion
 OBJS 		:= $(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)

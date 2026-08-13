@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 17:24:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/13 15:25:39 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/13 16:09:41 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ bool	checks_for_colors(t_map_vars map_vars)
 		return (false);
 	if (!valid_chars(map_vars))
 		return (false);
-	// if (!valid_three_value(map_vars))
-	// 	return (false);
+	if (!three_values_exists(map_vars))
+		return (false);
+	if (!three_values_only(map_vars))
+		return (false);
 	// if (!valid_range(map_vars))
 	// 	return (false);
 	// if (!valid_separeter(map_vars))

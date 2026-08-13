@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/13 15:25:06 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/13 16:09:42 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,10 @@ bool		invalid_space(char **raw_map);
 bool		new_line(char **raw_map, size_t *i, size_t *j);
 bool		checks_for_colors(t_map_vars map_vars);
 bool		valid_chars(t_map_vars map_vars);
+bool		three_values_exists(t_map_vars map_vars);
+bool		three_values_only(t_map_vars map_vars);
+
+
 
 
 
