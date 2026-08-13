@@ -6,7 +6,13 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 13:27:55 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/13 13:27:55 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/13 14:28:01 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parsing.h"
+
+bool	valid_invalid_char(t_map_vars map_vars)
+{
+	
+}

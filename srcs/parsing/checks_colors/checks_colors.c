@@ -6,17 +6,17 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 17:24:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/13 13:27:21 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/13 14:27:57 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-bool	checks_for_colors(t_map_vars map_vars, t_map *map)
+bool	checks_for_colors(t_map_vars map_vars)
 {
 	if (!valid_vars(map_vars))
 		return (false);
-	if (!valid_chars(map_vars))
+	if (!valid_invalid_char(map_vars))
 		return (false);
 	if (!valid_three_value(map_vars))
 		return (false);
