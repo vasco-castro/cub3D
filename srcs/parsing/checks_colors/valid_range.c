@@ -1,41 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   three_values_only.c                                :+:      :+:    :+:   */
+/*   valid_range.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/13 16:07:36 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/13 19:00:29 by biphuyal         ###   ########.fr       */
+/*   Created: 2026/08/13 18:36:15 by biphuyal          #+#    #+#             */
+/*   Updated: 2026/08/13 18:54:49 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "parsing.h"
 
-bool	three_values_only(t_map_vars map_vars)
+bool	valid_digits_range(char *digits)
 {
-	unsigned int	i;
-	unsigned int	count;
+	int	i;
+	int	value;
 
 	i = 0;
-	count = 0;
-	while (map_vars.floor[i])
+	while (digits[i])
 	{
-		if (map_vars.floor[i] == ',')
-			count += 1;
-		i++;
+		if (ft_isdigit(digits[i]))
+		{
+			value = ft_atoi(&digits[i]);
+			if (value < 0 || value > 255)
+				return (false);
+			while (ft_isdigit(digits[i]))
+				i++;
+		}
+		else
+			i++;
 	}
-	if (count != 2)
+	return (true);
+}
+
+bool	valid_range(t_map_vars map_vars)
+{
+	if (!valid_digits_range(map_vars.floor))
 		return (false);
-	i =  0;
-	count =  0;
-	while (map_vars.ceiling[i])
-	{
-		if (map_vars.ceiling[i] == ',')
-			count += 1;
-		i++;
-	}
-	if (count != 2)
+	if (!valid_digits_range(map_vars.ceiling))
 		return (false);
 	return (true);
 }

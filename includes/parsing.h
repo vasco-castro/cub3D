@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/13 16:09:42 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/13 16:52:11 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ bool		checks_for_colors(t_map_vars map_vars);
 bool		valid_chars(t_map_vars map_vars);
 bool		three_values_exists(t_map_vars map_vars);
 bool		three_values_only(t_map_vars map_vars);
+bool		check_floors(t_map_vars map_vars, int i);
+bool		check_ceilings(t_map_vars map_vars, int i);
+bool		valid_range(t_map_vars map_vars);
+bool		valid_separator(t_map_vars map_vars);
+
 
 
 

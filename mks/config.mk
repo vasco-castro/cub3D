@@ -5,6 +5,8 @@ CFLAGS		:= -Wall -Wextra -Werror
 # Directories
 SRCS_DIR	:= srcs/
 PARSING_DIR	:= $(SRCS_DIR)parsing/
+PARSING_PARSE_DIR	:= $(PARSING_DIR)parse/
+PARSING_RAW_MAP_DIR	:= $(PARSING_DIR)raw_map/
 CHECKS_TEXTURE_DIR	:= $(SRCS_DIR)parsing/checks_texture/
 CHECKS_COLOR_DIR	:= $(SRCS_DIR)parsing/checks_colors/
 OBJS_DIR	:= objs/
@@ -15,11 +17,14 @@ CFLAGS		+= -I./ -I$(INCS_DIR)
 
 # Source files (with directories applied)
 SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), singletons handlers)) \
-			$(addsuffix .c, $(addprefix $(PARSING_DIR), main parse_map store_map_variables parse_error read_map \
-			store_map_body parse_textures parse_colors parse_map_body parsing_utils)) \
+			$(addsuffix .c, $(addprefix $(PARSING_DIR), main)) \
+			$(addsuffix .c, $(addprefix $(PARSING_PARSE_DIR), parse_map parse_error \
+			parse_textures parse_colors parse_map_body parsing_utils)) \
+			$(addsuffix .c, $(addprefix $(PARSING_RAW_MAP_DIR), store_map_variables \
+			store_map_body read_map)) \
 			$(addsuffix .c, $(addprefix $(CHECKS_TEXTURE_DIR), check_texture valid_permisions valid_spacing valid_vars \
 			valid_duplicates valid_vars_in_map valid_extentions)) \
-			$(addsuffix .c, $(addprefix $(CHECKS_COLOR_DIR), checks_colors valid_chars three_values_exists three_values_only))
+			$(addsuffix .c, $(addprefix $(CHECKS_COLOR_DIR), checks_colors valid_chars three_values_exists three_values_only valid_range valid_separator))
 
 # Object files convertion
 OBJS 		:= $(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
