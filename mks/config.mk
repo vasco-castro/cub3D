@@ -14,7 +14,7 @@ LDFLAGS		:= -lm
 SRCS		:= $(addsuffix .c, \
 					$(addprefix $(SRCS_DIR), main singletons \
 						$(addprefix parsing/, parse_map) \
-						$(addprefix rendering/, render put_pixels images) \
+						$(addprefix rendering/, render put_pixels images minimap) \
 						$(addprefix events/, handlers key_handlers mouse_handlers) \
 						$(addprefix utils/, utils) \
 					) \

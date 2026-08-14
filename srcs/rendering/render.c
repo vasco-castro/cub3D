@@ -6,21 +6,14 @@ static void	render_bg(void)
 	int	x;
 	int	y;
 
-	return ;
+	// return ;
 	debug("Rendering background...\n");
+	x = 0;
 	y = 0;
-	while (W_HEIGHT / 2 >= y++)
-	{
-		x = 0;
-		while (W_WIDTH >= x++)
-			mlx_pixel_put(game()->mlx, game()->win, x, y, map()->ceiling);
-	}
-	while (W_HEIGHT >= y++)
-	{
-		x = 0;
-		while (W_WIDTH >= x++)
-			mlx_pixel_put(game()->mlx, game()->win, x, y, map()->floor);
-	}
+	while (W_HEIGHT / 2 >= y)
+		put_line_x(x, y++, W_WIDTH, map()->ceiling);
+	while (W_HEIGHT >= y)
+		put_line_x(x, y++, W_WIDTH, map()->floor);
 }
 
 static void	render_walls(void)
@@ -28,43 +21,17 @@ static void	render_walls(void)
 	debug("Rendering walls...\n");
 }
 
-static void	render_minimap(int col, int row)
-{
-	int	x;
-	int	y;
-	int	pos_col;
-	int	pos_row;
-
-	debug("Rendering minimap...\n");
-	x = 0;
-	while (x < map()->size.x && map()->map[x])
-	{
-		y = 0;
-		while (y < map()->size.y && map()->map[x][y])
-		{
-			pos_col = (y * map()->minimap_scale) + col;
-			pos_row = (x * map()->minimap_scale) + row;
-			debug("%d - %d\n", pos_col, pos_row);
-			if (map()->map[x][y] == '0')
-				put_square(pos_col, pos_row, map()->minimap_scale, 0x00fcba03);
-			else
-				put_square(pos_col, pos_row, map()->minimap_scale, 0x00bf5600);
-			if (player()->coord.x == y && player()->coord.y == x)
-				put_star(pos_col, pos_row, map()->minimap_scale, 0x006300bf);
-			y++;
-		}
-		x++;
-	}
-}
-
 void	render(void)
 {
+	int	minimap_low_pos;
+	int	minimap_right_pos;
+
 	render_bg();
 	render_walls();
 	if (MINIMAP)
 	{
-		int minimap_low_pos = W_HEIGHT - (map()->size.y * map()->minimap_scale);
-		int minimap_right_pos = W_WIDTH - (map()->size.x * map()->minimap_scale);
+		minimap_low_pos = W_HEIGHT - (map()->size.y * map()->minimap_scale);
+		minimap_right_pos = W_WIDTH - (map()->size.x * map()->minimap_scale);
 		if (MINIMAP_POS == MINIMAP_UL)
 			render_minimap(0, 0);
 		else if (MINIMAP_POS == MINIMAP_LL)
