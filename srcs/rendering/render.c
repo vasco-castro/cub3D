@@ -6,7 +6,7 @@ static void	render_bg(void)
 	int	x;
 	int	y;
 
-	// return ;
+	return ;
 	debug("Rendering background...\n");
 	x = 0;
 	y = 0;
@@ -18,7 +18,7 @@ static void	render_bg(void)
 
 static void	render_walls(void)
 {
-	debug("Rendering walls...\n");
+	//debug("Rendering walls...\n");
 }
 
 void	render(void)

@@ -1,6 +1,13 @@
 
 # Directories
 SRCS_DIR	:= srcs/
+RENDERING_DIR := $(SRCS_DIR)rendering/
+PARSING_DIR	:= $(SRCS_DIR)parsing/
+PARSING_PARSE_DIR	:= $(PARSING_DIR)parse/
+PARSING_RAW_MAP_DIR	:= $(PARSING_DIR)raw_map/
+CHECKS_TEXTURE_DIR	:= $(SRCS_DIR)parsing/checks_texture/
+CHECKS_COLOR_DIR	:= $(SRCS_DIR)parsing/checks_colors/
+CHECKS_MAP_BODY	     := $(SRCS_DIR)parsing/checks_map_body/
 OBJS_DIR	:= objs/
 INCS_DIR	:= includes/
 LIBS_DIR	:= libs/
@@ -11,13 +18,17 @@ CFLAGS		:= -Wall -Wextra -Werror -I./ -I$(INCS_DIR)
 LDFLAGS		:= -lm
 
 # Source files (with directories applied)
-SRCS		:= $(addsuffix .c, \
-					$(addprefix $(SRCS_DIR), main singletons \
-						$(addprefix parsing/, parse_map) \
-						$(addprefix rendering/, render put_pixels images minimap) \
-						$(addprefix events/, handlers key_handlers mouse_handlers) \
-						$(addprefix utils/, utils) \
-					) \
+SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), main singletons \
+					$(addprefix rendering/, render put_pixels images minimap) \
+					$(addprefix events/, handlers key_handlers mouse_handlers) \
+					$(addprefix utils/, utils)) \
+					$(addprefix $(PARSING_PARSE_DIR), parse_map parse_error parse_textures parse_colors parse_map_body parsing_utils) \
+			 		$(addprefix $(PARSING_RAW_MAP_DIR), store_map_variables store_map_body read_map) \
+			 		$(addprefix $(CHECKS_TEXTURE_DIR), check_texture valid_permisions valid_spacing valid_vars \
+							valid_duplicates valid_vars_in_map valid_extentions) \
+			 		$(addprefix $(CHECKS_COLOR_DIR), checks_colors valid_chars three_values_exists \
+							three_values_only valid_range valid_separator trim_spaces) \
+					$(addprefix $(CHECKS_MAP_BODY), checks_map_body) \
 				)
 
 # Object files and dependency files

@@ -1,5 +1,6 @@
 
 #include "cub3d.h"
+#include "parsing.h"
 
 void	destroy_cub3d(int status)
 {
@@ -13,18 +14,28 @@ void	destroy_cub3d(int status)
 			mlx_destroy_display(game()->mlx);
 			free(game()->mlx);
 		}
-		if (map()->map)
-			ft_tabfree(map()->map);
+		if (map())
+			free_map_data(map());
 	}
 	// free_textures();
 	// free_sprites();
+	// free_player();
 	exit(status);
+}
+
+static bool	mlx_init_game(void)
+{
+	game()->mlx = mlx_init();
+	if (!game()->mlx)
+		return (false);
+	return (true);
 }
 
 static void	game_init(void)
 {
-	game()->mlx = mlx_init();
 	game()->win = mlx_new_window(game()->mlx, W_WIDTH, W_HEIGHT, W_MSG);
+	if (!game()->win)
+		destroy_cub3d(EXIT_FAILURE);
 	mlx_key_hook(game()->win, (void *)key_handler, &game);
 	// mlx_hook(game()->win, ON_KEYDOWN, (1L << 0), (void *)key_handler, &game);
 	mlx_mouse_hook(game()->win, (void *)mouse_click_handler, &game);
@@ -34,6 +45,20 @@ static void	game_init(void)
 	mlx_hook(game()->win, ON_DESTROY, 1, (void *)close_window, &game);
 	mlx_loop_hook(game()->mlx, (void *)loop_hook, &game);
 	mlx_loop(game()->mlx);
+}
+
+void	printf_double_pointer(char **args)
+{
+	int	i;
+
+	if (!args)
+		return ;
+	i = 0;
+	while (args[i])
+	{
+		ft_printf("%s", args[i]);
+		i++;
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -52,8 +77,19 @@ int	main(int argc, char *argv[])
 			"Invalid file. Expected a .cub file.\n");
 		return (1);
 	}
+	if (!mlx_init_game())
+		return (EXIT_FAILURE);
 	parse_map(argv[1]);
-	ft_printfile("banner.txt");
+	if (!map())
+		destroy_cub3d(EXIT_FAILURE);
+	printf("MAP PARSED!\n");
+	map()->size = (t_point){23, 22};
+	printf("MAP SIZE: %d, %d\n", map()->size.x, map()->size.y);
+	player()->coord = (t_point){3, 2};
+	printf("PLAYER CORDS: %d, %d\n", map()->size.x, map()->size.y);
+	map()->minimap_scale = W_WIDTH / 100 * MINIMAP_SCALE_PERCENTAGE / map()->size.x;
+	if (debug_mode())
+		printf_double_pointer(map()->map);
 	game_init();
 	return (destroy_cub3d(EXIT_SUCCESS), EXIT_SUCCESS);
 }

@@ -8,7 +8,7 @@ void	render_minimap(int col, int row)
 	int	pos_col;
 	int	pos_row;
 
-	// debug("Rendering minimap...\n");
+	//debug("Rendering minimap...\n");
 	x = 0;
 	while (x < map()->size.x && map()->map[x])
 	{
@@ -17,7 +17,7 @@ void	render_minimap(int col, int row)
 		{
 			pos_col = (y * map()->minimap_scale) + col;
 			pos_row = (x * map()->minimap_scale) + row;
-			// debug("%d - %d\n", pos_col, pos_row);
+			debug("%d - %d\n", pos_col, pos_row);
 			if (map()->map[x][y] == '0')
 				put_square(pos_col, pos_row, map()->minimap_scale, 0x00fcba03);
 			else

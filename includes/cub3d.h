@@ -36,20 +36,30 @@ typedef struct s_game
 	void		*win;
 }	t_game;
 
+typedef struct s_img
+{
+	void	*ptr;
+	void	*data;
+	int		bpp;
+	int		size_l;
+	int		endian;
+}	t_img;
+
 typedef struct s_map
 {
-	char		*n_texture;
-	char		*w_texture;
-	char		*s_texture;
-	char		*e_texture;
+	t_img			*north_texture;
+	t_img			*south_texture;
+	t_img			*east_texture;
+	t_img			*west_texture;
 
-	uint32_t	ceiling;
-	uint32_t	floor;
+	char			**map;
+	t_point			size;
 
-	char		**map;
 	int			minimap_scale;
 
-	t_point		size;
+	uint32_t	floor;
+	uint32_t	ceiling;
+
 }	t_map;
 
 typedef struct s_player
@@ -62,7 +72,6 @@ t_game		*game(void);
 t_map		*map(void);
 t_player	*player(void);
 
-void		parse_map(const char *filename);
 void		destroy_cub3d(int status);
 
 #endif /* CUB3D_H */
