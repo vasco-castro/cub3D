@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/14 13:37:11 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/14 17:29:12 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ char		**store_map_body(char **raw_map);
 bool		parse_textures(t_map_vars map_vars, t_map *map);
 bool		parse_colors(t_map_vars map_vars, t_map *map);
 bool		parse_map_body(char **map_body);
-void		free_map_body(char **map_body);
-void		free_map_vars(t_map_vars *map_vars);
+void		free_map_body(t_map *map, char **map_body);
+void		free_map_vars(t_map *map, t_map_vars *map_vars);
 void		print_map_vars(t_map_vars map_vars);
 bool		check_vars_in_out_map_body(char **raw_map);
 bool		parse_map_body(char **map_body);

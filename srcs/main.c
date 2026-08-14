@@ -22,10 +22,19 @@ void	destroy_cub3d(int status)
 	exit(status);
 }
 
-static void	game_init(void)
+static bool	mlx_init_game(void)
 {
 	game()->mlx = mlx_init();
+	if (!game()->mlx)
+		return (false);
+	return (true);
+}
+
+static void	game_init(void)
+{
 	game()->win = mlx_new_window(game()->mlx, W_WIDTH, W_HEIGHT, W_MSG);
+	if (!game()->win)
+		destroy_cub3d(EXIT_FAILURE);
 	// load textures
 	// load sprites
 	// initialize player position and direction
@@ -69,10 +78,14 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 
+	if (!mlx_init_game())
+		return (EXIT_FAILURE);
 	map = parse_map(argv[1]);
 	if (!map)
 		destroy_cub3d(EXIT_FAILURE);
-	printf_double_pointer(map->map);
+	game()->map = map;
+	if (debug_mode())
+		printf_double_pointer(map->map);
 	game_init();
 
 	return (destroy_cub3d(EXIT_SUCCESS), EXIT_SUCCESS);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   checks_map_body.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:28:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/14 13:36:36 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/14 17:25:25 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 bool	checks_for_map(char **map_body)
 {
-	if (!valid_map(map_body))
-		return (false);
+	(void)map_body;
+	// if (!valid_map(map_body))
+	// 	return (false);
 	return (true);
 }

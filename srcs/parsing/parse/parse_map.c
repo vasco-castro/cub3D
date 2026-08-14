@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/14 13:23:16 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/14 17:27:09 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	clear_parse_allocation(t_map *result, char **map_body,
 	t_map_vars map_vars)
 {
 	free_map_data(result);
-	ft_tabfree(map_body);
-	free_map_vars(&map_vars);
+	free_map_body(NULL, map_body);
+	free_map_vars(NULL, &map_vars);
 }
 
 bool	checks_for_raw_map(char **raw_map)
@@ -73,9 +73,9 @@ t_map	*parse_map(const char *filename)
 	{
 		return (clear_parse_allocation(result, map_body, map_vars), NULL);
 	}
-	if (!parse_map_body(map_body))
-		return (clear_parse_allocation(result, map_body, map_vars), NULL);
+	// if (!parse_map_body(map_body))
+	// 	return (clear_parse_allocation(result, map_body, map_vars), NULL);
 	result->map = map_body;
-	free_map_vars(&map_vars);
+	free_map_vars(NULL, &map_vars);
 	return (result);
 }

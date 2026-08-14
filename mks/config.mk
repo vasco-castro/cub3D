@@ -9,6 +9,7 @@ PARSING_PARSE_DIR	:= $(PARSING_DIR)parse/
 PARSING_RAW_MAP_DIR	:= $(PARSING_DIR)raw_map/
 CHECKS_TEXTURE_DIR	:= $(SRCS_DIR)parsing/checks_texture/
 CHECKS_COLOR_DIR	:= $(SRCS_DIR)parsing/checks_colors/
+CHECKS_MAP_BODY	     := $(SRCS_DIR)parsing/checks_map_body/
 OBJS_DIR	:= objs/
 INCS_DIR	:= includes/
 LIBS_DIR	:= libs/
@@ -19,9 +20,11 @@ CFLAGS		+= -I./ -I$(INCS_DIR)
 SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), main singletons handlers) \
 				$(addprefix $(PARSING_PARSE_DIR), parse_map parse_error parse_textures parse_colors parse_map_body parsing_utils) \
 			 	$(addprefix $(PARSING_RAW_MAP_DIR), store_map_variables store_map_body read_map) \
-			 	$(addprefix $(CHECKS_TEXTURE_DIR), check_texture valid_permisions valid_spacing valid_vars valid_duplicates valid_vars_in_map valid_extentions) \
-			 	$(addprefix $(CHECKS_COLOR_DIR), checks_colors valid_chars three_values_exists three_values_only valid_range valid_separator trim_spaces) \
-			 )
+			 	$(addprefix $(CHECKS_TEXTURE_DIR), check_texture valid_permisions valid_spacing valid_vars \
+							valid_duplicates valid_vars_in_map valid_extentions) \
+			 	$(addprefix $(CHECKS_COLOR_DIR), checks_colors valid_chars three_values_exists \
+							three_values_only valid_range valid_separator trim_spaces) \
+				$(addprefix $(CHECKS_MAP_BODY), checks_map_body))
 
 # Object files convertion
 OBJS 		:= $(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
