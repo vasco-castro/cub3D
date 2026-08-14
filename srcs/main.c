@@ -85,7 +85,7 @@ int	main(int argc, char *argv[])
 	printf("MAP PARSED!\n");
 	map()->size = (t_point){23, 22};
 	printf("MAP SIZE: %d, %d\n", map()->size.x, map()->size.y);
-	player()->coord = (t_point){3, 2};
+	player()->pos = (t_dpoint){3.5, 2.5};
 	printf("PLAYER CORDS: %d, %d\n", map()->size.x, map()->size.y);
 	map()->minimap_scale = W_WIDTH / 100 * MINIMAP_SCALE_PERCENTAGE / map()->size.x;
 	if (debug_mode())

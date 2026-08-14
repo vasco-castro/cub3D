@@ -19,7 +19,7 @@
 
 # define MINIMAP true
 // # define MINIMAP_SCALE 8
-# define MINIMAP_SCALE_PERCENTAGE 15
+# define MINIMAP_SCALE_PERCENTAGE 100
 # define MINIMAP_POS MINIMAP_UL
 
 typedef enum e_minimap
@@ -64,8 +64,8 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	t_point	coord;
-	t_point	angle;
+	t_dpoint	pos;
+	t_dpoint	dir;
 }	t_player;
 
 t_game		*game(void);
