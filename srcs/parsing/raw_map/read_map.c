@@ -18,6 +18,12 @@ void	free_map_data(t_map *map)
 		return ;
 	if (map->map)
 		ft_tabfree(map->map);
+	free(map->north_texture);
+	free(map->south_texture);
+	free(map->east_texture);
+	free(map->west_texture);
+	free(map->floor);
+	free(map->ceiling);
 	free(map);
 }
 
