@@ -16,15 +16,12 @@ LIBS_DIR	:= libs/
 CFLAGS		+= -I./ -I$(INCS_DIR)
 
 # Source files (with directories applied)
-SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), singletons handlers)) \
-			$(addsuffix .c, $(addprefix $(PARSING_DIR), main)) \
-			$(addsuffix .c, $(addprefix $(PARSING_PARSE_DIR), parse_map parse_error \
-			parse_textures parse_colors parse_map_body parsing_utils)) \
-			$(addsuffix .c, $(addprefix $(PARSING_RAW_MAP_DIR), store_map_variables \
-			store_map_body read_map)) \
-			$(addsuffix .c, $(addprefix $(CHECKS_TEXTURE_DIR), check_texture valid_permisions valid_spacing valid_vars \
-			valid_duplicates valid_vars_in_map valid_extentions)) \
-			$(addsuffix .c, $(addprefix $(CHECKS_COLOR_DIR), checks_colors valid_chars three_values_exists three_values_only valid_range valid_separator trim_spaces))
+SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), main singletons handlers) \
+				$(addprefix $(PARSING_PARSE_DIR), parse_map parse_error parse_textures parse_colors parse_map_body parsing_utils) \
+			 	$(addprefix $(PARSING_RAW_MAP_DIR), store_map_variables store_map_body read_map) \
+			 	$(addprefix $(CHECKS_TEXTURE_DIR), check_texture valid_permisions valid_spacing valid_vars valid_duplicates valid_vars_in_map valid_extentions) \
+			 	$(addprefix $(CHECKS_COLOR_DIR), checks_colors valid_chars three_values_exists three_values_only valid_range valid_separator trim_spaces) \
+			 )
 
 # Object files convertion
 OBJS 		:= $(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
