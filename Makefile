@@ -18,7 +18,6 @@ fclean: clean
 	@rm -f $(NAME)
 	@make fclean -sC $(LIBFT_DIR) > /dev/null 2> /dev/null
 	@make clean -sC $(MLX_DIR) > /dev/null 2> /dev/null
-	@rm -rf $(LIBS_DIR)minilibx-opengl
 
 re: fclean all
 

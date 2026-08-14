@@ -1,5 +1,6 @@
 
 #include "cub3d.h"
+#include "parsing.h"
 
 void	destroy_cub3d(int status)
 {

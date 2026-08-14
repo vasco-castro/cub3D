@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: vsoares- <vsoares-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/14 17:29:12 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/14 18:20:11 by vsoares-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,7 @@
 
 # include "libft.h"
 # include "mlx.h"
-
-typedef struct s_img
-{
-	void	*ptr;
-	void	*data;
-	int		bpp;
-	int		size_l;
-	int		endian;
-}	t_img;
-
-typedef struct s_map
-{
-	t_img			*north_texture;
-	t_img			*south_texture;
-	t_img			*east_texture;
-	t_img			*west_texture;
-	char			**map;
-	t_point			size;
-	unsigned int	floor;
-	unsigned int	ceiling;
-}	t_map;
+# include "cub3d.h"
 
 typedef struct s_map_vars
 {
