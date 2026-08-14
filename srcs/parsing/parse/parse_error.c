@@ -19,9 +19,8 @@ void	parse_error(const char *filename)
 		filename, strerror(errno));
 }
 
-void	free_map_vars(t_map *map, t_map_vars *map_vars)
+void	free_map_vars(t_map_vars *map_vars)
 {
-	(void)map;
 	if (!map_vars)
 		return ;
 	free(map_vars->north);
@@ -32,9 +31,8 @@ void	free_map_vars(t_map *map, t_map_vars *map_vars)
 	free(map_vars->ceiling);
 }
 
-void	free_map_body(t_map *map, char **map_body)
+void	free_map_body(char **map_body)
 {
-	(void)map;
 	if (map_body)
 		ft_tabfree(map_body);
 }

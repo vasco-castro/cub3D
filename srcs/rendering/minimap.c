@@ -25,7 +25,9 @@ void	render_minimap(int col, int row)
 			else
 				put_square(pos_col, pos_row, map()->minimap_scale, 0x00bf5600);
 			if ((int) player()->pos.x == y && (int) player()->pos.y == x)
-				put_star(pos_col, pos_row, map()->minimap_scale, 0x006300bf);
+				put_star(pos_col + (map()->minimap_scale / 4),
+					pos_row + (map()->minimap_scale / 4),
+					map()->minimap_scale / 2, 0x006300bf);
 			y++;
 		}
 		x++;

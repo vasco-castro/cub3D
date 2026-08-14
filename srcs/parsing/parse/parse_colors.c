@@ -33,11 +33,11 @@ unsigned int	parse_rgb(char *value)
 	return (rgb_converter(r, g, b));
 }
 
-bool	parse_colors(t_map_vars map_vars, t_map *map)
+bool	parse_colors(t_map_vars map_vars)
 {
 	if (!checks_for_colors(map_vars))
 		return (false);
-	map->floor = parse_rgb(map_vars.floor);
-	map->ceiling = parse_rgb(map_vars.ceiling);
+	map()->floor = parse_rgb(map_vars.floor);
+	map()->ceiling = parse_rgb(map_vars.ceiling);
 	return (true);
 }

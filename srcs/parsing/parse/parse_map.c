@@ -12,14 +12,6 @@
 
 #include "parsing.h"
 
-static void	clear_parse_allocation(t_map *result, char **map_body,
-	t_map_vars map_vars)
-{
-	free_map_data(result);
-	free_map_body(NULL, map_body);
-	free_map_vars(NULL, &map_vars);
-}
-
 bool	checks_for_raw_map(char **raw_map)
 {
 	if (!check_dup_inv_vars(raw_map))
@@ -43,32 +35,27 @@ bool	checks_for_raw_map(char **raw_map)
 	return (true);
 }
 
-t_map	*parse_map(const char *filename)
+bool	parse_map(const char *filename)
 {
 	char		**raw_map;
-	char		**map_body;
 	t_map_vars	map_vars;
 
 	raw_map = read_map(filename);
 	if (!raw_map)
 	{
 		debug("Error\nfailed to read map file '%s'\n", filename);
-		return (NULL);
+		return (false);
 	}
 	if (!checks_for_raw_map(raw_map))
-		return (NULL);
+		return (false);
 	map_vars = store_map_variables(raw_map);
 	if (debug_mode())
 		print_map_vars(map_vars);
-	map_body = store_map_body(raw_map);
+	map()->map = store_map_body(raw_map);
 	ft_tabfree(raw_map);
-	if (!parse_textures(map_vars, map()) || !parse_colors(map_vars, map()))
-	{
-		return (clear_parse_allocation(map(), map_body, map_vars), NULL);
-	}
-	// if (!parse_map_body(map_body))
-	// 	return (clear_parse_allocation(map(), map_body, map_vars), NULL);
-	map()->map = map_body;
-	free_map_vars(NULL, &map_vars);
-	return (map());
+	if (!parse_textures(map_vars) || !parse_colors(map_vars))
+		return (ft_tabfree(map()->map), free_map_vars(&map_vars), false);
+	// if (!parse_map_body(map()->map))
+	// 	return (ft_tabfree(map()->map), free_map_vars(&map_vars), false);
+	return (free_map_vars(&map_vars), true);
 }

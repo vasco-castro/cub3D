@@ -19,7 +19,7 @@
 
 # define MINIMAP true
 // # define MINIMAP_SCALE 8
-# define MINIMAP_SCALE_PERCENTAGE 100
+# define MINIMAP_SCALE_PERCENTAGE 25
 # define MINIMAP_POS MINIMAP_UL
 
 typedef enum e_minimap
@@ -47,10 +47,10 @@ typedef struct s_img
 
 typedef struct s_map
 {
-	t_img			*north_texture;
-	t_img			*south_texture;
-	t_img			*east_texture;
-	t_img			*west_texture;
+	t_img			north_texture;
+	t_img			south_texture;
+	t_img			east_texture;
+	t_img			west_texture;
 
 	char			**map;
 	t_point			size;

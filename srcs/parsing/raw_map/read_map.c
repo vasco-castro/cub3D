@@ -12,15 +12,6 @@
 
 #include "parsing.h"
 
-void	free_map_data(t_map *map)
-{
-	if (!map)
-		return ;
-	if (map->map)
-		ft_tabfree(map->map);
-	free(map);
-}
-
 static size_t	count_lines(int fd)
 {
 	size_t	count;
