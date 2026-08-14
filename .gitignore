@@ -67,3 +67,6 @@ cub3d_eval-sheet.pdf
 srcs/parsing/main.c
 srcs/parsing/Makefile
 srcs/parsing/b.cub
+
+#DS_store
+.DS_store

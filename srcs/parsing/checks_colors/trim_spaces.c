@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks_colors.c                                    :+:      :+:    :+:   */
+/*   trim_spaces.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/19 17:24:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/14 11:53:25 by biphuyal         ###   ########.fr       */
+/*   Created: 2026/08/14 00:10:04 by biphuyal          #+#    #+#             */
+/*   Updated: 2026/08/14 00:21:34 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-bool	checks_for_colors(t_map_vars map_vars)
+bool	trim_spaces(t_map_vars map_vars)
 {
-	if (!valid_vars(map_vars))
-		return (false);
-	if (!three_values_exists(map_vars))
-		return (false);
-	if (!three_values_only(map_vars))
-		return (false);
-	if (!valid_chars(map_vars))
-		return (false);
-	if (!valid_range(map_vars))
-		return (false);
-	// if (!trim_spaces(map_vars))
-	// 	return (false);
+	unsigned int	i;
+	unsigned int	start;
+
+	i = 0;
+	start = 0;
+	while (map_vars.floor[i])
+	{
+		if (map_vars.floor[i] != ' ' && map_vars.floor[i] != '\t')
+		{
+			map_vars.floor[start] = map_vars.floor[i];
+			start++;
+		}
+		i++;
+	}
 	return (true);
 }
