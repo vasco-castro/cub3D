@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/14 13:20:54 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/14 13:37:11 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_map_vars
 	char			*ceiling;
 }	t_map_vars;
 
+t_map		*parse_map(const char *filename);
+t_map_vars	store_map_variables(char **raw_map);
 void		free_map_data(t_map *map);
 bool		is_space(char c);
 void		skip_spaces(char *line, size_t *j);
@@ -66,9 +68,7 @@ bool		check_dup_inv_vars(char **raw_map);
 bool		check_texture(t_map_vars map_vars);
 void		parse_error_on_map(t_map *map);
 char		**read_map(const char *filename);
-t_map		*parse_map(const char *filename);
 void		parse_error(const char *filename);
-t_map_vars	store_map_variables(char **raw_map);
 char		**store_map_body(char **raw_map);
 bool		parse_textures(t_map_vars map_vars, t_map *map);
 bool		parse_colors(t_map_vars map_vars, t_map *map);
@@ -77,6 +77,7 @@ void		free_map_body(char **map_body);
 void		free_map_vars(t_map_vars *map_vars);
 void		print_map_vars(t_map_vars map_vars);
 bool		check_vars_in_out_map_body(char **raw_map);
+bool		parse_map_body(char **map_body);
 bool		valid_extentions(t_map_vars map_vars);
 bool		invalid_space(char **raw_map);
 bool		new_line(char **raw_map, size_t *i, size_t *j);
@@ -89,11 +90,7 @@ bool		check_ceilings(t_map_vars map_vars, int i);
 bool		valid_range(t_map_vars map_vars);
 bool		valid_separator(t_map_vars map_vars);
 bool		trim_spaces(t_map_vars map_vars);
-
-
-
-
-
+bool		checks_for_map(char **map_body);
 
 
 #endif
