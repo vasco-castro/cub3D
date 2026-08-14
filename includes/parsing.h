@@ -88,6 +88,7 @@ bool		check_floors(t_map_vars map_vars, int i);
 bool		check_ceilings(t_map_vars map_vars, int i);
 bool		valid_range(t_map_vars map_vars);
 bool		valid_separator(t_map_vars map_vars);
+bool		trim_spaces(t_map_vars map_vars);
 
 
 

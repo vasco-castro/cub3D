@@ -24,7 +24,7 @@ SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), singletons handlers)) \
 			store_map_body read_map)) \
 			$(addsuffix .c, $(addprefix $(CHECKS_TEXTURE_DIR), check_texture valid_permisions valid_spacing valid_vars \
 			valid_duplicates valid_vars_in_map valid_extentions)) \
-			$(addsuffix .c, $(addprefix $(CHECKS_COLOR_DIR), checks_colors valid_chars three_values_exists three_values_only valid_range valid_separator))
+			$(addsuffix .c, $(addprefix $(CHECKS_COLOR_DIR), checks_colors valid_chars three_values_exists three_values_only valid_range valid_separator trim_spaces))
 
 # Object files convertion
 OBJS 		:= $(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
