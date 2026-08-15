@@ -54,5 +54,7 @@ No player position found
 Map is not surrounded by walls
 Map is not the last element in the file...
 Collapse
+Find the position of the player and put the value (x, y) = 1.5, 4.5
+Find the direction of the variable and put in the sqaure next to the player according to the direction (x, y of N) = 1.4, 1.3 
 
 
