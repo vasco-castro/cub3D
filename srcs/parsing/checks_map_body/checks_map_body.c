@@ -16,5 +16,7 @@ bool	checks_for_map(char **map_body)
 {
 	if (!valid_player(map_body))
 		return (false);
+	if (!valid_closed_map(map_body))
+		return (debug("Error\nmap is not closed by walls\n"), false);
 	return (true);
 }

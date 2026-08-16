@@ -35,6 +35,17 @@ typedef struct s_map_vars
 	char			*ceiling;
 }	t_map_vars;
 
+typedef struct s_floodfill
+{
+	char			**map;
+	char			*walkable;
+	char			*invalid;
+	char			*target;
+	int				target_count;
+	char			mark;
+	bool			check_closed;
+}	t_floodfill;
+
 bool		parse_map(const char *filename);
 t_map_vars	store_map_variables(char **raw_map);
 bool		is_space(char c);
@@ -71,6 +82,7 @@ bool		valid_separator(t_map_vars map_vars);
 bool		trim_spaces(t_map_vars map_vars);
 bool		checks_for_map(char **map_body);
 bool		valid_player(char **map_body);
-
+bool		valid_closed_map(char **map_body);
+bool		floodfill(t_floodfill *fill, t_point pos);
 
 #endif
