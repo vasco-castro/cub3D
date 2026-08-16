@@ -28,7 +28,7 @@ SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), main singletons \
 							valid_duplicates valid_vars_in_map valid_extentions) \
 			 		$(addprefix $(CHECKS_COLOR_DIR), checks_colors valid_chars three_values_exists \
 							three_values_only valid_range valid_separator trim_spaces) \
-					$(addprefix $(CHECKS_MAP_BODY), checks_map_body) \
+					$(addprefix $(CHECKS_MAP_BODY), checks_map_body valid_player) \
 				)
 
 # Object files and dependency files

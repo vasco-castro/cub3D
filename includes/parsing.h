@@ -57,7 +57,6 @@ void		free_map_body(char **map_body);
 void		free_map_vars(t_map_vars *map_vars);
 void		print_map_vars(t_map_vars map_vars);
 bool		check_vars_in_out_map_body(char **raw_map);
-bool		parse_map_body(char **map_body);
 bool		valid_extentions(t_map_vars map_vars);
 bool		invalid_space(char **raw_map);
 bool		new_line(char **raw_map, size_t *i, size_t *j);

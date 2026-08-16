@@ -14,6 +14,6 @@
 
 bool	valid_player(char **map_body)
 {
-	
+	(void)map_body;
 	return (true);
 }
