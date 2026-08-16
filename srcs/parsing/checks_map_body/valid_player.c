@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks_map_body.c                                  :+:      :+:    :+:   */
+/*   valid_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/14 13:28:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/16 15:08:08 by biphuyal         ###   ########.fr       */
+/*   Created: 2026/08/14 20:46:08 by biphuyal          #+#    #+#             */
+/*   Updated: 2026/08/14 20:50:38 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-bool	checks_for_map(char **map_body)
+bool	valid_player(char **map_body)
 {
-	if (!valid_player(map_body))
-		return (false);
+	
 	return (true);
 }

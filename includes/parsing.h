@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoares- <vsoares-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/14 18:20:11 by vsoares-         ###   ########.fr       */
+/*   Updated: 2026/08/14 20:49:48 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ bool		valid_range(t_map_vars map_vars);
 bool		valid_separator(t_map_vars map_vars);
 bool		trim_spaces(t_map_vars map_vars);
 bool		checks_for_map(char **map_body);
+bool		valid_player(char **map_body);
 
 
 #endif

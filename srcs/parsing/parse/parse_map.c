@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/14 17:27:09 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/14 20:45:42 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool	parse_map(const char *filename)
 	ft_tabfree(raw_map);
 	if (!parse_textures(map_vars) || !parse_colors(map_vars))
 		return (ft_tabfree(map()->map), free_map_vars(&map_vars), false);
-	// if (!parse_map_body(map()->map))
-	// 	return (ft_tabfree(map()->map), free_map_vars(&map_vars), false);
+	if (!parse_map_body(map()->map))
+		return (ft_tabfree(map()->map), free_map_vars(&map_vars), false);
 	return (free_map_vars(&map_vars), true);
 }
