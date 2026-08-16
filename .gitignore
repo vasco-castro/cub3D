@@ -70,3 +70,7 @@ srcs/parsing/b.cub
 
 #DS_store
 .DS_store
+
+#some fix of rendering on my part
+srcs/rendering/minimap.c
+srcs/rendering/render.c

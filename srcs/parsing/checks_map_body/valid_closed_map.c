@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/16 00:00:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/16 00:00:00 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/16 16:57:15 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	valid_closed_map(char **map_body)
 	size_t		y;
 	size_t		x;
 
-	fill = (t_floodfill){ft_tabcpy(map_body), "0NSEW", " \t", NULL,
+	fill = (t_floodfill){ft_tabcpy(map_body), "0NSEW", "\t", NULL,
 		0, 'F', true};
 	if (!fill.map)
 		return (false);
