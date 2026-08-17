@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/16 16:54:32 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/17 15:54:26 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,6 @@ typedef struct s_map_vars
 	char			*floor;
 	char			*ceiling;
 }	t_map_vars;
-
-typedef struct s_floodfill
-{
-	char			**map;
-	char			*walkable;
-	char			*invalid;
-	char			*target;
-	int				target_count;
-	char			mark;
-	bool			check_closed;
-}	t_floodfill;
 
 bool		parse_map(const char *filename);
 t_map_vars	store_map_variables(char **raw_map);
