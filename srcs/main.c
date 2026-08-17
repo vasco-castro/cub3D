@@ -30,16 +30,27 @@ static bool	mlx_init_game(void)
 
 static void	game_init(void)
 {
+	map()->size = (t_point){33, 14};
+
+	player()->pos = (t_dpoint){3.5, 2.5};
+
+	player()->angle = M_PI_2;
+
+	player()->dir.x=cos(player()->angle);
+	player()->dir.y=sin(player()->angle);
+
+	map()->minimap_scale = W_WIDTH / 100 * MINIMAP_SCALE_PERCENTAGE / map()->size.x;
+
 	game()->win = mlx_new_window(game()->mlx, W_WIDTH, W_HEIGHT, W_MSG);
 	if (!game()->win)
 		destroy_cub3d(EXIT_FAILURE);
 	mlx_key_hook(game()->win, (void *)key_handler, &game);
-	// mlx_hook(game()->win, ON_KEYDOWN, (1L << 0), (void *)key_handler, &game);
+	// mlx_hook(game()->win, ON_KEYDOWN, MASK_KEYPRESS, (void *)key_handler, &game);
 	mlx_mouse_hook(game()->win, (void *)mouse_click_handler, &game);
-	// mlx_hook(game()->win, ON_MOUSEDOWN, (1L << 2), (void *)mouse_click_handler, &game);
-	mlx_hook(game()->win, ON_MOUSEUP, (1L << 3), (void *)mouse_click_handler, &game);
-	// mlx_hook(game()->win, ON_MOUSEMOVE, (1L << 6), (void *)mouse_move_handler, &game);
-	mlx_hook(game()->win, ON_DESTROY, 1, (void *)close_window, &game);
+	// mlx_hook(game()->win, ON_MOUSEDOWN, MASK_BUTTONPRESS, (void *)mouse_click_handler, &game);
+	mlx_hook(game()->win, ON_MOUSEUP, MASK_BUTTONRELEASE, (void *)mouse_click_handler, &game);
+	// mlx_hook(game()->win, ON_MOUSEMOVE, MASK_POINTERMOTION, (void *)mouse_move_handler, &game);
+	mlx_hook(game()->win, ON_DESTROY, MASK_KEYPRESS, (void *)close_window, &game);
 	mlx_loop_hook(game()->mlx, (void *)loop_hook, &game);
 	mlx_loop(game()->mlx);
 }
@@ -64,9 +75,6 @@ int	main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	if (!parse_map(argv[1]))
 		return (destroy_cub3d(EXIT_FAILURE), EXIT_FAILURE);
-	map()->size = (t_point){23, 22};
-	player()->pos = (t_dpoint){3.5, 2.5};
-	map()->minimap_scale = W_WIDTH / 100 * MINIMAP_SCALE_PERCENTAGE / map()->size.x;
 	if (debug_mode())
 		ft_printtab(map()->map);
 	return (game_init(), destroy_cub3d(EXIT_SUCCESS), EXIT_SUCCESS);

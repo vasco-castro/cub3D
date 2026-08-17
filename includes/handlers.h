@@ -31,6 +31,9 @@
 #  define D_KEY 100
 # endif
 
+// Full X11 event list; only KeyPress/Release, ButtonPress/Release,
+// MotionNotify, Expose and DestroyNotify are actually delivered by mlx
+// on both Linux and MacOS, the rest exist only via mlx_hook on Linux.
 enum
 {
 	ON_KEYDOWN = 2,
@@ -38,10 +41,78 @@ enum
 	ON_MOUSEDOWN = 4,
 	ON_MOUSEUP = 5,
 	ON_MOUSEMOVE = 6,
+	ON_ENTER = 7,
+	ON_LEAVE = 8,
+	ON_FOCUSIN = 9,
+	ON_FOCUSOUT = 10,
+	ON_KEYMAP = 11,
 	ON_EXPOSE = 12,
-	ON_DESTROY = 17
+	ON_GRAPHICSEXPOSE = 13,
+	ON_NOEXPOSE = 14,
+	ON_VISIBILITY = 15,
+	ON_CREATE = 16,
+	ON_DESTROY = 17,
+	ON_UNMAP = 18,
+	ON_MAP = 19,
+	ON_MAPREQUEST = 20,
+	ON_REPARENT = 21,
+	ON_CONFIGURE = 22,
+	ON_CONFIGUREREQUEST = 23,
+	ON_GRAVITY = 24,
+	ON_RESIZEREQUEST = 25,
+	ON_CIRCULATE = 26,
+	ON_CIRCULATEREQUEST = 27,
+	ON_PROPERTY = 28,
+	ON_SELECTIONCLEAR = 29,
+	ON_SELECTIONREQUEST = 30,
+	ON_SELECTIONNOTIFY = 31,
+	ON_COLORMAP = 32,
+	ON_CLIENTMESSAGE = 33,
+	ON_MAPPING = 34,
+	ON_GENERICEVENT = 35,
+	ON_LASTEVENT = 36
 };
-// TODO: Add masks for key and mouse events
+
+// Event masks, to be passed as the mask argument to mlx_hook()
+enum
+{
+	MASK_NONE = 0,
+	MASK_KEYPRESS = (1 << 0),
+	MASK_KEYRELEASE = (1 << 1),
+	MASK_BUTTONPRESS = (1 << 2),
+	MASK_BUTTONRELEASE = (1 << 3),
+	MASK_ENTERWINDOW = (1 << 4),
+	MASK_LEAVEWINDOW = (1 << 5),
+	MASK_POINTERMOTION = (1 << 6),
+	MASK_POINTERMOTIONHINT = (1 << 7),
+	MASK_BUTTON1MOTION = (1 << 8),
+	MASK_BUTTON2MOTION = (1 << 9),
+	MASK_BUTTON3MOTION = (1 << 10),
+	MASK_BUTTON4MOTION = (1 << 11),
+	MASK_BUTTON5MOTION = (1 << 12),
+	MASK_BUTTONMOTION = (1 << 13),
+	MASK_KEYMAPSTATE = (1 << 14),
+	MASK_EXPOSURE = (1 << 15),
+	MASK_VISIBILITYCHANGE = (1 << 16),
+	MASK_STRUCTURENOTIFY = (1 << 17),
+	MASK_RESIZEREDIRECT = (1 << 18),
+	MASK_SUBSTRUCTURENOTIFY = (1 << 19),
+	MASK_SUBSTRUCTUREREDIRECT = (1 << 20),
+	MASK_FOCUSCHANGE = (1 << 21),
+	MASK_PROPERTYCHANGE = (1 << 22),
+	MASK_COLORMAPCHANGE = (1 << 23),
+	MASK_OWNERGRABBUTTON = (1 << 24)
+};
+
+typedef enum e_direction {
+	FORWARD,
+	BACKWARD,
+	LEFT,
+	RIGHT,
+}	t_direction;
+
+void	move_player(t_direction d);
+void	rotate_player(t_direction d);
 
 int	close_window(void);
 int	key_handler(int keycode);

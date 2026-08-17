@@ -2,6 +2,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <math.h>
+
 # include "libft.h"
 # include "mlx.h"
 
@@ -19,15 +21,15 @@
 
 # define MINIMAP true
 // # define MINIMAP_SCALE 8
-# define MINIMAP_SCALE_PERCENTAGE 25
+# define MINIMAP_SCALE_PERCENTAGE 100
 # define MINIMAP_POS MINIMAP_UL
 
 typedef enum e_minimap
 {
-	MINIMAP_UL = 1,
-	MINIMAP_LL = 2,
-	MINIMAP_UR = 3,
-	MINIMAP_LR = 4,
+	MINIMAP_UL,
+	MINIMAP_LL,
+	MINIMAP_UR,
+	MINIMAP_LR,
 }	t_minimap;
 
 typedef struct s_game
@@ -66,6 +68,7 @@ typedef struct s_player
 {
 	t_dpoint	pos;
 	t_dpoint	dir;
+	double		angle;
 }	t_player;
 
 t_game		*game(void);
