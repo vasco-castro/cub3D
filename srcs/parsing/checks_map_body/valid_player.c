@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 15:57:37 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/17 19:42:47 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/17 19:45:55 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ bool	is_player_char(char c)
 void	set_player_dir(char direction)
 {
 	if (direction == 'N')
-		player()->dir = (t_dpoint){0, -1};
+		player()->dir = (t_dpoint){0.5, -1.5};
 	else if (direction == 'S')
-		player()->dir = (t_dpoint){0, 1};
+		player()->dir = (t_dpoint){0.5, 1.5};
 	else if (direction == 'E')
-		player()->dir = (t_dpoint){1, 0};
+		player()->dir = (t_dpoint){1.5, 0.5};
 	else if (direction == 'W')
-		player()->dir = (t_dpoint){-1, 0};
+		player()->dir = (t_dpoint){-1.5, 0.5};
 }
 
 bool	valid_player(char **map_body)
