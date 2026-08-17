@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/17 15:54:26 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/17 15:56:39 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,6 @@ bool		valid_range(t_map_vars map_vars);
 bool		valid_separator(t_map_vars map_vars);
 bool		trim_spaces(t_map_vars map_vars);
 bool		checks_for_map(char **map_body);
-bool		valid_player(char **map_body);
-bool		valid_closed_map(char **map_body);
-bool		floodfill(t_floodfill *fill, t_point pos);
 void		printf_double_pointer(char **args);
 
 #endif
