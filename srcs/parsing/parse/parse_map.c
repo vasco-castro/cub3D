@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/16 16:40:57 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/19 19:46:17 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,17 @@ bool	checks_for_raw_map(char **raw_map)
 	if (!check_dup_inv_vars(raw_map))
 	{
 		debug("Error\nduplicate or invalid map variable\n");
-		ft_tabfree(raw_map);
-		return (false);
+		return (ft_tabfree(raw_map) ,false);
 	}
 	if (!invalid_space(raw_map))
 	{
 		debug("Error\ninvalid spacing between key and value\n");
-		ft_tabfree(raw_map);
-		return (false);
+		return (ft_tabfree(raw_map) ,false);
 	}
 	if (!check_vars_in_out_map_body(raw_map))
 	{
 		debug("Error\nnon-map line found after map started\n");
-		ft_tabfree(raw_map);
-		return (false);
+		return (ft_tabfree(raw_map) ,false);
 	}
 	return (true);
 }
@@ -75,8 +72,6 @@ bool	parse_map(const char *filename)
 	if (!checks_for_raw_map(raw_map))
 		return (false);
 	map_vars = store_map_variables(raw_map);
-	if (debug_mode())
-		print_map_vars(map_vars);
 	map()->map = store_map_body(raw_map);
 	ft_tabfree(raw_map);
 	store_map_size(map()->map);

@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 18:51:15 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/10 12:01:54 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/19 19:44:38 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,10 @@ bool	check_dup_inv_vars(char **raw_map)
 			break ;
 		id = get_var_id(raw_map[i], &j);
 		if (id == -1)
-		{
-			debug("Error\ninvalid variable identifier at line %d\n",
-				(int)i + 1);
 			return (false);
-		}
 		seen[id]++;
 		if (seen[id] > 1)
-		{
-			debug("Error\nduplicate variable at line %d\n",
-				(int)i + 1);
 			return (false);
-		}
 		i++;
 	}
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/17 16:04:47 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/19 15:46:10 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ bool		parse_map(const char *filename);
 t_map_vars	store_map_variables(char **raw_map);
 bool		is_space(char c);
 void		skip_spaces(char *line, size_t *j);
+bool		valid_map(char **map);
+bool		flood_fill(char **copy_map, int x, int y);
 bool		is_map_line(char *line, size_t j);
 bool		valid_permisions(t_map_vars map_vars);
 bool		valid_spacing(t_map_vars map_vars);

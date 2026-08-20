@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 15:57:37 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/17 19:45:55 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/19 20:10:42 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ bool	is_player_char(char c)
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-void	set_player_dir(char direction)
+void	set_player_dir(char angle)
 {
-	if (direction == 'N')
+	if (angle == 'N')
 		player()->dir = (t_dpoint){0.5, -1.5};
-	else if (direction == 'S')
+	else if (angle == 'S')
 		player()->dir = (t_dpoint){0.5, 1.5};
-	else if (direction == 'E')
+	else if (angle == 'E')
 		player()->dir = (t_dpoint){1.5, 0.5};
-	else if (direction == 'W')
+	else if (angle == 'W')
 		player()->dir = (t_dpoint){-1.5, 0.5};
 }
 
@@ -46,13 +46,13 @@ bool	valid_player(char **map_body)
 			{
 				count++;
 				player()->pos = (t_dpoint){x + 0.5, y + 0.5};
-				set_player_dir(map_body[x][y]);
+				set_player_dir(map_body[y][x]);
 			}
 			x++;
 		}
 		y++;
 	}
 	if (count != 1)
-		return (debug("Error\nmap must contain exactly one player\n"), false);
+		return (false);
 	return (true);
 }
