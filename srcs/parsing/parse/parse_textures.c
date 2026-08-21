@@ -15,28 +15,22 @@
 
 void	free_images(void)
 {
-	if (map()->north_texture.ptr)
-		mlx_destroy_image(game()->mlx, map()->north_texture.ptr);
-	if (map()->south_texture.ptr)
-		mlx_destroy_image(game()->mlx, map()->south_texture.ptr);
-	if (map()->east_texture.ptr)
-		mlx_destroy_image(game()->mlx, map()->east_texture.ptr);
-	if (map()->west_texture.ptr)
-		mlx_destroy_image(game()->mlx, map()->west_texture.ptr);
+	destroy_image(&map()->north_texture);
+	destroy_image(&map()->south_texture);
+	destroy_image(&map()->east_texture);
+	destroy_image(&map()->west_texture);
 }
 
-static bool	load_image_from_file(t_img *image, char *path)
+static bool	load_image_from_file(t_image *image, char *path)
 {
-	int		width;
-	int		height;
-
-	image->ptr = mlx_xpm_file_to_image(game()->mlx, path, &width, &height);
-	if (!image->ptr)
+	image->img = mlx_xpm_file_to_image(game()->mlx, path,
+			&image->w, &image->h);
+	if (!image->img)
 		return (false);
-	image->data = mlx_get_data_addr(image->ptr, &image->bpp,
-			&image->size_l, &image->endian);
-	if (!image->data)
-		return (mlx_destroy_image(game()->mlx, image->ptr), false);
+	image->addr = mlx_get_data_addr(image->img, &image->bpp,
+			&image->line, &image->endian);
+	if (!image->addr)
+		return (mlx_destroy_image(game()->mlx, image->img), false);
 	return (true);
 }
 

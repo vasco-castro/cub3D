@@ -26,6 +26,7 @@ void	render(void)
 	int	minimap_low_pos;
 	int	minimap_right_pos;
 
+	clear_image(&game()->screen, 0x00000000);
 	render_bg();
 	render_walls();
 	if (MINIMAP)
@@ -45,4 +46,5 @@ void	render(void)
 		else
 			render_minimap(0, 0);
 	}
+	display_image(&game()->screen, 0, 0);
 }

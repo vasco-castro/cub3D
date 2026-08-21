@@ -8,7 +8,6 @@
 # include "mlx.h"
 
 # include "handlers.h"
-# include "rendering.h"
 
 # define W_MSG "Let's get cub3D!"
 // # define W_WIDTH 720
@@ -33,27 +32,30 @@ typedef enum e_minimap
 	MINIMAP_LR,
 }	t_minimap;
 
+typedef struct s_image
+{
+	void	*img;
+	char	*addr; // address
+	int		w; // width
+	int		h; // height
+	int		bpp; // bits per pixel
+	int		line; //line lenght (size)
+	int		endian;
+}		t_image;
+
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	t_image		screen;
 }	t_game;
-
-typedef struct s_img
-{
-	void	*ptr;
-	void	*data;
-	int		bpp;
-	int		size_l;
-	int		endian;
-}	t_img;
 
 typedef struct s_map
 {
-	t_img			north_texture;
-	t_img			south_texture;
-	t_img			east_texture;
-	t_img			west_texture;
+	t_image			north_texture;
+	t_image			south_texture;
+	t_image			east_texture;
+	t_image			west_texture;
 
 	char			**map;
 	t_point			size;
@@ -77,5 +79,7 @@ t_map		*map(void);
 t_player	*player(void);
 
 void		destroy_cub3d(int status);
+
+# include "rendering.h"
 
 #endif /* CUB3D_H */

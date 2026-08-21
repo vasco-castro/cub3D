@@ -19,7 +19,7 @@ LDFLAGS		:= -lm
 
 # Source files (with directories applied)
 SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), main singletons \
-					$(addprefix rendering/, render put_pixels images minimap) \
+					$(addprefix rendering/, render minimap $(addprefix images/, put_pixels images)) \
 					$(addprefix events/, handlers key_handlers mouse_handlers) \
 					$(addprefix utils/, utils)) \
 					$(addprefix $(PARSING_PARSE_DIR), parse_map parse_error parse_textures parse_colors parse_map_body parsing_utils) \

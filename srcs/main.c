@@ -7,6 +7,7 @@ void	destroy_cub3d(int status)
 	if (game())
 	{
 		free_images();
+		destroy_image(&game()->screen);
 		if (game()->win)
 			mlx_destroy_window(game()->mlx, game()->win);
 		if (game()->mlx)
@@ -45,6 +46,7 @@ static void	game_init(void)
 	game()->win = mlx_new_window(game()->mlx, W_WIDTH, W_HEIGHT, W_MSG);
 	if (!game()->win)
 		destroy_cub3d(EXIT_FAILURE);
+	game()->screen = create_image(W_WIDTH, W_HEIGHT);
 	mlx_key_hook(game()->win, (void *)key_handler, &game);
 	// mlx_hook(game()->win, ON_KEYDOWN, MASK_KEYPRESS, (void *)key_handler, &game);
 	mlx_mouse_hook(game()->win, (void *)mouse_click_handler, &game);

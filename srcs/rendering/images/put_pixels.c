@@ -3,7 +3,7 @@
 
 void	put_pixel(int x, int y, uint32_t color)
 {
-	mlx_pixel_put(game()->mlx, game()->win, x, y, color);
+	put_px(&game()->screen, x, y, color);
 }
 
 void	put_line_x(int x, int y, int size, uint32_t color)
