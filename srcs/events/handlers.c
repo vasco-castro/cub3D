@@ -46,18 +46,28 @@ static double	get_delta_time(void)
 
 static void	handle_input(double delta)
 {
+	double	move_speed;
+	double	rot_speed;
+
+	move_speed = MOVE_SPEED;
+	rot_speed = ROT_SPEED;
+	if (keys()->run)
+	{
+		move_speed*=1.5;
+		rot_speed/=1.5;
+	}
 	if (keys()->forward)
-		move_player(FORWARD, MOVE_SPEED * delta);
+		move_player(FORWARD, move_speed * delta);
 	if (keys()->backward)
-		move_player(BACKWARD, MOVE_SPEED * delta);
+		move_player(BACKWARD, move_speed * delta);
 	if (keys()->left)
-		move_player(LEFT, MOVE_SPEED * delta);
+		move_player(LEFT, move_speed * delta);
 	if (keys()->right)
-		move_player(RIGHT, MOVE_SPEED * delta);
+		move_player(RIGHT, move_speed * delta);
 	if (keys()->rot_left)
-		rotate_player(LEFT, ROT_SPEED * delta);
+		rotate_player(LEFT, rot_speed * delta);
 	if (keys()->rot_right)
-		rotate_player(RIGHT, ROT_SPEED * delta);
+		rotate_player(RIGHT, rot_speed * delta);
 }
 
 int	loop_hook(void)

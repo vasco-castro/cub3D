@@ -20,6 +20,8 @@
 #  define S_KEY 1
 #  define A_KEY 0
 #  define D_KEY 2
+
+#  define L_SHIFT_KEY 257
 # else
 #  define ESCAPE_KEY 65307
 
@@ -32,6 +34,8 @@
 #  define S_KEY 115
 #  define A_KEY 97
 #  define D_KEY 100
+
+#  define L_SHIFT_KEY 65505
 # endif
 
 // Full X11 event list; only KeyPress/Release, ButtonPress/Release,

@@ -82,6 +82,7 @@ typedef struct s_keys
 	bool	right;
 	bool	rot_left;
 	bool	rot_right;
+	bool	run;
 }	t_keys;
 
 t_game		*game(void);

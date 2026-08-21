@@ -56,6 +56,8 @@ int	key_down_handler(int keycode)
 		keys()->rot_left = true;
 	else if (keycode == RIGHT_KEY)
 		keys()->rot_right = true;
+	else if (keycode == L_SHIFT_KEY)
+		keys()->run = true;
 	else
 		debug("Pressed key: %d\n", keycode);
 	return (EXIT_SUCCESS);
@@ -80,5 +82,7 @@ int	key_up_handler(int keycode)
 		keys()->rot_left = false;
 	else if (keycode == RIGHT_KEY)
 		keys()->rot_right = false;
+	else if (keycode == L_SHIFT_KEY)
+		keys()->run = false;
 	return (EXIT_SUCCESS);
 }
