@@ -1,4 +1,3 @@
-
 #include "cub3d.h"
 #include "parsing.h"
 
@@ -31,15 +30,6 @@ static bool	mlx_init_game(void)
 
 static void	game_init(void)
 {
-	map()->size = (t_point){33, 14};
-
-	player()->pos = (t_dpoint){3.5, 2.5};
-
-	player()->angle = M_PI_2;
-
-	player()->dir.x=cos(player()->angle);
-	player()->dir.y=sin(player()->angle);
-
 	map()->minimap_scale = W_WIDTH / 100 * MINIMAP_SCALE_PERCENTAGE
 		/ (2 * MINIMAP_RADIUS + 1);
 
@@ -77,8 +67,11 @@ int	main(int argc, char *argv[])
 	if (!mlx_init_game())
 		return (EXIT_FAILURE);
 	if (!parse_map(argv[1]))
+	{
+		ft_dprintf(STDERR_FILENO, RED "Error\nfailed to parse map\n" RESET);
 		return (destroy_cub3d(EXIT_FAILURE), EXIT_FAILURE);
+	}
 	if (debug_mode())
-		ft_printtab(map()->map);
+		printf_double_pointer(map()->map);
 	return (game_init(), destroy_cub3d(EXIT_SUCCESS), EXIT_SUCCESS);
 }

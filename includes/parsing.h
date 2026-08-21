@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoares- <vsoares-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/14 18:20:11 by vsoares-         ###   ########.fr       */
+/*   Updated: 2026/08/19 15:46:10 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ bool		parse_map(const char *filename);
 t_map_vars	store_map_variables(char **raw_map);
 bool		is_space(char c);
 void		skip_spaces(char *line, size_t *j);
+bool		valid_map(char **map);
+bool		flood_fill(char **copy_map, int x, int y);
 bool		is_map_line(char *line, size_t j);
 bool		valid_permisions(t_map_vars map_vars);
 bool		valid_spacing(t_map_vars map_vars);
@@ -57,7 +59,6 @@ void		free_map_body(char **map_body);
 void		free_map_vars(t_map_vars *map_vars);
 void		print_map_vars(t_map_vars map_vars);
 bool		check_vars_in_out_map_body(char **raw_map);
-bool		parse_map_body(char **map_body);
 bool		valid_extentions(t_map_vars map_vars);
 bool		invalid_space(char **raw_map);
 bool		new_line(char **raw_map, size_t *i, size_t *j);
@@ -71,6 +72,7 @@ bool		valid_range(t_map_vars map_vars);
 bool		valid_separator(t_map_vars map_vars);
 bool		trim_spaces(t_map_vars map_vars);
 bool		checks_for_map(char **map_body);
-
+void		printf_double_pointer(char **args);
+bool		valid_player(char **map_body);
 
 #endif

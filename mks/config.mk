@@ -21,14 +21,15 @@ LDFLAGS		:= -lm
 SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), main singletons \
 					$(addprefix rendering/, render minimap $(addprefix images/, put_pixels images)) \
 					$(addprefix events/, handlers key_handlers mouse_handlers) \
-					$(addprefix utils/, utils)) \
+					$(addprefix utils/, utils floodfill)) \
 					$(addprefix $(PARSING_PARSE_DIR), parse_map parse_error parse_textures parse_colors parse_map_body parsing_utils) \
 			 		$(addprefix $(PARSING_RAW_MAP_DIR), store_map_variables store_map_body read_map) \
 			 		$(addprefix $(CHECKS_TEXTURE_DIR), check_texture valid_permisions valid_spacing valid_vars \
 							valid_duplicates valid_vars_in_map valid_extentions) \
 			 		$(addprefix $(CHECKS_COLOR_DIR), checks_colors valid_chars three_values_exists \
 							three_values_only valid_range valid_separator trim_spaces) \
-					$(addprefix $(CHECKS_MAP_BODY), checks_map_body) \
+					$(addprefix $(CHECKS_MAP_BODY), checks_map_body valid_player \
+						valid_map) \
 				)
 
 # Object files and dependency files
