@@ -20,9 +20,10 @@
 # define FOV 1.047
 
 # define MINIMAP true
-// # define MINIMAP_SCALE 8
-# define MINIMAP_SCALE_PERCENTAGE 100
+# define MINIMAP_SCALE 8
+# define MINIMAP_SCALE_PERCENTAGE 25
 # define MINIMAP_POS MINIMAP_UL
+# define MINIMAP_RADIUS 5
 
 typedef enum e_minimap
 {

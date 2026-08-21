@@ -21,8 +21,8 @@ void	render_minimap_player(int offset_x, int offset_y)
 	int	py;
 	int	radius;
 
-	px = (int) (player()->pos.x * map()->minimap_scale) + offset_x;
-	py = (int) (player()->pos.y * map()->minimap_scale) + offset_y;
+	px = offset_x + MINIMAP_RADIUS * map()->minimap_scale;
+	py = offset_y + MINIMAP_RADIUS * map()->minimap_scale;
 	radius = map()->minimap_scale / 10;
 	render_minimap_direction(px, py, radius);
 	put_circle(px, py, radius, 0x006300bf);
@@ -35,17 +35,19 @@ void	render_minimap(int offset_x, int offset_y)
 	int	px;
 	int	py;
 
-	//debug("Rendering minimap...\n");
-	y = 0;
-	x = 0;
-	while (y < map()->size.y && map()->map[y])
+	// debug("Rendering minimap...\n");
+	y = (int) player()->pos.y - MINIMAP_RADIUS;
+	while (y <= (int) player()->pos.y + MINIMAP_RADIUS)
 	{
-		x = 0;
-		while (x < map()->size.x && map()->map[y][x])
+		x = (int) player()->pos.x - MINIMAP_RADIUS;
+		while (x <= (int) player()->pos.x + MINIMAP_RADIUS)
 		{
-			px = (x * map()->minimap_scale) + offset_x;
-			py = (y * map()->minimap_scale) + offset_y;
-			if (map()->map[y][x] == '0')
+			px = offset_x + (int) ((x - player()->pos.x + MINIMAP_RADIUS)
+					* map()->minimap_scale);
+			py = offset_y + (int) ((y - player()->pos.y + MINIMAP_RADIUS)
+					* map()->minimap_scale);
+			if (y >= 0 && y < map()->size.y && x >= 0 && x < map()->size.x
+				&& map()->map[y][x] == '0')
 				put_square(px, py, map()->minimap_scale, 0x00fcba03);
 			else
 				put_square(px, py, map()->minimap_scale, 0x00bf5600);

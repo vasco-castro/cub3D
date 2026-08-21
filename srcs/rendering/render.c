@@ -30,8 +30,10 @@ void	render(void)
 	render_walls();
 	if (MINIMAP)
 	{
-		minimap_low_pos = W_HEIGHT - (map()->size.y * map()->minimap_scale);
-		minimap_right_pos = W_WIDTH - (map()->size.x * map()->minimap_scale);
+		minimap_low_pos = W_HEIGHT
+			- ((2 * MINIMAP_RADIUS + 1) * map()->minimap_scale);
+		minimap_right_pos = W_WIDTH
+			- ((2 * MINIMAP_RADIUS + 1) * map()->minimap_scale);
 		if (MINIMAP_POS == MINIMAP_UL)
 			render_minimap(0, 0);
 		else if (MINIMAP_POS == MINIMAP_LL)

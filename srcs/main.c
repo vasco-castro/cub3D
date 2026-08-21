@@ -39,7 +39,8 @@ static void	game_init(void)
 	player()->dir.x=cos(player()->angle);
 	player()->dir.y=sin(player()->angle);
 
-	map()->minimap_scale = W_WIDTH / 100 * MINIMAP_SCALE_PERCENTAGE / map()->size.x;
+	map()->minimap_scale = W_WIDTH / 100 * MINIMAP_SCALE_PERCENTAGE
+		/ (2 * MINIMAP_RADIUS + 1);
 
 	game()->win = mlx_new_window(game()->mlx, W_WIDTH, W_HEIGHT, W_MSG);
 	if (!game()->win)
