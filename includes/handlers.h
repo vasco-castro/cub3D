@@ -4,6 +4,9 @@
 
 # define CLOSE_KEY 17
 
+# define MOVE_SPEED 3.0
+# define ROT_SPEED 3.0
+
 // TODO: Add mouse buttons and movement keys
 # ifdef __APPLE__
 #  define ESCAPE_KEY 53
@@ -111,11 +114,12 @@ typedef enum e_direction {
 	RIGHT,
 }	t_direction;
 
-void	move_player(t_direction d);
-void	rotate_player(t_direction d);
+void	move_player(t_direction d, double speed);
+void	rotate_player(t_direction d, double speed);
 
 int	close_window(void);
-int	key_handler(int keycode);
+int	key_down_handler(int keycode);
+int	key_up_handler(int keycode);
 int	mouse_click_handler(int mousecode, int x, int y);
 int	mouse_move_handler(int x, int y);
 int	loop_hook(void);

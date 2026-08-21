@@ -21,3 +21,10 @@ t_player	*player(void)
 
 	return (&player);
 }
+
+t_keys	*keys(void)
+{
+	static t_keys	keys;
+
+	return (&keys);
+}

@@ -74,9 +74,20 @@ typedef struct s_player
 	double		angle;
 }	t_player;
 
+typedef struct s_keys
+{
+	bool	forward;
+	bool	backward;
+	bool	left;
+	bool	right;
+	bool	rot_left;
+	bool	rot_right;
+}	t_keys;
+
 t_game		*game(void);
 t_map		*map(void);
 t_player	*player(void);
+t_keys		*keys(void);
 
 void		destroy_cub3d(int status);
 
