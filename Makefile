@@ -20,7 +20,9 @@ fclean: clean
 	@make fclean -sC $(LIBFT_DIR) > /dev/null 2> /dev/null
 	@make clean -sC $(MLX_DIR) > /dev/null 2> /dev/null
 
-re: fclean all
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
 
 .DEFAULT_GOAL := all
 .PHONY: all clean fclean re
