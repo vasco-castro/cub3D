@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 18:42:47 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/12 18:09:14 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/27 17:56:01 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,12 @@ bool	check_invalid_spacing(char *map_vars)
 bool	valid_spacing(t_map_vars map_vars)
 {
 	if (!check_invalid_spacing(map_vars.east))
-	{
-		debug("Error\ninvalid spacing in EA value\n");
 		return (false);
-	}
 	if (!check_invalid_spacing(map_vars.south))
-	{
-		debug("Error\ninvalid spacing in SO value\n");
 		return (false);
-	}
 	if (!check_invalid_spacing(map_vars.west))
-	{
-		debug("Error\ninvalid spacing in WE value\n");
 		return (false);
-	}
 	if (!check_invalid_spacing(map_vars.north))
-	{
-		debug("Error\ninvalid spacing in NO value\n");
 		return (false);
-	}
 	return (true);
 }

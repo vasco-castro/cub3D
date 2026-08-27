@@ -12,7 +12,7 @@
 
 #include "parsing.h"
 
-bool	three_values_exists(t_map_vars map_vars)
+bool	valid_three_values(t_map_vars map_vars)
 {
 	unsigned int	i;
 

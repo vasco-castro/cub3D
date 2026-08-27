@@ -71,7 +71,7 @@ int	main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	if (!parse_map(argv[1]))
 	{
-		ft_dprintf(STDERR_FILENO, RED "Error\nfailed to parse map\n" RESET);
+		// ft_dprintf(STDERR_FILENO, RED "Error\nfailed to parse map\n" RESET);
 		return (destroy_cub3d(EXIT_FAILURE), EXIT_FAILURE);
 	}
 	if (debug_mode())

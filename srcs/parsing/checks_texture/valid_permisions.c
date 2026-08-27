@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 18:43:33 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/11 16:42:53 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/27 17:35:11 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	valid_permission(char *path)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
-		debug("Error\ncannot open texture path '%s'\n", path);
+		debug("Error\ncannot open texture path\n");
 		return (false);
 	}
 	close(fd);
@@ -29,24 +29,12 @@ static bool	valid_permission(char *path)
 bool	valid_permisions(t_map_vars map_vars)
 {
 	if (!valid_permission(map_vars.north))
-	{
-		debug("Error\ninvalid NO texture path\n");
 		return (false);
-	}
 	if (!valid_permission(map_vars.south))
-	{
-		debug("Error\ninvalid SO texture path\n");
 		return (false);
-	}
 	if (!valid_permission(map_vars.west))
-	{
-		debug("Error\ninvalid WE texture path\n");
 		return (false);
-	}
 	if (!valid_permission(map_vars.east))
-	{
-		debug("Error\ninvalid EA texture path\n");
 		return (false);
-	}
 	return (true);
 }

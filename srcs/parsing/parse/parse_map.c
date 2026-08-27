@@ -6,18 +6,13 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/19 19:46:17 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/21 20:54:46 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static void	clear_parse_allocation(t_map_vars map_vars)
-{
-	free_map_vars(&map_vars);
-}
-
-static void	store_map_size(char **map_body)
+void	store_map_size(char **map_body)
 {
 	size_t	width;
 	size_t	height;
@@ -41,20 +36,14 @@ static void	store_map_size(char **map_body)
 bool	checks_for_raw_map(char **raw_map)
 {
 	if (!check_dup_inv_vars(raw_map))
-	{
-		debug("Error\nduplicate or invalid map variable\n");
-		return (ft_tabfree(raw_map) ,false);
-	}
+		return (ft_tabfree(raw_map), false);
 	if (!invalid_space(raw_map))
 	{
 		debug("Error\ninvalid spacing between key and value\n");
-		return (ft_tabfree(raw_map) ,false);
+		return (ft_tabfree(raw_map), false);
 	}
 	if (!check_vars_in_out_map_body(raw_map))
-	{
-		debug("Error\nnon-map line found after map started\n");
-		return (ft_tabfree(raw_map) ,false);
-	}
+		return (ft_tabfree(raw_map), false);
 	return (true);
 }
 
@@ -76,8 +65,8 @@ bool	parse_map(const char *filename)
 	ft_tabfree(raw_map);
 	store_map_size(map()->map);
 	if (!parse_textures(map_vars) || !parse_colors(map_vars))
-		return (clear_parse_allocation(map_vars), false);
+		return (free_map_vars(&map_vars), false);
 	if (!parse_map_body(map()->map))
-		return (clear_parse_allocation(map_vars), false);
+		return (free_map_vars(&map_vars), false);
 	return (free_map_vars(&map_vars), true);
 }

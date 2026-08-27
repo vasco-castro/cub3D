@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 19:17:11 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/11 19:17:11 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/21 17:41:02 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,14 @@ static bool	is_map_body_line(char *line)
 	skip_spaces(line, &i);
 	if (line[i] != '1')
 	{
-		debug("Error\nmap line must start with '1'\n");
+		debug("Error\nmap body line must start with '1'\n");
 		return (false);
 	}
 	while (line[i] && line[i] != '\n')
 	{
 		if (!is_map_char(line[i]))
 		{
-			debug("Error\ninvalid map char '%c' in map body\n",
-				line[i]);
+			debug("Error\ninvalid character inside map body\n");
 			return (false);
 		}
 		i++;
@@ -62,11 +61,7 @@ bool	check_vars_in_out_map_body(char **raw_map)
 		if (raw_map[i][j] == '1')
 			map_started = true;
 		if (map_started && !is_map_body_line(raw_map[i]))
-		{
-			debug("Error\ninvalid line inside/after map at line %d\n",
-				(int)i + 1);
 			return (false);
-		}
 		i++;
 	}
 	return (true);

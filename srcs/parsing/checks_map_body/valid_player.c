@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/17 15:57:37 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/19 20:10:42 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/27 17:36:06 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ static void	set_player_dir(char angle)
 	if (angle == 'N')
 		player()->angle = M_PI_2;
 	else if (angle == 'S')
-		player()->angle = 3*M_PI_2;
+		player()->angle = 3 * M_PI_2;
 	else if (angle == 'E')
 		player()->angle = M_PI;
 	else if (angle == 'W')
 		player()->angle = 0;
-	player()->dir.x=cos(player()->angle);
-	player()->dir.y=sin(player()->angle);
+	player()->dir.x = cos(player()->angle);
+	player()->dir.y = sin(player()->angle);
 }
 
 bool	valid_player(char **map_body)
