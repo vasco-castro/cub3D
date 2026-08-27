@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 18:42:47 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/27 17:56:01 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/27 18:02:44 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	invalid_space(char **raw_map)
 		if (is_map_line(raw_map[i], j))
 			break ;
 		while (raw_map[i][j] && raw_map[i][j] != ' '
-				&& raw_map[i][j] != '\t' 
+				&& raw_map[i][j] != '\t'
 				&& raw_map[i][j] != '\n')
 			j++;
 		if (raw_map[i][j] != ' ')
@@ -44,13 +44,12 @@ bool	invalid_space(char **raw_map)
 // ↑
 // | Before finishing the checks for raw map
 
-
 // | After finishing the checks for raw map
 // ↓
 bool	check_invalid_spacing(char *map_vars)
 {
 	int	i;
-	
+
 	i = 0;
 	while (map_vars[i])
 	{

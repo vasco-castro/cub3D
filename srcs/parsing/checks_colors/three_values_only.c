@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 16:07:36 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/21 19:40:11 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/27 18:07:09 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ bool	three_values_only(t_map_vars map_vars)
 	}
 	if (count != 2)
 		return (false);
-	i =  0;
-	count =  0;
+	i = 0;
+	count = 0;
 	while (map_vars.ceiling[i])
 	{
 		if (map_vars.ceiling[i] == ',')
