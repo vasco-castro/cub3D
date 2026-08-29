@@ -1,4 +1,3 @@
-
 #include "cub3d.h"
 
 t_image	create_image(int w, int h)
@@ -21,18 +20,18 @@ void	destroy_image(t_image *img)
 	img->addr = NULL;
 }
 
-unsigned int	get_px(t_image *img, int x, int y)
+uint32_t	get_px(t_image *img, int x, int y)
 {
 	if (x < 0 || x >= img->w || y < 0 || y >= img->h)
 		return (0);
-	return (*(unsigned int *)(img->addr + y * img->line + x * (img->bpp / 8)));
+	return (*(uint32_t *)(img->addr + y * img->line + x * (img->bpp / 8)));
 }
 
 void	put_px(t_image *img, int x, int y, uint32_t color)
 {
 	if (x < 0 || x >= img->w || y < 0 || y >= img->h)
 		return ;
-	*(unsigned int *)(img->addr + y * img->line + x * (img->bpp / 8)) = color;
+	*(uint32_t *)(img->addr + y * img->line + x * (img->bpp / 8)) = color;
 }
 
 void	clear_image(t_image *img, uint32_t color)

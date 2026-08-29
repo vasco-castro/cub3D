@@ -1,4 +1,3 @@
-
 #ifndef HANDLERS_H
 # define HANDLERS_H
 
@@ -111,7 +110,8 @@ enum
 	MASK_OWNERGRABBUTTON = (1 << 24)
 };
 
-typedef enum e_direction {
+typedef enum e_direction
+{
 	FORWARD,
 	BACKWARD,
 	LEFT,
@@ -121,11 +121,11 @@ typedef enum e_direction {
 void	move_player(t_direction d, double speed);
 void	rotate_player(t_direction d, double speed);
 
-int	close_window(void);
-int	key_down_handler(int keycode);
-int	key_up_handler(int keycode);
-int	mouse_click_handler(int mousecode, int x, int y);
-int	mouse_move_handler(int x, int y);
-int	loop_hook(void);
+int		close_window(void);
+int		key_down_handler(int keycode);
+int		key_up_handler(int keycode);
+int		mouse_click_handler(int mousecode, int x, int y);
+int		mouse_move_handler(int x, int y);
+int		loop_hook(void);
 
 #endif /* HANDLERS_H */

@@ -1,24 +1,24 @@
-
 #include "cub3d.h"
 
 static void	render_bg(void)
 {
-	int	x;
 	int	y;
 
-	return ;
-	debug("Rendering background...\n");
-	x = 0;
 	y = 0;
-	while (W_HEIGHT / 2 >= y)
-		put_line_x(x, y++, W_WIDTH, map()->ceiling);
-	while (W_HEIGHT >= y)
-		put_line_x(x, y++, W_WIDTH, map()->floor);
+	while (y < W_HEIGHT / 2)
+	{
+		put_line(get_point(0, y), get_point(W_WIDTH - 1, y), map()->ceiling);
+		y++;
+	}
+	while (y < W_HEIGHT)
+	{
+		put_line(get_point(0, y), get_point(W_WIDTH - 1, y), map()->floor);
+		y++;
+	}
 }
 
 static void	render_walls(void)
 {
-	//debug("Rendering walls...\n");
 }
 
 void	render(void)

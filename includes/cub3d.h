@@ -1,4 +1,3 @@
-
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -19,10 +18,13 @@
 # define FOV 1.047
 
 # define MINIMAP true
-# define MINIMAP_SCALE 8
+//# define MINIMAP_SCALE 8
 # define MINIMAP_SCALE_PERCENTAGE 25
 # define MINIMAP_POS MINIMAP_UL
 # define MINIMAP_RADIUS 5
+# define MINIMAP_FLOOR_COLOR 0x00CCCCCC
+# define MINIMAP_WALL_COLOR 0x00333333
+# define MINIMAP_PLAYER_COLOR 0x006300BF
 
 typedef enum e_minimap
 {
@@ -52,13 +54,13 @@ typedef struct s_game
 
 typedef struct s_map
 {
-	t_image			north_texture;
-	t_image			south_texture;
-	t_image			east_texture;
-	t_image			west_texture;
+	t_image		north_texture;
+	t_image		south_texture;
+	t_image		east_texture;
+	t_image		west_texture;
 
-	char			**map;
-	t_point			size;
+	char		**map;
+	t_point		size;
 
 	int			minimap_scale;
 

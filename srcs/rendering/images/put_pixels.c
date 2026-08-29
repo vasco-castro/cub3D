@@ -1,4 +1,3 @@
-
 #include "cub3d.h"
 
 void	put_pixel(int x, int y, uint32_t color)
@@ -6,53 +5,31 @@ void	put_pixel(int x, int y, uint32_t color)
 	put_px(&game()->screen, x, y, color);
 }
 
-void	put_line_x(int x, int y, int size, uint32_t color)
+void	put_line(t_point a, t_point b, uint32_t color)
 {
-	int	i;
+	t_point	d;
+	t_point	s;
+	int		err;
+	int		e2;
 
-	i = 0;
-	while (i < size)
-		put_pixel(x + i++, y, color);
-}
-
-void	put_line_y(int x, int y, int size, uint32_t color)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-		put_pixel(x, y + i++, color);
-}
-
-void	put_line(int x0, int y0, int x1, int y1, uint32_t color)
-{
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
-	int	e2;
-
-	dx = abs(x1 - x0);
-	dy = -(abs(y1 - y0));
-	sx = -1 + 2 * (x0 < x1);
-	sy = -1 + 2 * (y0 < y1);
-	err = dx + dy;
+	d = get_point(abs(b.x - a.x), -abs(b.y - a.y));
+	s = get_point(-1 + 2 * (a.x < b.x), -1 + 2 * (a.y < b.y));
+	err = d.x + d.y;
 	while (1)
 	{
-		put_pixel(x0, y0, color);
-		if (x0 == x1 && y0 == y1)
+		put_pixel(a.x, a.y, color);
+		if (a.x == b.x && a.y == b.y)
 			break ;
 		e2 = 2 * err;
-		if (e2 >= dy)
+		if (e2 >= d.y)
 		{
-			err += dy;
-			x0 += sx;
+			err += d.y;
+			a.x += s.x;
 		}
-		if (e2 <= dx)
+		if (e2 <= d.x)
 		{
-			err += dx;
-			y0 += sy;
+			err += d.x;
+			a.y += s.y;
 		}
 	}
 }
@@ -64,7 +41,7 @@ void	put_square(int x, int y, int size, uint32_t color)
 	i = 0;
 	while (i < size)
 	{
-		put_line_x(x, y + i, size, color);
+		put_line(get_point(x, y + i), get_point(x + size - 1, y + i), color);
 		i++;
 	}
 }
@@ -74,6 +51,7 @@ void	put_star(int x, int y, int size, uint32_t color)
 	int	i;
 	int	width;
 	int	center;
+	int	off;
 
 	if (size <= 0)
 		return ;
@@ -87,7 +65,9 @@ void	put_star(int x, int y, int size, uint32_t color)
 			width = 1 + 2 * (size - 1 - i);
 		if (width > size)
 			width = size;
-		put_line_y(x + i, y + ((size - width) / 2), width, color);
+		off = x + (size - width) / 2;
+		put_line(get_point(off, y + i),
+			get_point(off + width - 1, y + i), color);
 		i++;
 	}
 }
