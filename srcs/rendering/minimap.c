@@ -1,17 +1,55 @@
 #include "cub3d.h"
 
+/**
+ * @brief Point at `dist` pixels from the minimap centre along `angle`.
+ *
+ * The minus signs match the rest of the minimap: screen y grows downwards
+ * while the player angle is measured in the opposite convention.
+ */
+static t_point	cone_point(int px, int py, double angle, double dist)
+{
+	return (get_point(px - (int)(cos(angle) * dist),
+		py - (int)(sin(angle) * dist)));
+}
+
+/**
+ * @brief Fills the FOV wedge as a fan of rays between plane1 and plane2.
+ *
+ * One ray per pixel of arc length keeps the wedge gap-free at any scale.
+ */
+static void	render_minimap_cone(int px, int py, int radius, int length)
+{
+	double	step;
+	double	angle;
+	int		rays;
+	int		i;
+
+	rays = (int)(2 * HALF_FOV * length) + 2;
+	step = 2 * HALF_FOV / rays;
+	i = 0;
+	while (i <= rays)
+	{
+		angle = player()->angle - HALF_FOV + i * step;
+		put_line(cone_point(px, py, angle, radius),
+			cone_point(px, py, angle, length), MINIMAP_CONE_COLOR);
+		i++;
+	}
+}
+
 static void	render_minimap_direction(int px, int py, int radius)
 {
 	int	length;
-	int	dx;
-	int	dy;
 
-	length = map()->minimap_scale;
-	dx = (int)(player()->dir.x * length);
-	dy = (int)(player()->dir.y * length);
-	put_line(get_point(px - (int)(player()->dir.x * radius),
-			py - (int)(player()->dir.y * radius)),
-		get_point(px - dx, py - dy), MINIMAP_PLAYER_COLOR);
+	length = MINIMAP_CONE_TILES * map()->minimap_scale;
+	render_minimap_cone(px, py, radius, length);
+	put_line(cone_point(px, py, player()->angle + HALF_FOV, radius),
+		cone_point(px, py, player()->angle + HALF_FOV, length),
+		MINIMAP_PLAYER_COLOR);
+	put_line(cone_point(px, py, player()->angle - HALF_FOV, radius),
+		cone_point(px, py, player()->angle - HALF_FOV, length),
+		MINIMAP_PLAYER_COLOR);
+	put_line(cone_point(px, py, player()->angle, radius),
+		cone_point(px, py, player()->angle, length), MINIMAP_PLAYER_COLOR);
 }
 
 void	render_minimap_player(int offset_x, int offset_y)

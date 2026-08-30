@@ -23,13 +23,12 @@ static void	set_player_dir(char angle)
 	if (angle == 'N')
 		player()->angle = M_PI_2;
 	else if (angle == 'S')
-		player()->angle = 3*M_PI_2;
+		player()->angle = 3 * M_PI_2;
 	else if (angle == 'E')
 		player()->angle = M_PI;
 	else if (angle == 'W')
 		player()->angle = 0;
-	player()->dir.x=cos(player()->angle);
-	player()->dir.y=sin(player()->angle);
+	update_player_vectors();
 }
 
 bool	valid_player(char **map_body)

@@ -29,7 +29,7 @@ void	render(void)
 	clear_image(&game()->screen, 0x00000000);
 	render_bg();
 	render_walls();
-	if (MINIMAP)
+	if (keys()->minimap)
 	{
 		minimap_low_pos = W_HEIGHT
 			- ((2 * MINIMAP_RADIUS + 1) * map()->minimap_scale);

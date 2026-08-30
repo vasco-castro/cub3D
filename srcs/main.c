@@ -1,5 +1,6 @@
 #include "cub3d.h"
 #include "parsing.h"
+#include "rendering.h"
 
 void	destroy_cub3d(int status)
 {
@@ -30,8 +31,9 @@ static bool	mlx_init_game(void)
 
 static void	game_init(void)
 {
+	keys()->minimap = true;
 	map()->minimap_scale = W_WIDTH / 100 * MINIMAP_SCALE_PERCENTAGE
-		/ (2 * MINIMAP_RADIUS + 1);
+	/ (2 * MINIMAP_RADIUS + 1);
 
 	game()->win = mlx_new_window(game()->mlx, W_WIDTH, W_HEIGHT, W_MSG);
 	if (!game()->win)

@@ -1,40 +1,191 @@
 #ifndef HANDLERS_H
 # define HANDLERS_H
 
-# define CLOSE_KEY 17
-
 # define MOVE_SPEED 3.0
 # define ROT_SPEED 3.0
 
-// TODO: Add mouse buttons and movement keys
+/*
+ * Key codes are platform-dependent: minilibx delivers X11 keysyms on Linux
+ * and Carbon virtual key codes on MacOS. Both sets are fixed at compile
+ * time, so the very same t_key type is defined twice, once per platform,
+ * and everything that consumes it stays platform-agnostic.
+ */
 # ifdef __APPLE__
-#  define ESCAPE_KEY 53
 
-#  define UP_KEY 126
-#  define DOWN_KEY 125
-#  define LEFT_KEY 123
-#  define RIGHT_KEY 124
-
-#  define W_KEY 13
-#  define S_KEY 1
-#  define A_KEY 0
-#  define D_KEY 2
-
-#  define L_SHIFT_KEY 257
+typedef enum e_key
+{
+	KEY_A = 0,
+	KEY_B = 11,
+	KEY_C = 8,
+	KEY_D = 2,
+	KEY_E = 14,
+	KEY_F = 3,
+	KEY_G = 5,
+	KEY_H = 4,
+	KEY_I = 34,
+	KEY_J = 38,
+	KEY_K = 40,
+	KEY_L = 37,
+	KEY_M = 46,
+	KEY_N = 45,
+	KEY_O = 31,
+	KEY_P = 35,
+	KEY_Q = 12,
+	KEY_R = 15,
+	KEY_S = 1,
+	KEY_T = 17,
+	KEY_U = 32,
+	KEY_V = 9,
+	KEY_W = 13,
+	KEY_X = 7,
+	KEY_Y = 16,
+	KEY_Z = 6,
+	KEY_0 = 29,
+	KEY_1 = 18,
+	KEY_2 = 19,
+	KEY_3 = 20,
+	KEY_4 = 21,
+	KEY_5 = 23,
+	KEY_6 = 22,
+	KEY_7 = 26,
+	KEY_8 = 28,
+	KEY_9 = 25,
+	KEY_UP = 126,
+	KEY_DOWN = 125,
+	KEY_LEFT = 123,
+	KEY_RIGHT = 124,
+	KEY_ESCAPE = 53,
+	KEY_SPACE = 49,
+	KEY_TAB = 48,
+	KEY_ENTER = 36,
+	KEY_BACKSPACE = 51,
+	KEY_DELETE = 117,
+	KEY_INSERT = 114,
+	KEY_HOME = 115,
+	KEY_END = 119,
+	KEY_PAGE_UP = 116,
+	KEY_PAGE_DOWN = 121,
+	KEY_L_SHIFT = 56,
+	KEY_R_SHIFT = 60,
+	KEY_L_CTRL = 59,
+	KEY_R_CTRL = 62,
+	KEY_L_ALT = 58,
+	KEY_R_ALT = 61,
+	KEY_L_SUPER = 55,
+	KEY_R_SUPER = 54,
+	KEY_CAPS_LOCK = 57,
+	KEY_MINUS = 27,
+	KEY_EQUAL = 24,
+	KEY_L_BRACKET = 33,
+	KEY_R_BRACKET = 30,
+	KEY_BACKSLASH = 42,
+	KEY_SEMICOLON = 41,
+	KEY_QUOTE = 39,
+	KEY_GRAVE = 50,
+	KEY_COMMA = 43,
+	KEY_PERIOD = 47,
+	KEY_SLASH = 44,
+	KEY_F1 = 122,
+	KEY_F2 = 120,
+	KEY_F3 = 99,
+	KEY_F4 = 118,
+	KEY_F5 = 96,
+	KEY_F6 = 97,
+	KEY_F7 = 98,
+	KEY_F8 = 100,
+	KEY_F9 = 101,
+	KEY_F10 = 109,
+	KEY_F11 = 103,
+	KEY_F12 = 111,
+}	t_key;
 # else
-#  define ESCAPE_KEY 65307
 
-#  define UP_KEY 65362
-#  define DOWN_KEY 65364
-#  define LEFT_KEY 65361
-#  define RIGHT_KEY 65363
-
-#  define W_KEY 119
-#  define S_KEY 115
-#  define A_KEY 97
-#  define D_KEY 100
-
-#  define L_SHIFT_KEY 65505
+typedef enum e_key
+{
+	KEY_A = 97,
+	KEY_B = 98,
+	KEY_C = 99,
+	KEY_D = 100,
+	KEY_E = 101,
+	KEY_F = 102,
+	KEY_G = 103,
+	KEY_H = 104,
+	KEY_I = 105,
+	KEY_J = 106,
+	KEY_K = 107,
+	KEY_L = 108,
+	KEY_M = 109,
+	KEY_N = 110,
+	KEY_O = 111,
+	KEY_P = 112,
+	KEY_Q = 113,
+	KEY_R = 114,
+	KEY_S = 115,
+	KEY_T = 116,
+	KEY_U = 117,
+	KEY_V = 118,
+	KEY_W = 119,
+	KEY_X = 120,
+	KEY_Y = 121,
+	KEY_Z = 122,
+	KEY_0 = 48,
+	KEY_1 = 49,
+	KEY_2 = 50,
+	KEY_3 = 51,
+	KEY_4 = 52,
+	KEY_5 = 53,
+	KEY_6 = 54,
+	KEY_7 = 55,
+	KEY_8 = 56,
+	KEY_9 = 57,
+	KEY_UP = 65362,
+	KEY_DOWN = 65364,
+	KEY_LEFT = 65361,
+	KEY_RIGHT = 65363,
+	KEY_ESCAPE = 65307,
+	KEY_SPACE = 32,
+	KEY_TAB = 65289,
+	KEY_ENTER = 65293,
+	KEY_BACKSPACE = 65288,
+	KEY_DELETE = 65535,
+	KEY_INSERT = 65379,
+	KEY_HOME = 65360,
+	KEY_END = 65367,
+	KEY_PAGE_UP = 65365,
+	KEY_PAGE_DOWN = 65366,
+	KEY_L_SHIFT = 65505,
+	KEY_R_SHIFT = 65506,
+	KEY_L_CTRL = 65507,
+	KEY_R_CTRL = 65508,
+	KEY_L_ALT = 65513,
+	KEY_R_ALT = 65514,
+	KEY_L_SUPER = 65515,
+	KEY_R_SUPER = 65516,
+	KEY_CAPS_LOCK = 65509,
+	KEY_MINUS = 45,
+	KEY_EQUAL = 61,
+	KEY_L_BRACKET = 91,
+	KEY_R_BRACKET = 93,
+	KEY_BACKSLASH = 92,
+	KEY_SEMICOLON = 59,
+	KEY_QUOTE = 39,
+	KEY_GRAVE = 96,
+	KEY_COMMA = 44,
+	KEY_PERIOD = 46,
+	KEY_SLASH = 47,
+	KEY_F1 = 65470,
+	KEY_F2 = 65471,
+	KEY_F3 = 65472,
+	KEY_F4 = 65473,
+	KEY_F5 = 65474,
+	KEY_F6 = 65475,
+	KEY_F7 = 65476,
+	KEY_F8 = 65477,
+	KEY_F9 = 65478,
+	KEY_F10 = 65479,
+	KEY_F11 = 65480,
+	KEY_F12 = 65481,
+}	t_key;
 # endif
 
 // Full X11 event list; only KeyPress/Release, ButtonPress/Release,

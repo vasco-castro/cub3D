@@ -13,14 +13,30 @@
 #include "cub3d.h"
 #include <sys/time.h>
 
-/**
- * @brief Closes the game window and frees resources.
- * @return EXIT_SUCCESS on successful exit.
- */
-int	close_window(void)
+static void	handle_input(double delta)
 {
-	destroy_cub3d(EXIT_SUCCESS);
-	return (EXIT_SUCCESS);
+	double	move_speed;
+	double	rot_speed;
+
+	move_speed = MOVE_SPEED;
+	rot_speed = ROT_SPEED;
+	if (keys()->run)
+	{
+		move_speed *= 1.5;
+		rot_speed /= 1.5;
+	}
+	if (keys()->forward)
+		move_player(FORWARD, move_speed * delta);
+	if (keys()->backward)
+		move_player(BACKWARD, MOVE_SPEED * delta);
+	if (keys()->left)
+		move_player(LEFT, MOVE_SPEED * delta);
+	if (keys()->right)
+		move_player(RIGHT, MOVE_SPEED * delta);
+	if (keys()->rot_left)
+		rotate_player(LEFT, rot_speed * delta);
+	if (keys()->rot_right)
+		rotate_player(RIGHT, rot_speed * delta);
 }
 
 /**
@@ -44,35 +60,19 @@ static double	get_delta_time(void)
 	return (delta);
 }
 
-static void	handle_input(double delta)
-{
-	double	move_speed;
-	double	rot_speed;
-
-	move_speed = MOVE_SPEED;
-	rot_speed = ROT_SPEED;
-	if (keys()->run)
-	{
-		move_speed*=1.5;
-		rot_speed/=1.5;
-	}
-	if (keys()->forward)
-		move_player(FORWARD, move_speed * delta);
-	if (keys()->backward)
-		move_player(BACKWARD, move_speed * delta);
-	if (keys()->left)
-		move_player(LEFT, move_speed * delta);
-	if (keys()->right)
-		move_player(RIGHT, move_speed * delta);
-	if (keys()->rot_left)
-		rotate_player(LEFT, rot_speed * delta);
-	if (keys()->rot_right)
-		rotate_player(RIGHT, rot_speed * delta);
-}
-
 int	loop_hook(void)
 {
 	handle_input(get_delta_time());
 	render();
+	return (EXIT_SUCCESS);
+}
+
+/**
+ * @brief Closes the game window and frees resources.
+ * @return EXIT_SUCCESS on successful exit.
+ */
+int	close_window(void)
+{
+	destroy_cub3d(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }

@@ -1,6 +1,31 @@
 
 #include "cub3d.h"
 
+/**
+ * @brief Recomputes the direction and the two FOV edge rays from the angle.
+ *
+ * plane1 and plane2 are unit vectors sitting HALF_FOV radians either side of
+ * the direction, so the angle they span is exactly FOV degrees.
+ */
+void	update_player_vectors(void)
+{
+	player()->dir.x = cos(player()->angle);
+	player()->dir.y = sin(player()->angle);
+	player()->plane1.x = cos(player()->angle + HALF_FOV);
+	player()->plane1.y = sin(player()->angle + HALF_FOV);
+	player()->plane2.x = cos(player()->angle - HALF_FOV);
+	player()->plane2.y = sin(player()->angle - HALF_FOV);
+}
+
+void	rotate_player(t_direction d, double speed)
+{
+	if (d == LEFT)
+		player()->angle -= speed;
+	else if (d == RIGHT)
+		player()->angle += speed;
+	update_player_vectors();
+}
+
 void	move_player(t_direction d, double speed)
 {
 	if (d == FORWARD)
@@ -25,16 +50,6 @@ void	move_player(t_direction d, double speed)
 	}
 }
 
-void	rotate_player(t_direction d, double speed)
-{
-	if (d == LEFT)
-		player()->angle -= speed;
-	else if (d == RIGHT)
-		player()->angle += speed;
-	player()->dir.x = cos(player()->angle);
-	player()->dir.y = sin(player()->angle);
-}
-
 /**
  * @brief Handles key-press events by flipping the matching key state on.
  * @param keycode The code of the key pressed.
@@ -42,24 +57,26 @@ void	rotate_player(t_direction d, double speed)
  */
 int	key_down_handler(int keycode)
 {
-	if (keycode == ESCAPE_KEY || keycode == CLOSE_KEY)
+	if (keycode == KEY_ESCAPE)
 		return (close_window());
-	if (keycode == W_KEY)
+	if (keycode == KEY_W)
 		keys()->forward = true;
-	else if (keycode == S_KEY)
+	else if (keycode == KEY_S)
 		keys()->backward = true;
-	else if (keycode == A_KEY)
+	else if (keycode == KEY_A)
 		keys()->left = true;
-	else if (keycode == D_KEY)
+	else if (keycode == KEY_D)
 		keys()->right = true;
-	else if (keycode == LEFT_KEY)
+	else if (keycode == KEY_LEFT)
 		keys()->rot_left = true;
-	else if (keycode == RIGHT_KEY)
+	else if (keycode == KEY_RIGHT)
 		keys()->rot_right = true;
-	else if (keycode == L_SHIFT_KEY)
+	else if (keycode == KEY_L_SHIFT)
 		keys()->run = true;
+	else if (keycode == KEY_M)
+		keys()->minimap = !keys()->minimap;
 	else
-		debug("Pressed key: %d\n", keycode);
+		debug("Key pressed: %d\n", keycode);
 	return (EXIT_SUCCESS);
 }
 
@@ -70,19 +87,23 @@ int	key_down_handler(int keycode)
  */
 int	key_up_handler(int keycode)
 {
-	if (keycode == W_KEY)
+	if (keycode == KEY_W)
 		keys()->forward = false;
-	else if (keycode == S_KEY)
+	else if (keycode == KEY_S)
 		keys()->backward = false;
-	else if (keycode == A_KEY)
+	else if (keycode == KEY_A)
 		keys()->left = false;
-	else if (keycode == D_KEY)
+	else if (keycode == KEY_D)
 		keys()->right = false;
-	else if (keycode == LEFT_KEY)
+	else if (keycode == KEY_LEFT)
 		keys()->rot_left = false;
-	else if (keycode == RIGHT_KEY)
+	else if (keycode == KEY_RIGHT)
 		keys()->rot_right = false;
-	else if (keycode == L_SHIFT_KEY)
+	else if (keycode == KEY_L_SHIFT)
 		keys()->run = false;
+	// else if (keycode == KEY_M)
+	// 	keys()->minimap = false;
+	else
+		debug("Key released: %d\n", keycode);
 	return (EXIT_SUCCESS);
 }
