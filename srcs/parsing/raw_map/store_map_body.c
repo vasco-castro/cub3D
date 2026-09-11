@@ -23,35 +23,57 @@ static bool	is_map_body_line(char *line)
 	return (is_map_line(line, j));
 }
 
-static size_t	find_map_start(char **raw_map)
+static size_t	get_map_width(char **raw_map, size_t start, size_t len)
 {
 	size_t	i;
-	size_t	j;
+	size_t	width;
+	size_t	line_width;
 
 	i = 0;
-	while (raw_map[i])
+	width = 0;
+	while (i < len)
 	{
-		j = 0;
-		skip_spaces(raw_map[i], &j);
-		if (is_map_line(raw_map[i], j))
-			return (i);
+		line_width = ft_strlen(raw_map[start + i]);
+		if (line_width && raw_map[start + i][line_width - 1] == '\n')
+			line_width--;
+		if (line_width > width)
+			width = line_width;
 		i++;
 	}
-	return (i);
+	return (width);
+}
+
+static char	*copy_map_line(char *line, size_t width)
+{
+	char	*copy;
+	size_t	line_width;
+
+	copy = ft_calloc(width + 2, sizeof(char));
+	if (!copy)
+		return (NULL);
+	ft_memset(copy, ' ', width);
+	copy[width] = '\n';
+	line_width = ft_strlen(line);
+	if (line_width && line[line_width - 1] == '\n')
+		line_width--;
+	ft_memcpy(copy, line, line_width);
+	return (copy);
 }
 
 static char	**copy_map_body(char **raw_map, size_t start, size_t len)
 {
 	char	**map_body;
 	size_t	i;
+	size_t	width;
 
+	width = get_map_width(raw_map, start, len);
 	map_body = ft_calloc(len + 1, sizeof(char *));
 	if (!map_body)
 		return (NULL);
 	i = 0;
 	while (i < len)
 	{
-		map_body[i] = ft_strdup(raw_map[start + i]);
+		map_body[i] = copy_map_line(raw_map[start + i], width);
 		if (!map_body[i])
 			return (ft_tabfree(map_body), NULL);
 		i++;
@@ -63,8 +85,17 @@ char	**store_map_body(char **raw_map)
 {
 	size_t	start;
 	size_t	len;
+	size_t	j;
 
-	start = find_map_start(raw_map);
+	start = 0;
+	while (raw_map[start])
+	{
+		j = 0;
+		skip_spaces(raw_map[start], &j);
+		if (is_map_line(raw_map[start], j))
+			break ;
+		start++;
+	}
 	len = 0;
 	while (raw_map[start + len] && is_map_body_line(raw_map[start + len]))
 		len++;

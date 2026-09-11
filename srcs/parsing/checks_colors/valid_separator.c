@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 18:56:50 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/13 19:00:50 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/27 18:01:42 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ bool	valid_separator(t_map_vars map_vars)
 	}
 	if (count != 2)
 		return (false);
-	i =  0;
-	count =  0;
+	i = 0;
+	count = 0;
 	while (map_vars.ceiling[i])
 	{
 		if (map_vars.ceiling[i] == ',')

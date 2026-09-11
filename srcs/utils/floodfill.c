@@ -12,7 +12,7 @@
 
 #include "parsing.h"
 
-static bool	is_floor_walkable(char c)
+bool	is_floor_walkable(char c)
 {
 	if (c == '0')
 		return (true);

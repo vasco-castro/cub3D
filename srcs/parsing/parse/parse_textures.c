@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 17:24:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/12 20:32:50 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/21 20:28:44 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static bool	load_image_from_file(t_image *image, char *path)
 bool	parse_textures(t_map_vars map_vars)
 {
 	if (!check_texture(map_vars))
-		return (debug("Error\ncheck_texture failed\n"), false);
+		return (false);
 	if (!load_image_from_file(&map()->north_texture, map_vars.north))
 		return (free_images(), false);
 	if (!load_image_from_file(&map()->south_texture, map_vars.south))

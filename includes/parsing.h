@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/19 15:46:10 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/21 18:33:00 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ t_map_vars	store_map_variables(char **raw_map);
 bool		is_space(char c);
 void		skip_spaces(char *line, size_t *j);
 bool		valid_map(char **map);
+bool		valid_map_borders(char **map_body);
 bool		flood_fill(char **copy_map, int x, int y);
+bool		is_floor_walkable(char c);
 bool		is_map_line(char *line, size_t j);
 bool		valid_permisions(t_map_vars map_vars);
 bool		valid_spacing(t_map_vars map_vars);
@@ -64,7 +66,7 @@ bool		invalid_space(char **raw_map);
 bool		new_line(char **raw_map, size_t *i, size_t *j);
 bool		checks_for_colors(t_map_vars map_vars);
 bool		valid_chars(t_map_vars map_vars);
-bool		three_values_exists(t_map_vars map_vars);
+bool		valid_three_values(t_map_vars map_vars);
 bool		three_values_only(t_map_vars map_vars);
 bool		check_floors(t_map_vars map_vars, int i);
 bool		check_ceilings(t_map_vars map_vars, int i);

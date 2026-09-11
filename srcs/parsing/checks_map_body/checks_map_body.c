@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:28:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/19 14:56:50 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/08/21 20:20:22 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 bool	checks_for_map(char **map_body)
 {
 	if (!valid_player(map_body))
+	{
+		debug("Error\nmap need to have excatly one player");
+		return (false);
+	}
+	if (!valid_map_borders(map_body))
 		return (false);
 	if (!valid_map(map_body))
 		return (false);

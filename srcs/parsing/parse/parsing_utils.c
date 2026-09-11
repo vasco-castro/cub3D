@@ -31,9 +31,15 @@ bool	is_map_line(char *line, size_t j)
 static void	print_map_var(char *name, char *value)
 {
 	if (value)
-		ft_printf("%s: %s\n", name, value);
+	{
+		ft_printf("%s: ", name);
+		ft_printf("%s\n", value);
+	}
 	else
-		ft_printf("%s: (null)\n", name);
+	{
+		ft_printf("%s: ", name);
+		ft_printf("(null)\n");
+	}
 }
 
 void	print_map_vars(t_map_vars map_vars)

@@ -18,7 +18,10 @@ bool	valid_map(char **map)
 
 	copy = ft_tabcpy(map);
 	if (!copy)
+	{
+		debug("Error\nfailed to copy map for validation\n");
 		return (false);
+	}
 	if (!flood_fill(copy, (int)player()->pos.y, (int)player()->pos.x))
 	{
 		ft_tabfree(copy);
