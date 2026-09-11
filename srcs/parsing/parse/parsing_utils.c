@@ -28,27 +28,13 @@ bool	is_map_line(char *line, size_t j)
 	return (line[j] == '0' || line[j] == '1');
 }
 
-static void	print_map_var(char *name, char *value)
-{
-	if (value)
-	{
-		ft_printf("%s: ", name);
-		ft_printf("%s\n", value);
-	}
-	else
-	{
-		ft_printf("%s: ", name);
-		ft_printf("(null)\n");
-	}
-}
-
 void	print_map_vars(t_map_vars map_vars)
 {
 	ft_printf("Map variables:\n");
-	print_map_var("NO", map_vars.north);
-	print_map_var("SO", map_vars.south);
-	print_map_var("WE", map_vars.west);
-	print_map_var("EA", map_vars.east);
-	print_map_var("F", map_vars.floor);
-	print_map_var("C", map_vars.ceiling);
+	ft_printf("NO: %s\n", map_vars.north);
+	ft_printf("SO: %s\n", map_vars.south);
+	ft_printf("WE: %s\n", map_vars.west);
+	ft_printf("EA: %s\n", map_vars.east);
+	ft_printf("F: %s\n", map_vars.floor);
+	ft_printf("C: %s\n", map_vars.ceiling);
 }

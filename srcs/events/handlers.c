@@ -15,18 +15,18 @@
 
 static void	handle_input(double delta)
 {
-	double	move_speed;
+	double	forward_speed;
 	double	rot_speed;
 
-	move_speed = MOVE_SPEED;
+	forward_speed = MOVE_SPEED;
 	rot_speed = ROT_SPEED;
 	if (keys()->run)
 	{
-		move_speed *= 1.5;
+		forward_speed *= 1.5;
 		rot_speed /= 1.5;
 	}
 	if (keys()->forward)
-		move_player(FORWARD, move_speed * delta);
+		move_player(FORWARD, forward_speed * delta);
 	if (keys()->backward)
 		move_player(BACKWARD, MOVE_SPEED * delta);
 	if (keys()->left)
