@@ -75,6 +75,8 @@ int	key_down_handler(int keycode)
 		keys()->run = true;
 	else if (keycode == KEY_M)
 		keys()->minimap = !keys()->minimap;
+	else if (keycode == KEY_BACKSLASH)
+		change_debug_mode(true);
 	else
 		debug("Key pressed: %d\n", keycode);
 	return (EXIT_SUCCESS);

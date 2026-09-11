@@ -19,6 +19,9 @@
 // Half the FOV, in radians: the angle between the direction and each edge ray.
 # define HALF_FOV 0.57595865315 //(FOV * M_PI / 360.0)
 
+# define WALL_COLOR_NS 0x00BFBFBF
+# define WALL_COLOR_EW 0x00898989
+
 # define MINIMAP true
 # define MINIMAP_SCALE 24
 # define MINIMAP_SCALE_PERCENTAGE 25
@@ -105,5 +108,6 @@ t_keys		*keys(void);
 
 void		destroy_cub3d(int status);
 void		update_player_vectors(void);
+bool		is_wall(int x, int y);
 
 #endif /* CUB3D_H */

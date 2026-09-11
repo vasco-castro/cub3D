@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include "parsing.h"
 
 /**
  * @brief Point at `dist` pixels from the minimap centre along `angle`.
@@ -83,7 +84,7 @@ void	render_minimap(int offset_x, int offset_y)
 			py = offset_y + (int)((y - player()->pos.y + MINIMAP_RADIUS)
 					* map()->minimap_scale);
 			if (y >= 0 && y < map()->size.y && x >= 0 && x < map()->size.x
-				&& map()->map[y][x] == '0')
+				&& is_floor_walkable(map()->map[y][x]))
 				put_square(px, py, map()->minimap_scale, MINIMAP_FLOOR_COLOR);
 			else
 				put_square(px, py, map()->minimap_scale, MINIMAP_WALL_COLOR);

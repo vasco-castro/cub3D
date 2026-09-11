@@ -19,7 +19,7 @@ LDFLAGS		:= -lm
 
 # Source files (with directories applied)
 SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), main singletons \
-		$(addprefix rendering/, render minimap \
+		$(addprefix rendering/, render raycast minimap \
 			$(addprefix images/, put_pixels images)) \
 		$(addprefix events/, handlers key_handlers mouse_handlers) \
 		$(addprefix utils/, utils floodfill) \
