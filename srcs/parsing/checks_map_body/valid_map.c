@@ -22,7 +22,7 @@ bool	valid_map(char **map)
 		debug("Error\nfailed to copy map for validation\n");
 		return (false);
 	}
-	if (!flood_fill(copy, (int)player()->pos.y, (int)player()->pos.x))
+	if (!flood_fill(copy, (int)player()->pos.x, (int)player()->pos.y))
 	{
 		ft_tabfree(copy);
 		debug("Error\nmap is not closed\n");

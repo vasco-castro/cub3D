@@ -23,17 +23,17 @@ bool	is_floor_walkable(char c)
 
 bool	flood_fill(char **copy_map, int x, int y)
 {
-	if (x < 0 || !copy_map[x])
+	if (y < 0 || !copy_map[y])
 		return (false);
-	if (y < 0 || !copy_map[x][y] || copy_map[x][y] == '\n')
+	if (x < 0 || !copy_map[y][x] || copy_map[y][x] == '\n')
 		return (false);
-	if (copy_map[x][y] == ' ')
+	if (copy_map[y][x] == ' ')
 		return (false);
-	if (copy_map[x][y] == '1' || copy_map[x][y] == 'P')
+	if (copy_map[y][x] == '1' || copy_map[y][x] == 'P')
 		return (true);
-	if (!is_floor_walkable(copy_map[x][y]))
+	if (!is_floor_walkable(copy_map[y][x]))
 		return (false);
-	copy_map[x][y] = 'P';
+	copy_map[y][x] = 'P';
 	if (!flood_fill(copy_map, x + 1, y))
 		return (false);
 	if (!flood_fill(copy_map, x - 1, y))
