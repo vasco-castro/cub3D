@@ -9,6 +9,11 @@
  * and Carbon virtual key codes on MacOS. Both sets are fixed at compile
  * time, so the very same t_key type is defined twice, once per platform,
  * and everything that consumes it stays platform-agnostic.
+ *
+ * The MacOS modifiers are the exception. They never reach keyDown/keyUp,
+ * since they type no character; AppKit reports them as flagsChanged, and
+ * mlx turns those into 0xFF plus the position of the modifier bit that
+ * moved, so they land above 0xFF instead of on their virtual key code.
  */
 # ifdef __APPLE__
 
@@ -65,15 +70,15 @@ typedef enum e_key
 	KEY_END = 119,
 	KEY_PAGE_UP = 116,
 	KEY_PAGE_DOWN = 121,
-	KEY_L_SHIFT = 56,
-	KEY_R_SHIFT = 60,
-	KEY_L_CTRL = 59,
-	KEY_R_CTRL = 62,
-	KEY_L_ALT = 58,
-	KEY_R_ALT = 61,
-	KEY_L_SUPER = 55,
-	KEY_R_SUPER = 54,
-	KEY_CAPS_LOCK = 57,
+	KEY_L_SHIFT = 257,
+	KEY_R_SHIFT = 258,
+	KEY_L_CTRL = 256,
+	KEY_R_CTRL = 269,
+	KEY_L_ALT = 261,
+	KEY_R_ALT = 262,
+	KEY_L_SUPER = 259,
+	KEY_R_SUPER = 260,
+	KEY_CAPS_LOCK = 272,
 	KEY_MINUS = 27,
 	KEY_EQUAL = 24,
 	KEY_L_BRACKET = 33,
