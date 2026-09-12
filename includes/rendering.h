@@ -16,8 +16,11 @@
 // Half the FOV, in radians: the angle between the direction and each edge ray.
 # define HALF_FOV 0.57595865315 //(FOV * M_PI / 360.0)
 
-# define WALL_COLOR_NS 0x00BFBFBF
-# define WALL_COLOR_EW 0x00898989
+// Debug shades, one per wall face, until the textures go on.
+# define WALL_COLOR_NORTH 0x00BF4040
+# define WALL_COLOR_SOUTH 0x0040BF40
+# define WALL_COLOR_EAST 0x004040BF
+# define WALL_COLOR_WEST 0x00BFBF40
 
 // Share of the window height the minimap box takes up.
 # define MINIMAP_SCALE_PERCENTAGE 25

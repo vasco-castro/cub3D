@@ -18,15 +18,34 @@ static void	render_bg(void)
 }
 
 /**
+ * @brief Which of the four faces of a wall tile the ray ran into.
+ *
+ * A ray that crossed a vertical grid line hit a face looking east or west,
+ * and it is the face turned towards the ray that is lit: heading east means
+ * landing on the wall's west side. North is -y, as the spawn angles say, so
+ * a ray heading south lands on a north face.
+ *
+ * Returns a debug shade for now; once the walls are textured this is where
+ * the matching texture gets picked.
+ */
+static uint32_t	face_color(t_ray *ray)
+{
+	if (ray->x_side && ray->step.x > 0)
+		return (WALL_COLOR_WEST);
+	if (ray->x_side)
+		return (WALL_COLOR_EAST);
+	if (ray->step.y > 0)
+		return (WALL_COLOR_NORTH);
+	return (WALL_COLOR_SOUTH);
+}
+
+/**
  * @brief Draws one vertical slice of wall, centred on the horizon.
  *
  * A wall one tile away fills the whole screen, one two tiles away half of
  * it, and so on, which is all the perspective a grid of equal-height walls
  * needs. The distance is floored so a wall you are hugging cannot blow the
  * height up past what an int holds.
- *
- * East/west faces get a darker shade, so corners stay readable while there
- * are no textures yet.
  */
 static void	render_column(int x, t_ray *ray)
 {
@@ -43,10 +62,7 @@ static void	render_column(int x, t_ray *ray)
 		start = 0;
 	if (end > W_HEIGHT - 1)
 		end = W_HEIGHT - 1;
-	if (ray->x_side)
-		put_line(get_point(x, start), get_point(x, end), WALL_COLOR_EW);
-	else
-		put_line(get_point(x, start), get_point(x, end), WALL_COLOR_NS);
+	put_line(get_point(x, start), get_point(x, end), face_color(ray));
 }
 
 /**

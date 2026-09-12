@@ -46,14 +46,14 @@ void	minimap_init(void)
  */
 t_point	minimap_pos(t_dpoint world)
 {
-	int	px;
-	int	py;
+	int	x;
+	int	y;
 
-	px = minimap()->origin.x + (int)((world.x - player()->pos.x
+	x = minimap()->origin.x + (int)((world.x - player()->pos.x
 				+ MINIMAP_RADIUS) * minimap()->scale);
-	py = minimap()->origin.y + (int)((world.y - player()->pos.y
+	y = minimap()->origin.y + (int)((world.y - player()->pos.y
 				+ MINIMAP_RADIUS) * minimap()->scale);
-	return (get_point(px, py));
+	return (get_point(x, y));
 }
 
 /**
@@ -61,7 +61,7 @@ t_point	minimap_pos(t_dpoint world)
  */
 void	render_minimap(void)
 {
-	t_point	px;
+	t_point	pos;
 	int		x;
 	int		y;
 
@@ -71,11 +71,11 @@ void	render_minimap(void)
 		x = (int)player()->pos.x - MINIMAP_RADIUS;
 		while (x <= (int)player()->pos.x + MINIMAP_RADIUS)
 		{
-			px = minimap_pos(get_dpoint(x, y));
+			pos = minimap_pos(get_dpoint(x, y));
 			if (is_wall(x, y))
-				put_square(px.x, px.y, minimap()->scale, MINIMAP_WALL_COLOR);
+				put_square(pos.x, pos.y, minimap()->scale, MINIMAP_WALL_COLOR);
 			else
-				put_square(px.x, px.y, minimap()->scale, MINIMAP_FLOOR_COLOR);
+				put_square(pos.x, pos.y, minimap()->scale, MINIMAP_FLOOR_COLOR);
 			x++;
 		}
 		y++;
