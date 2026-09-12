@@ -28,3 +28,10 @@ t_keys	*keys(void)
 
 	return (&keys);
 }
+
+t_minimap	*minimap(void)
+{
+	static t_minimap	minimap;
+
+	return (&minimap);
+}

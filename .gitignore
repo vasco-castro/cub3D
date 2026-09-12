@@ -63,14 +63,10 @@ cub3D
 en.subject.pdf
 cub3d_eval-sheet.pdf
 
-#my main
-srcs/parsing/main.c
-srcs/parsing/Makefile
-srcs/parsing/b.cub
-
 #DS_store
 .DS_store
 
-#some fix of rendering on my part
-srcs/rendering/minimap.c
-srcs/rendering/render.c
+#parsing main, could/should be deleted later
+srcs/parsing/main.c
+srcs/parsing/Makefile
+srcs/parsing/b.cub

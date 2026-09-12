@@ -12,18 +12,13 @@
 
 #include "parsing.h"
 
-void	printf_double_pointer(char **args)
+bool	is_floor_walkable(char c)
 {
-	int	i;
-
-	if (!args)
-		return ;
-	i = 0;
-	while (args[i])
-	{
-		ft_printf("%s", args[i]);
-		i++;
-	}
+	if (c == '0')
+		return (true);
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (true);
+	return (false);
 }
 
 /**

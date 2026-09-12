@@ -21,13 +21,13 @@ static bool	is_player_char(char c)
 static void	set_player_dir(char angle)
 {
 	if (angle == 'N')
-		player()->angle = M_PI_2;
-	else if (angle == 'S')
 		player()->angle = 3 * M_PI_2;
+	else if (angle == 'S')
+		player()->angle = M_PI_2;
 	else if (angle == 'E')
-		player()->angle = M_PI;
-	else if (angle == 'W')
 		player()->angle = 0;
+	else if (angle == 'W')
+		player()->angle = M_PI;
 	update_player_vectors();
 }
 

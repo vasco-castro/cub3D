@@ -42,7 +42,6 @@ void		skip_spaces(char *line, size_t *j);
 bool		valid_map(char **map);
 bool		valid_map_borders(char **map_body);
 bool		flood_fill(char **copy_map, int x, int y);
-bool		is_floor_walkable(char c);
 bool		is_map_line(char *line, size_t j);
 bool		valid_permisions(t_map_vars map_vars);
 bool		valid_spacing(t_map_vars map_vars);
@@ -74,7 +73,6 @@ bool		valid_range(t_map_vars map_vars);
 bool		valid_separator(t_map_vars map_vars);
 bool		trim_spaces(t_map_vars map_vars);
 bool		checks_for_map(char **map_body);
-void		printf_double_pointer(char **args);
 bool		valid_player(char **map_body);
 
 #endif

@@ -2,19 +2,22 @@
 #include "cub3d.h"
 
 /**
- * @brief Recomputes the direction and the two FOV edge rays from the angle.
+ * @brief Recomputes the camera vectors from the angle.
  *
- * plane1 and plane2 are unit vectors sitting HALF_FOV radians either side of
- * the direction, so the angle they span is exactly FOV degrees.
+ * dir is the unit vector the player faces, taken straight from the angle
+ * with no sign to undo: north is up on the map, and screen y grows down, so
+ * the spawn angles in set_player_dir are picked to match.
+ *
+ * plane is perpendicular to dir, pointing to the player's right, and
+ * tan(HALF_FOV) long. Its two tips are the edges of the field of view, so
+ * dir + plane * camera_x sweeps the whole view as camera_x runs -1 to +1.
  */
 void	update_player_vectors(void)
 {
 	player()->dir.x = cos(player()->angle);
 	player()->dir.y = sin(player()->angle);
-	player()->plane1.x = cos(player()->angle + HALF_FOV);
-	player()->plane1.y = sin(player()->angle + HALF_FOV);
-	player()->plane2.x = cos(player()->angle - HALF_FOV);
-	player()->plane2.y = sin(player()->angle - HALF_FOV);
+	player()->plane.x = -player()->dir.y * tan(HALF_FOV);
+	player()->plane.y = player()->dir.x * tan(HALF_FOV);
 }
 
 void	rotate_player(t_direction d, double speed)
@@ -26,28 +29,29 @@ void	rotate_player(t_direction d, double speed)
 	update_player_vectors();
 }
 
+/**
+ * @brief Moves the player one step, unless a wall is in the way.
+ *
+ * Strafing is the forward vector turned a quarter turn, which swaps the two
+ * components and negates one of them. Only flipping signs would mirror the
+ * vector instead of turning it, and you would slide along the wrong axis.
+ *
+ * Backward is forward negated, and right is left negated, so the four cases
+ * are one vector and two flips.
+ */
 void	move_player(t_direction d, double speed)
 {
-	if (d == FORWARD)
-	{
-		player()->pos.x -= player()->dir.x * speed;
-		player()->pos.y -= player()->dir.y * speed;
-	}
-	else if (d == BACKWARD)
-	{
-		player()->pos.x += player()->dir.x * speed;
-		player()->pos.y += player()->dir.y * speed;
-	}
-	else if (d == LEFT)
-	{
-		player()->pos.x -= player()->dir.y * speed;
-		player()->pos.y += player()->dir.x * speed;
-	}
-	else if (d == RIGHT)
-	{
-		player()->pos.x += player()->dir.y * speed;
-		player()->pos.y -= player()->dir.x * speed;
-	}
+	t_dpoint	step;
+	t_dpoint	next;
+
+	step = get_dpoint(player()->dir.x * speed, player()->dir.y * speed);
+	if (d == LEFT || d == RIGHT)
+		step = get_dpoint(step.y, -step.x);
+	if (d == BACKWARD || d == RIGHT)
+		step = get_dpoint(-step.x, -step.y);
+	next = get_dpoint(player()->pos.x + step.x, player()->pos.y + step.y);
+	if (!is_wall(next.x, next.y))
+		player()->pos = next;
 }
 
 /**

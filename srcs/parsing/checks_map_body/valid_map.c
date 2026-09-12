@@ -12,6 +12,30 @@
 
 #include "parsing.h"
 
+bool	flood_fill(char **copy_map, int x, int y)
+{
+	if (x < 0 || !copy_map[x])
+		return (false);
+	if (y < 0 || !copy_map[x][y] || copy_map[x][y] == '\n')
+		return (false);
+	if (copy_map[x][y] == ' ')
+		return (false);
+	if (copy_map[x][y] == '1' || copy_map[x][y] == 'P')
+		return (true);
+	if (!is_floor_walkable(copy_map[x][y]))
+		return (false);
+	copy_map[x][y] = 'P';
+	if (!flood_fill(copy_map, x + 1, y))
+		return (false);
+	if (!flood_fill(copy_map, x - 1, y))
+		return (false);
+	if (!flood_fill(copy_map, x, y + 1))
+		return (false);
+	if (!flood_fill(copy_map, x, y - 1))
+		return (false);
+	return (true);
+}
+
 bool	valid_map(char **map)
 {
 	char	**copy;

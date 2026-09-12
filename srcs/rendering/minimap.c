@@ -1,96 +1,84 @@
 #include "cub3d.h"
-#include "parsing.h"
 
 /**
- * @brief Point at `dist` pixels from the minimap centre along `angle`.
+ * @brief The corner of the window the minimap sits in, in pixels.
  *
- * The minus signs match the rest of the minimap: screen y grows downwards
- * while the player angle is measured in the opposite convention.
+ * MINIMAP_POS is fixed at compile time, so this runs once from minimap_init
+ * and every drawing call afterwards just reads minimap()->origin.
  */
-static t_point	cone_point(int px, int py, double angle, double dist)
+static t_point	minimap_origin(void)
 {
-	return (get_point(px - (int)(cos(angle) * dist),
-		py - (int)(sin(angle) * dist)));
+	int	low;
+	int	right;
+
+	low = W_HEIGHT - minimap()->side;
+	right = W_WIDTH - minimap()->side;
+	if (MINIMAP_POS == MINIMAP_LL)
+		return (get_point(0, low));
+	if (MINIMAP_POS == MINIMAP_UR)
+		return (get_point(right, 0));
+	if (MINIMAP_POS == MINIMAP_LR)
+		return (get_point(right, low));
+	return (get_point(0, 0));
 }
 
 /**
- * @brief Fills the FOV wedge as a fan of rays between plane1 and plane2.
+ * @brief Settles the minimap's size and place. Call once, at startup.
  *
- * One ray per pixel of arc length keeps the wedge gap-free at any scale.
+ * The box is a share of the window height, rounded down to a whole number
+ * of pixels per tile so tiles never land on half pixels. Only compile-time
+ * sizes are read, so this does not need the window to exist yet.
  */
-static void	render_minimap_cone(int px, int py, int radius, int length)
+void	minimap_init(void)
 {
-	double	step;
-	double	angle;
-	int		rays;
-	int		i;
-
-	rays = (int)(2 * HALF_FOV * length) + 2;
-	step = 2 * HALF_FOV / rays;
-	i = 0;
-	while (i <= rays)
-	{
-		angle = player()->angle - HALF_FOV + i * step;
-		put_line(cone_point(px, py, angle, radius),
-			cone_point(px, py, angle, length), MINIMAP_CONE_COLOR);
-		i++;
-	}
+	keys()->minimap = true;
+	minimap()->scale = W_HEIGHT * MINIMAP_SCALE_PERCENTAGE / 100;
+	minimap()->scale /= (2 * MINIMAP_RADIUS + 1);
+	minimap()->side = (2 * MINIMAP_RADIUS + 1) * minimap()->scale;
+	minimap()->origin = minimap_origin();
 }
 
-static void	render_minimap_direction(int px, int py, int radius)
-{
-	int	length;
-
-	length = MINIMAP_CONE_TILES * map()->minimap_scale;
-	render_minimap_cone(px, py, radius, length);
-	put_line(cone_point(px, py, player()->angle + HALF_FOV, radius),
-		cone_point(px, py, player()->angle + HALF_FOV, length),
-		MINIMAP_PLAYER_COLOR);
-	put_line(cone_point(px, py, player()->angle - HALF_FOV, radius),
-		cone_point(px, py, player()->angle - HALF_FOV, length),
-		MINIMAP_PLAYER_COLOR);
-	put_line(cone_point(px, py, player()->angle, radius),
-		cone_point(px, py, player()->angle, length), MINIMAP_PLAYER_COLOR);
-}
-
-void	render_minimap_player(int offset_x, int offset_y)
+/**
+ * @brief Where a point of the world lands on the minimap, in screen pixels.
+ *
+ * The minimap is just the world scaled down and re-centred on the player,
+ * so one formula covers tiles, the player dot and the cone alike.
+ */
+t_point	minimap_pos(t_dpoint world)
 {
 	int	px;
 	int	py;
-	int	radius;
 
-	px = offset_x + MINIMAP_RADIUS * map()->minimap_scale;
-	py = offset_y + MINIMAP_RADIUS * map()->minimap_scale;
-	radius = map()->minimap_scale / 10;
-	render_minimap_direction(px, py, radius);
-	put_circle(px, py, radius, MINIMAP_PLAYER_COLOR);
+	px = minimap()->origin.x + (int)((world.x - player()->pos.x
+				+ MINIMAP_RADIUS) * minimap()->scale);
+	py = minimap()->origin.y + (int)((world.y - player()->pos.y
+				+ MINIMAP_RADIUS) * minimap()->scale);
+	return (get_point(px, py));
 }
 
-void	render_minimap(int offset_x, int offset_y)
+/**
+ * @brief Draws the tiles around the player, then the player on top.
+ */
+void	render_minimap(void)
 {
-	int	y;
-	int	x;
-	int	px;
-	int	py;
+	t_point	px;
+	int		x;
+	int		y;
 
-	y = (int) player()->pos.y - MINIMAP_RADIUS;
-	while (y <= (int) player()->pos.y + MINIMAP_RADIUS)
+	y = (int)player()->pos.y - MINIMAP_RADIUS;
+	while (y <= (int)player()->pos.y + MINIMAP_RADIUS)
 	{
-		x = (int) player()->pos.x - MINIMAP_RADIUS;
-		while (x <= (int) player()->pos.x + MINIMAP_RADIUS)
+		x = (int)player()->pos.x - MINIMAP_RADIUS;
+		while (x <= (int)player()->pos.x + MINIMAP_RADIUS)
 		{
-			px = offset_x + (int)((x - player()->pos.x + MINIMAP_RADIUS)
-					* map()->minimap_scale);
-			py = offset_y + (int)((y - player()->pos.y + MINIMAP_RADIUS)
-					* map()->minimap_scale);
-			if (y >= 0 && y < map()->size.y && x >= 0 && x < map()->size.x
-				&& is_floor_walkable(map()->map[y][x]))
-				put_square(px, py, map()->minimap_scale, MINIMAP_FLOOR_COLOR);
+			px = minimap_pos(get_dpoint(x, y));
+			if (is_wall(x, y))
+				put_square(px.x, px.y, minimap()->scale, MINIMAP_WALL_COLOR);
 			else
-				put_square(px, py, map()->minimap_scale, MINIMAP_WALL_COLOR);
+				put_square(px.x, px.y, minimap()->scale, MINIMAP_FLOOR_COLOR);
 			x++;
 		}
 		y++;
 	}
-	render_minimap_player(offset_x, offset_y);
+	render_minimap_player();
 }

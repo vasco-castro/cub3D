@@ -1,27 +1,20 @@
-#include "rendering.h"
+#include "cub3d.h"
 
 /**
- * @brief Direction of the ray for one screen column.
+ * @brief Direction of the ray leaving the camera at `camera_x`.
  *
- * `camera_x` runs from -1 on the left edge of the screen to +1 on the right.
+ * `camera_x` is a spot on the camera plane: -1 is the left edge of the FOV,
+ * 0 straight ahead, +1 the right edge. The renderer feeds it one value per
+ * screen column, the minimap one per ray of its cone, and both get the same
+ * fan of directions out of it.
  *
- * The engine stores `dir` as (cos angle, sin angle) but moves the player
- * against it (see move_player), so the way the player actually faces is -dir.
- *
- * `plane` is the camera plane: perpendicular to the view and tan(HALF_FOV)
- * long, so its two tips are exactly the edges of the FOV. Walking along it
- * in even steps is what keeps the columns evenly spaced on screen, instead
- * of the fish-eye you get from fanning the rays out by equal angles.
+ * Both vectors come from the player, who keeps them up to date on every
+ * turn, so a ray costs two multiplies and nothing else.
  */
-static t_dpoint	ray_dir(double camera_x)
+t_dpoint	camera_ray(double camera_x)
 {
-	t_dpoint	dir;
-	t_dpoint	plane;
-
-	dir = get_dpoint(-player()->dir.x, -player()->dir.y);
-	plane = get_dpoint(-dir.y * tan(HALF_FOV), dir.x * tan(HALF_FOV));
-	return (get_dpoint(dir.x + plane.x * camera_x,
-			dir.y + plane.y * camera_x));
+	return (get_dpoint(player()->dir.x + player()->plane.x * camera_x,
+			player()->dir.y + player()->plane.y * camera_x));
 }
 
 /**
@@ -107,14 +100,17 @@ static void	run_dda(t_ray *ray)
 }
 
 /**
- * @brief Casts one ray from the player and returns where it hit.
- * @param camera_x Position on the camera plane, -1 left edge to +1 right.
+ * @brief Walks a ray from the player along `dir` and returns where it hit.
+ *
+ * `dir` need not be a unit vector, and from camera_ray it is not: its length
+ * is what makes ray.dist come out as the perpendicular distance. The point
+ * the ray hit is always pos + dir * dist, whatever the length.
  */
-t_ray	cast_ray(double camera_x)
+t_ray	cast_ray(t_dpoint dir)
 {
 	t_ray	ray;
 
-	ray.dir = ray_dir(camera_x);
+	ray.dir = dir;
 	ray.map = get_point((int)player()->pos.x, (int)player()->pos.y);
 	ray.x_side = false;
 	ray.dist = 0;

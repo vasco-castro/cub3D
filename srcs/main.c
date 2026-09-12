@@ -31,9 +31,7 @@ static bool	mlx_init_game(void)
 
 static void	game_init(void)
 {
-	keys()->minimap = true;
-	map()->minimap_scale = W_WIDTH / 100 * MINIMAP_SCALE_PERCENTAGE
-	/ (2 * MINIMAP_RADIUS + 1);
+	minimap_init();
 
 	game()->win = mlx_new_window(game()->mlx, W_WIDTH, W_HEIGHT, W_MSG);
 	if (!game()->win)
@@ -44,7 +42,6 @@ static void	game_init(void)
 	mlx_hook(game()->win, ON_KEYDOWN, MASK_KEYPRESS, (void *)key_down_handler, &game);
 	mlx_hook(game()->win, ON_KEYUP, MASK_KEYRELEASE, (void *)key_up_handler, &game);
 
-	// mlx_mouse_hook(game()->win, (void *)mouse_click_handler, &game);
 	// mlx_hook(game()->win, ON_MOUSEDOWN, MASK_BUTTONPRESS, (void *)mouse_click_handler, &game);
 	// mlx_hook(game()->win, ON_MOUSEUP, MASK_BUTTONRELEASE, (void *)mouse_click_handler, &game);
 	// mlx_hook(game()->win, ON_MOUSEMOVE, MASK_POINTERMOTION, (void *)mouse_move_handler, &game);
@@ -76,7 +73,6 @@ int	main(int argc, char *argv[])
 		// ft_dprintf(STDERR_FILENO, RED "Error\nfailed to parse map\n" RESET);
 		return (destroy_cub3d(EXIT_FAILURE), EXIT_FAILURE);
 	}
-	if (debug_mode())
-		printf_double_pointer(map()->map);
+	debug("%t", map()->map);
 	return (game_init(), destroy_cub3d(EXIT_SUCCESS), EXIT_SUCCESS);
 }
