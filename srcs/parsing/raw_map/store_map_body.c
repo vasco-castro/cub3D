@@ -51,7 +51,7 @@ static char	*copy_map_line(char *line, size_t width)
 	copy = ft_calloc(width + 2, sizeof(char));
 	if (!copy)
 		return (NULL);
-	ft_memset(copy, ' ', width);
+	ft_memset(copy, '1', width);
 	copy[width] = '\n';
 	line_width = ft_strlen(line);
 	if (line_width && line[line_width - 1] == '\n')
