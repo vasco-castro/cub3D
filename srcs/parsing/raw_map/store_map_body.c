@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 17:24:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/06/08 21:47:54 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/09/13 16:47:57 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*copy_map_line(char *line, size_t width)
 	copy = ft_calloc(width + 2, sizeof(char));
 	if (!copy)
 		return (NULL);
-	ft_memset(copy, '1', width);
+	ft_memset(copy, ' ', width);
 	copy[width] = '\n';
 	line_width = ft_strlen(line);
 	if (line_width && line[line_width - 1] == '\n')
