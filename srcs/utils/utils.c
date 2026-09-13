@@ -25,7 +25,7 @@ bool	is_floor_walkable(char c)
  * @brief Is the tile at (x, y) something a ray or the player cannot cross?
  *
  * Anything off the map counts as a wall, so a ray can never escape it.
- * The spawn tile still holds its N/S/E/W letter, which is walkable floor.
+ * The spawn tile's N/S/E/W letter is replaced with '0' by valid_player.
  */
 bool	is_wall(int x, int y)
 {

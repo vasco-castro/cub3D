@@ -22,8 +22,8 @@ void	free_images(void)
 }
 
 /**
- * @note Known issue: when mlx_get_data_addr fails, image->img is destroyed
- * but left set, so free_images destroys it a second time.
+ * @brief Loads an XPM into `image`. On failure the image is left with img
+ * and addr set to NULL, so free_images can safely run over it again.
  */
 static bool	load_image_from_file(t_image *image, char *path)
 {
@@ -34,8 +34,7 @@ static bool	load_image_from_file(t_image *image, char *path)
 	image->addr = mlx_get_data_addr(image->img, &image->bpp,
 			&image->line, &image->endian);
 	if (!image->addr)
-		return (ft_error(ERR_TEX_LOAD, path),
-			mlx_destroy_image(game()->mlx, image->img), false);
+		return (ft_error(ERR_TEX_LOAD, path), destroy_image(image), false);
 	return (true);
 }
 
