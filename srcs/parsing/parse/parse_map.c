@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/21 20:54:46 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/09/13 18:35:32 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	store_map_size(char **map_body)
 bool	checks_for_raw_map(char **raw_map)
 {
 	if (!check_dup_inv_vars(raw_map))
+	{
+		debug("Error\ninvalid or duplicate var in map\n");
 		return (ft_tabfree(raw_map), false);
+	}
 	if (!invalid_space(raw_map))
 	{
 		debug("Error\ninvalid spacing between key and value\n");
