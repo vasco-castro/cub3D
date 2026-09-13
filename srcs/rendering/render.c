@@ -18,25 +18,68 @@ static void	render_bg(void)
 }
 
 /**
- * @brief Which of the four faces of a wall tile the ray ran into.
+ * @brief Which way the player was looking when the ray hit, as a debug shade.
  *
- * A ray that crossed a vertical grid line hit a face looking east or west,
- * and it is the face turned towards the ray that is lit: heading east means
- * landing on the wall's west side. North is -y, as the spawn angles say, so
- * a ray heading south lands on a north face.
+ * Walls are named after the direction they are seen from: looking north
+ * shows the NORTH wall, whatever side of its tile that face is on. A ray
+ * that crossed a vertical grid line was heading east or west, and North is
+ * -y, as the spawn angles say, so a ray with step.y < 0 was heading north.
  *
- * Returns a debug shade for now; once the walls are textured this is where
- * the matching texture gets picked.
+ * face_texture picks the texture off the same four cases; this shade is
+ * what debug mode draws instead, to check the faces without textures.
  */
 static uint32_t	face_color(t_ray *ray)
 {
 	if (ray->x_side && ray->step.x > 0)
-		return (WALL_COLOR_WEST);
-	if (ray->x_side)
 		return (WALL_COLOR_EAST);
-	if (ray->step.y > 0)
+	if (ray->x_side)
+		return (WALL_COLOR_WEST);
+	if (ray->step.y < 0)
 		return (WALL_COLOR_NORTH);
 	return (WALL_COLOR_SOUTH);
+}
+
+/**
+ * @brief The texture for the wall a ray hit, using the same four cases as
+ * face_color: looking north shows the NO texture, looking east the EA one.
+ */
+static t_image	*face_texture(t_ray *ray)
+{
+	if (ray->x_side && ray->step.x > 0)
+		return (&map()->east_texture);
+	if (ray->x_side)
+		return (&map()->west_texture);
+	if (ray->step.y < 0)
+		return (&map()->north_texture);
+	return (&map()->south_texture);
+}
+
+/**
+ * @brief Which column of `tex` the ray hit, from 0 to tex->w - 1.
+ *
+ * The hit point is pos + dir * dist, and its fractional part along the wall
+ * is how far across the tile the ray landed. On faces the player sees while
+ * looking west or south, that coordinate shrinks as the screen moves right,
+ * so the column is flipped or the texture would come out mirrored.
+ */
+static int	texture_x(t_ray *ray, t_image *tex)
+{
+	double	wall_x;
+	int		tex_x;
+
+	if (ray->x_side)
+		wall_x = player()->pos.y + ray->dist * ray->dir.y;
+	else
+		wall_x = player()->pos.x + ray->dist * ray->dir.x;
+	wall_x -= floor(wall_x);
+	tex_x = (int)(wall_x * tex->w);
+	if ((ray->x_side && ray->dir.x < 0) || (!ray->x_side && ray->dir.y > 0))
+		tex_x = tex->w - tex_x - 1;
+	if (tex_x < 0)
+		tex_x = 0;
+	if (tex_x >= tex->w)
+		tex_x = tex->w - 1;
+	return (tex_x);
 }
 
 /**
@@ -46,23 +89,36 @@ static uint32_t	face_color(t_ray *ray)
  * it, and so on, which is all the perspective a grid of equal-height walls
  * needs. The distance is floored so a wall you are hugging cannot blow the
  * height up past what an int holds.
+ *
+ * The slice walks down the texture column by `step` texels per pixel,
+ * counted from the wall's real top even when that is above the screen, so a
+ * wall taller than the window is cropped rather than squashed. In debug mode
+ * the slice is a flat face_color instead.
  */
 static void	render_column(int x, t_ray *ray)
 {
-	int		height;
-	int		start;
-	int		end;
+	t_image	*tex;
+	int		tex_x;
+	int		top;
+	int		y;
+	double	step;
 
-	if (ray->dist < 0.01)
-		ray->dist = 0.01;
-	height = (int)(W_HEIGHT / ray->dist);
-	start = W_HEIGHT / 2 - height / 2;
-	end = start + height;
-	if (start < 0)
-		start = 0;
-	if (end > W_HEIGHT - 1)
-		end = W_HEIGHT - 1;
-	put_line(get_point(x, start), get_point(x, end), face_color(ray));
+	tex = face_texture(ray);
+	tex_x = texture_x(ray, tex);
+	y = (int)(W_HEIGHT / fmax(ray->dist, 0.01));
+	step = (double)tex->h / y;
+	top = W_HEIGHT / 2 - y / 2;
+	y = top + y;
+	if (y > W_HEIGHT)
+		y = W_HEIGHT;
+	while (--y >= 0 && y >= top)
+	{
+		if (debug_mode())
+			put_pixel(x, y, face_color(ray));
+		else
+			put_pixel(x, y, get_px(tex, tex_x, (int)((y - top) * step))
+				& 0x00FFFFFF);
+	}
 }
 
 /**
