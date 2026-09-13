@@ -31,6 +31,14 @@ static void	set_player_dir(char angle)
 	update_player_vectors();
 }
 
+static void	set_player(char **map_body, size_t x, size_t y)
+{
+	player()->pos.x = x + 0.5;
+	player()->pos.y = y + 0.5;
+	set_player_dir(map_body[y][x]);
+	map_body[y][x] = '0';
+}
+
 bool	valid_player(char **map_body)
 {
 	size_t	x;
@@ -47,8 +55,7 @@ bool	valid_player(char **map_body)
 			if (is_player_char(map_body[y][x]))
 			{
 				count++;
-				player()->pos = (t_dpoint){x + 0.5, y + 0.5};
-				set_player_dir(map_body[y][x]);
+				set_player(map_body, x, y);
 			}
 			x++;
 		}

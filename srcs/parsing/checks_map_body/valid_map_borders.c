@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 00:00:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/09/07 00:00:00 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/09/13 15:41:42 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ static bool	touches_void(char **map_body, int x, int y)
 	if (map_body[y][x - 1] == ' ' || map_body[y][x + 1] == ' ')
 		return (true);
 	if (map_body[y - 1][x] == ' ' || map_body[y + 1][x] == ' ')
+		return (true);
+	if (map_body[y - 1][x - 1] == ' ' || map_body[y - 1][x + 1] == ' ')
+		return (true);
+	if (map_body[y + 1][x - 1] == ' ' || map_body[y + 1][x + 1] == ' ')
 		return (true);
 	return (false);
 }
