@@ -1,7 +1,7 @@
-NO ./textures/Water.xpm
-SO ./textures/Grass.xpm
-WE ./textures/Hills.xpm
-EA ./textures/Tilled_Dirt.xpm
+NO ./textures/debug/north.xpm
+SO ./textures/debug/south.xpm
+WE ./textures/debug/west.xpm
+EA ./textures/debug/east.xpm
 
 C 135, 206, 235
 F 125, 125, 125
@@ -17,6 +17,6 @@ F 125, 125, 125
 11000000110101011100000010001
 10000000000000001100000010001
 10000000000000001101010010001
-11000001110101011111011110N0111
+11000001110101011111N1111000111
 11110111 1110101 101111010001
 11111111 1111111 111111111111

@@ -1,11 +1,11 @@
-                EA              ./textures/Water.xpm
+                EA              ./textures/brick.xpm
 
 
 
 
 
                 F 220, 100,0
-                WE                    ./textures/Grass.xpm
+                WE                    ./textures/stone.xpm
 
 
 
@@ -14,14 +14,14 @@
 
 
                 C             222,100,00
-                NO         ./textures/Hills.xpm
+                NO         ./textures/wood.xpm
 
 
 
 
 
 
-                SO ./textures/Tilled_Dirt.xpm
+                SO ./textures/metal.xpm
 
         1111111111111111111111111
         1000000000110000000000001
