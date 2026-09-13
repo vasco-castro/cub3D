@@ -26,14 +26,14 @@ static bool	is_map_body_line(char *line)
 	skip_spaces(line, &i);
 	if (line[i] != '1')
 	{
-		debug("Error\nmap body line must start with '1'\n");
+		ft_error(ERR_BODY_START);
 		return (false);
 	}
 	while (line[i] && line[i] != '\n')
 	{
 		if (!is_map_char(line[i]))
 		{
-			debug("Error\ninvalid character inside map body\n");
+			ft_error(ERR_BODY_CHAR);
 			return (false);
 		}
 		i++;
@@ -41,6 +41,10 @@ static bool	is_map_body_line(char *line)
 	return (true);
 }
 
+/**
+ * @note Known issue: empty lines are skipped, so an empty line splitting the
+ * map in two is accepted.
+ */
 bool	check_vars_in_out_map_body(char **raw_map)
 {
 	size_t	i;

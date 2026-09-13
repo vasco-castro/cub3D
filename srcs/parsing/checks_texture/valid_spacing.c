@@ -55,7 +55,7 @@ bool	check_invalid_spacing(char *map_vars)
 	{
 		if (map_vars[i] == ' ')
 		{
-			debug("Error\nspace inside value '%s'\n", map_vars);
+			ft_error(ERR_TEX_SPACE, map_vars);
 			return (false);
 		}
 		i++;

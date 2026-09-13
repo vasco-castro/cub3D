@@ -13,12 +13,6 @@
 #include "parsing.h"
 #include "cub3d.h"
 
-void	parse_error(const char *filename)
-{
-	ft_dprintf(STDERR_FILENO, RED "Error\n%s: %s\n" RESET,
-		filename, strerror(errno));
-}
-
 void	free_map_vars(t_map_vars *map_vars)
 {
 	if (!map_vars)

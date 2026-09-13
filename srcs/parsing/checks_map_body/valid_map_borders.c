@@ -39,7 +39,7 @@ bool	valid_map_borders(char **map_body)
 			if (is_floor_walkable(map_body[y][x])
 				&& touches_void(map_body, x, y))
 			{
-				debug("Error\nmap is not closed\n");
+				ft_error(ERR_MAP_OPEN);
 				return (false);
 			}
 			x++;

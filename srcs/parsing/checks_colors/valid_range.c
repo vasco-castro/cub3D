@@ -12,6 +12,10 @@
 
 #include "parsing.h"
 
+/**
+ * @note Known issue: ft_atoi overflows on long numbers, so "4294967296"
+ * wraps into range and is accepted.
+ */
 bool	valid_digits_range(char *digits)
 {
 	int	i;
@@ -37,8 +41,8 @@ bool	valid_digits_range(char *digits)
 bool	valid_range(t_map_vars map_vars)
 {
 	if (!valid_digits_range(map_vars.floor))
-		return (false);
+		return (ft_error(ERR_FLOOR_RANGE), false);
 	if (!valid_digits_range(map_vars.ceiling))
-		return (false);
+		return (ft_error(ERR_CEIL_RANGE), false);
 	return (true);
 }

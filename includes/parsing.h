@@ -50,7 +50,6 @@ bool		check_dup_inv_vars(char **raw_map);
 bool		check_texture(t_map_vars map_vars);
 void		parse_error_on_map(t_map *map);
 char		**read_map(const char *filename);
-void		parse_error(const char *filename);
 char		**store_map_body(char **raw_map);
 bool		parse_textures(t_map_vars map_vars);
 bool		parse_colors(t_map_vars map_vars);

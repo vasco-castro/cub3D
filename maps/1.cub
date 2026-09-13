@@ -3,8 +3,8 @@ SO ./textures/stone.xpm
 WE ./textures/wood.xpm
 EA ./textures/metal.xpm
 
-F 220,100,0
-C 225,30,0
+C 135, 206, 235
+F 125, 125, 125
 
 111111
 100101

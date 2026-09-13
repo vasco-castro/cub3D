@@ -16,7 +16,7 @@ bool	checks_for_map(char **map_body)
 {
 	if (!valid_player(map_body))
 	{
-		debug("Error\nmap need to have excatly one player");
+		ft_error(ERR_PLAYER);
 		return (false);
 	}
 	if (!valid_map_borders(map_body))

@@ -39,7 +39,7 @@ bool	checks_for_raw_map(char **raw_map)
 		return (ft_tabfree(raw_map), false);
 	if (!invalid_space(raw_map))
 	{
-		debug("Error\ninvalid spacing between key and value\n");
+		ft_error(ERR_KEY_SPACING);
 		return (ft_tabfree(raw_map), false);
 	}
 	if (!check_vars_in_out_map_body(raw_map))
@@ -47,6 +47,13 @@ bool	checks_for_raw_map(char **raw_map)
 	return (true);
 }
 
+/**
+ * @note Known issues, all printing a misleading error:
+ * - An empty file, or a directory named *.cub, reads as zero lines and
+ *   reports "missing NO texture variable".
+ * - A file with no map, or store_map_body failing to allocate, reports
+ *   "map needs to have exactly one player".
+ */
 bool	parse_map(const char *filename)
 {
 	char		**raw_map;
@@ -55,7 +62,7 @@ bool	parse_map(const char *filename)
 	raw_map = read_map(filename);
 	if (!raw_map)
 	{
-		debug("Error\nfailed to read map file '%s'\n", filename);
+		ft_error(ERR_READ_MAP, filename);
 		return (false);
 	}
 	if (!checks_for_raw_map(raw_map))

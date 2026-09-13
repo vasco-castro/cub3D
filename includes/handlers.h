@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handlers.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsoares- <vsoares-@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/13 17:03:27 by vsoares-          #+#    #+#             */
+/*   Updated: 2026/09/13 17:19:12 by vsoares-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef HANDLERS_H
 # define HANDLERS_H
 
 # define MOVE_SPEED 3.0
 # define ROT_SPEED 3.0
+# define RUN_MULTIPLIER 1.5
 
 /*
  * Key codes are platform-dependent: minilibx delivers X11 keysyms on Linux

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rendering.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsoares- <vsoares-@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/13 17:03:27 by vsoares-          #+#    #+#             */
+/*   Updated: 2026/09/13 17:03:27 by vsoares-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef RENDERING_H
 # define RENDERING_H
 
@@ -98,6 +110,7 @@ typedef struct s_ray
 }	t_ray;
 
 void			render(void);
+void			render_wall_column(int x, t_ray *ray);
 
 t_dpoint		camera_ray(double camera_x);
 t_ray			cast_ray(t_dpoint dir);
@@ -112,7 +125,6 @@ void			destroy_image(t_image *img);
 void			clear_image(t_image *img, uint32_t color);
 uint32_t		get_px(t_image *img, int x, int y);
 void			put_px(t_image *img, int x, int y, uint32_t color);
-void			display_image(t_image *img, int x, int y);
 
 void			put_pixel(int x, int y, uint32_t color);
 void			put_line(t_point a, t_point b, uint32_t color);

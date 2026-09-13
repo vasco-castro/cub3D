@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_handlers.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsoares- <vsoares-@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/13 17:03:27 by vsoares-          #+#    #+#             */
+/*   Updated: 2026/09/13 17:03:27 by vsoares-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -107,8 +118,6 @@ int	key_up_handler(int keycode)
 		keys()->rot_right = false;
 	else if (keycode == KEY_L_SHIFT)
 		keys()->run = false;
-	// else if (keycode == KEY_M)
-	// 	keys()->minimap = false;
 	else
 		debug("Key released: %d\n", keycode);
 	return (EXIT_SUCCESS);

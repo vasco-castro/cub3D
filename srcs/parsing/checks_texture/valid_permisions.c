@@ -19,7 +19,7 @@ static bool	valid_permission(char *path)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
-		debug("Error\ncannot open texture path\n");
+		ft_error(ERR_TEX_OPEN, path, strerror(errno));
 		return (false);
 	}
 	close(fd);

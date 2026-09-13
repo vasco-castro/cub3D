@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mouse_handlers.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsoares- <vsoares-@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/14 23:55:10 by vsoares-          #+#    #+#             */
+/*   Updated: 2026/08/14 23:55:10 by vsoares-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -33,6 +44,5 @@ int	mouse_click_handler(int mousecode, int x, int y)
 int	mouse_move_handler(int x, int y)
 {
 	debug(YELLOW "Mouse moved to: %d-%d\n" RESET, x, y);
-	put_star(x, y, 7, 0x006c11f5);
 	return (EXIT_SUCCESS);
 }

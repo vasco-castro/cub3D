@@ -1,0 +1,13 @@
+NO ./textures/brick.xpm
+SO ./textures/stone.xpm
+WE ./textures/wood.xpm
+EA ./textures/metal.xpm
+
+F 220,100,0
+C 225,30,0
+
+    11111
+    10001
+111110E01111
+100000000001
+111111111111

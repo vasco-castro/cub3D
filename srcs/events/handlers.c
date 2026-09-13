@@ -22,8 +22,8 @@ static void	handle_input(double delta)
 	rot_speed = ROT_SPEED;
 	if (keys()->run)
 	{
-		forward_speed *= 1.5;
-		rot_speed /= 1.5;
+		forward_speed *= RUN_MULTIPLIER;
+		rot_speed /= RUN_MULTIPLIER;
 	}
 	if (keys()->forward)
 		move_player(FORWARD, forward_speed * delta);

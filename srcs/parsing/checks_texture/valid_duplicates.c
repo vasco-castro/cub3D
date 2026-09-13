@@ -47,12 +47,29 @@ bool	new_line(char **raw_map, size_t *i, size_t *j)
 	return (false);
 }
 
+/**
+ * @brief Records the identifier on raw_map[i], printing an error if it is
+ * unknown or was already seen. Line numbers in the errors start at 1.
+ */
+static bool	check_identifier(char **raw_map, size_t i, size_t j, int *seen)
+{
+	static const char	*keys[6] = {"NO", "SO", "WE", "EA", "F", "C"};
+	int					id;
+
+	id = get_var_id(raw_map[i], &j);
+	if (id == -1)
+		return (ft_error(ERR_INVALID_ID, (int)i + 1), false);
+	seen[id]++;
+	if (seen[id] > 1)
+		return (ft_error(ERR_DUP_ID, keys[id], (int)i + 1), false);
+	return (true);
+}
+
 bool	check_dup_inv_vars(char **raw_map)
 {
 	int		seen[6];
 	size_t	i;
 	size_t	j;
-	int		id;
 
 	ft_bzero(seen, sizeof(seen));
 	i = 0;
@@ -64,11 +81,7 @@ bool	check_dup_inv_vars(char **raw_map)
 			continue ;
 		if (is_map_line(raw_map[i], j))
 			break ;
-		id = get_var_id(raw_map[i], &j);
-		if (id == -1)
-			return (false);
-		seen[id]++;
-		if (seen[id] > 1)
+		if (!check_identifier(raw_map, i, j, seen))
 			return (false);
 		i++;
 	}

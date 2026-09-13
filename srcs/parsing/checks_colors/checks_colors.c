@@ -18,14 +18,11 @@ bool	checks_for_colors(t_map_vars map_vars)
 		return (false);
 	if (!three_values_only(map_vars))
 	{
-		debug("Error\ncolor must contain exactly two commas\n");
+		ft_error(ERR_COLOR_COMMAS);
 		return (false);
 	}
 	if (!valid_three_values(map_vars))
-	{
-		debug("Error\ncolor must contain exactly three RGB values\n");
 		return (false);
-	}
 	if (!valid_chars(map_vars))
 		return (false);
 	if (!valid_range(map_vars))

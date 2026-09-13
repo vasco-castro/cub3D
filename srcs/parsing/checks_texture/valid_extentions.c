@@ -19,7 +19,7 @@ static bool	valid_extention(char *path)
 	len = strlen(path);
 	if (len < 4 || ft_strncmp(&path[len - 4], ".xpm", 4) != 0)
 	{
-		debug("Error\ninvalid extension for texture\n");
+		ft_error(ERR_TEX_EXT, path);
 		return (false);
 	}
 	return (true);

@@ -15,16 +15,16 @@
 bool	valid_vars(t_map_vars map_vars)
 {
 	if (!map_vars.north)
-		return (debug("Error\nmissing NO texture variable\n"), false);
+		return (ft_error(ERR_MISSING_NO), false);
 	if (!map_vars.south)
-		return (debug("Error\nmissing SO texture variable\n"), false);
+		return (ft_error(ERR_MISSING_SO), false);
 	if (!map_vars.west)
-		return (debug("Error\nmissing WE texture variable\n"), false);
+		return (ft_error(ERR_MISSING_WE), false);
 	if (!map_vars.east)
-		return (debug("Error\nmissing EA texture variable\n"), false);
+		return (ft_error(ERR_MISSING_EA), false);
 	if (!map_vars.floor)
-		return (debug("Error\nmissing floor color variable\n"), false);
+		return (ft_error(ERR_MISSING_F), false);
 	if (!map_vars.ceiling)
-		return (debug("Error\nmissing ceiling color variable\n"), false);
+		return (ft_error(ERR_MISSING_C), false);
 	return (true);
 }

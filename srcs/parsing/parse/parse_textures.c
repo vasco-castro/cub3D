@@ -21,16 +21,21 @@ void	free_images(void)
 	destroy_image(&map()->west_texture);
 }
 
+/**
+ * @note Known issue: when mlx_get_data_addr fails, image->img is destroyed
+ * but left set, so free_images destroys it a second time.
+ */
 static bool	load_image_from_file(t_image *image, char *path)
 {
 	image->img = mlx_xpm_file_to_image(game()->mlx, path,
 			&image->w, &image->h);
 	if (!image->img)
-		return (false);
+		return (ft_error(ERR_TEX_LOAD, path), false);
 	image->addr = mlx_get_data_addr(image->img, &image->bpp,
 			&image->line, &image->endian);
 	if (!image->addr)
-		return (mlx_destroy_image(game()->mlx, image->img), false);
+		return (ft_error(ERR_TEX_LOAD, path),
+			mlx_destroy_image(game()->mlx, image->img), false);
 	return (true);
 }
 

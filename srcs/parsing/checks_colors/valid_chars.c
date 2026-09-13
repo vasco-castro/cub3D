@@ -43,7 +43,7 @@ bool	valid_chars(t_map_vars map_vars)
 	{
 		if (!check_floors(map_vars, i))
 		{
-			debug("Error\nInvalid character in the floor's value\n");
+			ft_error(ERR_FLOOR_CHAR);
 			return (false);
 		}
 		i++;
@@ -53,7 +53,7 @@ bool	valid_chars(t_map_vars map_vars)
 	{
 		if (!check_ceilings(map_vars, i))
 		{
-			debug("Error\nInvalid character in the ceiling's value\n");
+			ft_error(ERR_CEIL_CHAR);
 			return (false);
 		}
 		i++;

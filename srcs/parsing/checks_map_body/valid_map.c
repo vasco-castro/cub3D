@@ -43,13 +43,13 @@ bool	valid_map(char **map)
 	copy = ft_tabcpy(map);
 	if (!copy)
 	{
-		debug("Error\nfailed to copy map for validation\n");
+		ft_error(ERR_MAP_COPY);
 		return (false);
 	}
 	if (!flood_fill(copy, (int)player()->pos.y, (int)player()->pos.x))
 	{
 		ft_tabfree(copy);
-		debug("Error\nmap is not closed\n");
+		ft_error(ERR_MAP_OPEN);
 		return (false);
 	}
 	ft_tabfree(copy);
