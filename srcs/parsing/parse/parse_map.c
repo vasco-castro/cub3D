@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:54:12 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/09/13 18:35:32 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/09/14 18:56:22 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ bool	checks_for_raw_map(char **raw_map)
  * - A file with no map, or store_map_body failing to allocate, reports
  *   "map needs to have exactly one player".
  */
+
 bool	parse_map(const char *filename)
 {
 	char		**raw_map;
