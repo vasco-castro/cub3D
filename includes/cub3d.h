@@ -28,6 +28,8 @@
 # define ERR_ARGC "Invalid number of arguments.\nUsage: %s <map.cub>" // argv[0]
 # define ERR_MAP_EXT "Invalid file. Expected a .cub file."
 # define ERR_READ_MAP "failed to read map file '%s'" // filename
+# define ERR_MAP_IS_DIR "'%s' is a directory, not a map file" // filename
+# define ERR_EMPTY_FILE "map file '%s' is empty" // filename
 # define ERR_INVALID_ID "invalid identifier on line %d" // line number
 # define ERR_DUP_ID "duplicate '%s' identifier on line %d" // key, line number
 # define ERR_KEY_SPACING "invalid spacing between key and value"
@@ -51,9 +53,10 @@
 # define ERR_CEIL_CHAR "Invalid character in the ceiling's value"
 # define ERR_FLOOR_RANGE "floor color values must be between 0 and 255"
 # define ERR_CEIL_RANGE "ceiling color values must be between 0 and 255"
+# define ERR_NO_MAP "missing map, it must be the last element"
+# define ERR_MAP_ALLOC "failed to allocate the map"
 # define ERR_PLAYER "map needs to have exactly one player"
 # define ERR_MAP_OPEN "map is not closed"
-# define ERR_MAP_COPY "failed to copy map for validation"
 # define ERR_MLX_INIT "failed to initialise minilibx"
 # define ERR_MLX_WIN "failed to create window"
 # define ERR_MLX_IMAGE "failed to create screen image"

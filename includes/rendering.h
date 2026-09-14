@@ -129,7 +129,6 @@ void			put_px(t_image *img, int x, int y, uint32_t color);
 void			put_pixel(int x, int y, uint32_t color);
 void			put_line(t_point a, t_point b, uint32_t color);
 void			put_square(int x, int y, int size, uint32_t color);
-void			put_star(int x, int y, int size, uint32_t color);
 void			put_circle(int cx, int cy, int radius, uint32_t color);
 
 void			update_player_vectors(void);

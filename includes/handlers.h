@@ -16,6 +16,7 @@
 # define MOVE_SPEED 3.0
 # define ROT_SPEED 3.0
 # define RUN_MULTIPLIER 1.5
+# define DEBUG_SPEED_MULTIPLIER 100.0
 
 /*
  * Key codes are platform-dependent: minilibx delivers X11 keysyms on Linux

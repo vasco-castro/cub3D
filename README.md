@@ -66,7 +66,7 @@ cloned, `make` fetches them automatically.
 | `←` `→`       | Rotate the camera               |
 | `Left Shift`  | Run                             |
 | `M`           | Toggle the minimap              |
-| `\`           | Enable debug mode               |
+| `\`           | Toggle debug mode               |
 | `Esc` / close | Quit                            |
 
 ### Scene file (`.cub`)
@@ -121,8 +121,6 @@ Example scenes are in `maps/valid`, and scenes that must be rejected are in
 
 ### Use of AI
 
-AI (Claude) was used as an assistant, not to write the project. It helped
-investigate memory reported by Valgrind, which turned out to be internal Xlib
-caches allocated by `mlx_mouse_hide` (mouse support was then dropped). It also
-reviewed the project against the subject before delivery — norm, allowed
-functions, invalid maps and leaks — and helped rewrite this README.
+AI (Claude) was used as an assistant, not to write the project.
+It helped investigate memory reported by Valgrind.
+It also reviewed the project against the subject before delivery — norm, allowed functions, invalid maps and leaks — and helped rewrite this README.

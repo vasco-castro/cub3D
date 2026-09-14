@@ -25,6 +25,8 @@ static void	handle_input(double delta)
 		forward_speed *= RUN_MULTIPLIER;
 		rot_speed /= RUN_MULTIPLIER;
 	}
+	if (debug_mode())
+		forward_speed *= DEBUG_SPEED_MULTIPLIER;
 	if (keys()->forward)
 		move_player(FORWARD, forward_speed * delta);
 	if (keys()->backward)

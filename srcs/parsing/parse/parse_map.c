@@ -48,24 +48,32 @@ bool	checks_for_raw_map(char **raw_map)
 }
 
 /**
- * @note Known issues, all printing a misleading error:
- * - An empty file, or a directory named *.cub, reads as zero lines and
- *   reports "missing NO texture variable".
- * - A file with no map, or store_map_body failing to allocate, reports
- *   "map needs to have exactly one player".
+ * @brief Whether `filename` is a directory. Opening one for reading works
+ * and reads as zero lines, so it would otherwise pass for an empty file.
  */
+static bool	is_directory(const char *filename)
+{
+	int	fd;
+
+	fd = open(filename, O_RDONLY | O_DIRECTORY);
+	if (fd < 0)
+		return (false);
+	close(fd);
+	return (true);
+}
 
 bool	parse_map(const char *filename)
 {
 	char		**raw_map;
 	t_map_vars	map_vars;
 
+	if (is_directory(filename))
+		return (ft_error(ERR_MAP_IS_DIR, filename), false);
 	raw_map = read_map(filename);
 	if (!raw_map)
-	{
-		ft_error(ERR_READ_MAP, filename);
-		return (false);
-	}
+		return (ft_error(ERR_READ_MAP, filename), false);
+	if (!raw_map[0])
+		return (ft_error(ERR_EMPTY_FILE, filename), ft_tabfree(raw_map), false);
 	if (!checks_for_raw_map(raw_map))
 		return (false);
 	map_vars = store_map_variables(raw_map);

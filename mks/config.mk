@@ -33,7 +33,7 @@ SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), main singletons \
 			$(addprefix checks_colors/, checks_colors valid_chars three_values_exists \
 					three_values_only valid_range trim_spaces \
 					space_between_colors) \
-			$(addprefix checks_map_body/, checks_map_body valid_player valid_map \
+			$(addprefix checks_map_body/, checks_map_body valid_player \
 					valid_map_borders) \
 		) \
 	))
