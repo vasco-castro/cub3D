@@ -67,13 +67,6 @@ static void	game_init(void)
 		(void *)key_down_handler, &game);
 	mlx_hook(game()->win, ON_KEYUP, MASK_KEYRELEASE,
 		(void *)key_up_handler, &game);
-	mlx_mouse_hide(game()->mlx, game()->win);
-	mlx_hook(game()->win, ON_MOUSEDOWN, MASK_BUTTONPRESS,
-		(void *)mouse_click_handler, &game);
-	mlx_hook(game()->win, ON_MOUSEUP, MASK_BUTTONRELEASE,
-		(void *)mouse_click_handler, &game);
-	mlx_hook(game()->win, ON_MOUSEMOVE, MASK_POINTERMOTION,
-		(void *)mouse_move_handler, &game);
 	mlx_loop_hook(game()->mlx, (void *)loop_hook, &game);
 	mlx_loop(game()->mlx);
 }

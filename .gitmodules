@@ -1,6 +1,6 @@
 [submodule "libs/libft"]
 	path = libs/libft
-	url = git@github.com:vasco-castro/libV.git
+	url = https://github.com/vasco-castro/libV.git
 [submodule "libs/minilibx-linux"]
 	path = libs/minilibx-linux
 	url = https://github.com/vasco-castro/minilibx-linux.git

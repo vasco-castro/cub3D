@@ -22,7 +22,7 @@ MAKEFLAGS	+= --no-print-directory
 SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), main singletons \
 		$(addprefix rendering/, render raycast minimap minimap_player \
 			$(addprefix images/, put_pixels images textures)) \
-		$(addprefix events/, handlers key_handlers mouse_handlers) \
+		$(addprefix events/, handlers key_handlers) \
 		$(addprefix utils/, utils) \
 		$(addprefix parsing/, \
 			$(addprefix parse/, parse_map parse_error parse_textures parse_colors \
@@ -31,7 +31,7 @@ SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_DIR), main singletons \
 			$(addprefix checks_texture/, check_texture valid_permisions valid_spacing valid_vars \
 					valid_duplicates valid_vars_in_map valid_extentions) \
 			$(addprefix checks_colors/, checks_colors valid_chars three_values_exists \
-					three_values_only valid_range valid_separator trim_spaces \
+					three_values_only valid_range trim_spaces \
 					space_between_colors) \
 			$(addprefix checks_map_body/, checks_map_body valid_player valid_map \
 					valid_map_borders) \

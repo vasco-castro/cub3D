@@ -24,14 +24,3 @@ void	free_map_vars(t_map_vars *map_vars)
 	free(map_vars->floor);
 	free(map_vars->ceiling);
 }
-
-void	free_map_body(char **map_body)
-{
-	if (map_body)
-		ft_tabfree(map_body);
-}
-
-void	parse_error_on_map(t_map *map)
-{
-	(void)map;
-}

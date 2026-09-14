@@ -16,7 +16,7 @@ static bool	valid_extention(char *path)
 {
 	int	len;
 
-	len = strlen(path);
+	len = ft_strlen(path);
 	if (len < 4 || ft_strncmp(&path[len - 4], ".xpm", 4) != 0)
 	{
 		ft_error(ERR_TEX_EXT, path);
