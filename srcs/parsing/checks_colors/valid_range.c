@@ -6,16 +6,12 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/13 18:36:15 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/27 18:01:21 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/09/14 08:27:31 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-/**
- * @note Known issue: ft_atoi overflows on long numbers, so "4294967296"
- * wraps into range and is accepted.
- */
 bool	valid_digits_range(char *digits)
 {
 	int	i;
@@ -26,11 +22,14 @@ bool	valid_digits_range(char *digits)
 	{
 		if (ft_isdigit(digits[i]))
 		{
-			value = ft_atoi(&digits[i]);
-			if (value < 0 || value > 255)
-				return (false);
+			value = 0;
 			while (ft_isdigit(digits[i]))
+			{
+				value = value * 10 + digits[i] - '0';
+				if (value > 255)
+					return (false);
 				i++;
+			}
 		}
 		else
 			i++;

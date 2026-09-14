@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsoares- <vsoares-@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/13 17:03:27 by vsoares-          #+#    #+#             */
-/*   Updated: 2026/09/13 17:03:27 by vsoares-         ###   ########.fr       */
+/*   Updated: 2026/09/14 16:44:21 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define ERR_TEX_OPEN "cannot open texture '%s': %s" // texture path, strerror
 # define ERR_TEX_LOAD "texture '%s' is not a valid xpm image" // texture path
 # define ERR_COLOR_COMMAS "color must contain exactly two commas"
+# define ERR_SPACE_IN_COLOR "color must not have spaces in between"
 # define ERR_FLOOR_MISSING "Not all values present in the floor colors"
 # define ERR_CEIL_MISSING "Not all values present in the ceiling colors"
 # define ERR_FLOOR_CHAR "Invalid character in the floor's value"

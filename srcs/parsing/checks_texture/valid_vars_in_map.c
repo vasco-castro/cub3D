@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 19:17:11 by biphuyal          #+#    #+#             */
-/*   Updated: 2026/08/21 17:41:02 by biphuyal         ###   ########.fr       */
+/*   Updated: 2026/09/14 14:55:51 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,39 @@ static bool	is_map_body_line(char *line)
 	return (true);
 }
 
-/**
- * @note Known issue: empty lines are skipped, so an empty line splitting the
- * map in two is accepted.
- */
+static bool	check_map_line(char *line, bool *map_started, bool *map_ended)
+{
+	size_t	j;
+
+	j = 0;
+	skip_spaces(line, &j);
+	if (!line[j] || line[j] == '\n')
+	{
+		if (*map_started)
+			*map_ended = true;
+		return (true);
+	}
+	if (*map_ended)
+		return (ft_error(ERR_MAP_OPEN), false);
+	if (line[j] == '1')
+		*map_started = true;
+	if (*map_started && !is_map_body_line(line))
+		return (false);
+	return (true);
+}
+
 bool	check_vars_in_out_map_body(char **raw_map)
 {
 	size_t	i;
-	size_t	j;
 	bool	map_started;
+	bool	map_ended;
 
 	i = 0;
 	map_started = false;
+	map_ended = false;
 	while (raw_map[i])
 	{
-		j = 0;
-		skip_spaces(raw_map[i], &j);
-		if (!raw_map[i][j] || raw_map[i][j] == '\n')
-		{
-			i++;
-			continue ;
-		}
-		if (raw_map[i][j] == '1')
-			map_started = true;
-		if (map_started && !is_map_body_line(raw_map[i]))
+		if (!check_map_line(raw_map[i], &map_started, &map_ended))
 			return (false);
 		i++;
 	}
